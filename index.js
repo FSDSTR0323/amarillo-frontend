@@ -4,6 +4,9 @@ const app = express();
 
 require('dotenv').config();
 const port = process.env.PORT || 9000;
+app.use(express.json());
+
+
 app.listen(port, ()=>console.log("El servidor está escuchando en el port", port))
 
 const mongoose = require("mongoose");
@@ -12,6 +15,12 @@ const mongoDB = "mongodb+srv://"+process.env.DB_USER+":"+process.env.DB_PASSWORD
 mongoose.connect(mongoDB)
 .then (()=>console.log('Conectado correctamente a MondoDB Atlas'))
 .catch(err => console.log(err));
+
+//cargar rutas
+const rooms = require('./src/routes/rooms.js')
+app.use('/rooms', rooms)
+
+
 
 
 app.get('/', (req, res) => {
