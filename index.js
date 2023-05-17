@@ -22,7 +22,6 @@ app.use('/rooms', rooms)
 
 
 
-
 app.get('/', (req, res) => {
     res.status(200).send({msj:'Hello World!'})
 })

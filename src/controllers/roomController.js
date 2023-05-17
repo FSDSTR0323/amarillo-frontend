@@ -1,10 +1,11 @@
 const Room = require ('../models/roomModel/roomModel.js')
 
+//Añadimos una nueva estancia
 const addRoom = (req,res)=>{
     console.log(req.body);
     Room.create(
         {
-            room: req.body.name
+            name: req.body.name
         }
     )
     .then( roomDoc=>res.status(200).send({msg:"Habitación añadida"}))
@@ -18,9 +19,10 @@ const addRoom = (req,res)=>{
             res.status(400).send(error);
         }
     })
-
-
 };
+
+//Consultamos nuestras habitaciones.
+
 
 module.exports ={
     addRoom
