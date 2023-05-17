@@ -16,15 +16,18 @@ mongoose.connect(mongoDB)
 .then (()=>console.log('Conectado correctamente a MondoDB Atlas'))
 .catch(err => console.log(err));
 
+//Esto lo recibimos sin ruta
+app.get('/', (req, res) => {
+    res.status(200).send({msj:'Hello World!'})
+})
+
+
 //cargar rutas
 const rooms = require('./src/routes/rooms.js')
 app.use('/rooms', rooms)
 
 
 
-app.get('/', (req, res) => {
-    res.status(200).send({msj:'Hello World!'})
-})
 
 
 

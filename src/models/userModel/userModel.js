@@ -10,12 +10,23 @@ const userSchema= new Schema({
     last_name: {
         type:String
     },
+    email: {
+        type: String, // TO DO -- VALIDACIÓN DE MAIL CON @ REGEX ----
+        required: true,
+    },
+    phoneNumber: {
+        type: Number,
+    },
     birthyear: {
         type:Number
+    },
+    userType: {
+        type: String,
+        default: 'superadmin',
+        enum: ['superadmin','admin', 'viewer']
     }
-
 },
-{timestamps:true}
+    {timestamps:true}
 );
 
 module.exports = mongoose.model('User', userSchema);
