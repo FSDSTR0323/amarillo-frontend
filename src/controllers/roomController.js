@@ -1,4 +1,4 @@
-const Room = require ('../models/roomModel/roomModel.js')
+const Room = require('../models/roomModel.js');
 
 //Añadimos una nueva estancia
 const addRoom = (req,res)=>{
