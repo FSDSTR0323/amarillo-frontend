@@ -1,7 +1,18 @@
 import './App.css';
 import React from 'react';
+
+
+//Importando MATERIAL UI
 import { Container, Paper, Typography, Button } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/system';
+
+//IMPORTANDO REACT ROUTER DOM --- ENRUTADO
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Homepage from './componentes/containers/Homepage';
+import HousePanel from './componentes/containers/HousePanel';
+import RoomPanel from './componentes/containers/RoomPanel';
+
+
 
 /* A partir de aquí vamos a crear nuestro tema.
 const theme = createTheme({
@@ -18,12 +29,14 @@ const theme = createTheme({
 
 function App() {
   return (
-      <Container sx= {{
-        p: '2rem'
-      }}>
-          <Typography variant='h4'>Bienvenido a la App</Typography>
-          <Typography variant='body1'>Se trata de una app de domótica para el hogar.</Typography>
-      </Container>
+   
+        <BrowserRouter>
+          <Routes>
+              <Route path='/homepage' element={<Homepage />} />
+              <Route path='/housePanel' element={<HousePanel/>} />
+              <Route path='/housePanel/:slug' element={<RoomPanel/>} />
+          </Routes>    
+        </BrowserRouter>
   );
 }
 
