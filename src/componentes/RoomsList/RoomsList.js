@@ -5,17 +5,17 @@ import { Container, Typography, Button } from '@mui/material';
 import { RoomCard } from './RoomCard';
 
 const RoomsList = () => {
-    const { Rooms, SetRooms } = useState([]);
+    const { rooms, setRooms } = useState([]);
 
     useEffect(() => {
         getAllRooms()
-            .then(SetRooms)
+            .then(setRooms)
             .catch( error => console.error(error))
     }, []);
   
     return (
     <Container>
-        { Rooms.map( room => < RoomCard key={room.id} name={ room.name } />)}
+        {rooms.map( room => < RoomCard key={room.id} name={ room.name } />)}
         <Button>Editar</Button>
         <Button>Delete</Button>
     </Container>

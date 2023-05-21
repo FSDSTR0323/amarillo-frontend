@@ -1,8 +1,7 @@
 import React from 'react';
 import { Container, Paper, Card, Typography, Button } from '@mui/material';
 
-import HomepageNavMenu from '../HomepageNavMenu';
-
+import HomepageNavMenu from '../MenuBars/HomepageNavMenu';
 
 const Homepage = () => {
   return (
