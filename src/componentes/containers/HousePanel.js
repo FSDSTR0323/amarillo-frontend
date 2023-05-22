@@ -19,6 +19,8 @@ const HousePanel = () => {
             <Typography variant='h4'>Bienvenido al panel de control de tu vivienda:</Typography>
             <Typography variant='body1'>En este área puedes visibilizar tus diferentes estancias y el número de dispositivos conectados en cada una de ellas.</Typography>
         </Paper>
+        
+        <RoomsList></RoomsList>
     
     </Container>
     </>
