@@ -1,9 +1,10 @@
 import React from 'react';
-import { Container, Paper, Typography, Button } from '@mui/material';
+import { Container, Paper, Typography, Button, Grid } from '@mui/material';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import RoomsList from '../RoomsList/RoomsList';
 import HubNavBar from '../MenuBars/HubNavBar';
+import AddRoom from '../AddRoom/AddRoom';
 
 const HousePanel = () => {
   return (
@@ -19,9 +20,8 @@ const HousePanel = () => {
             <Typography variant='h4'>Bienvenido al panel de control de tu vivienda:</Typography>
             <Typography variant='body1'>En este área puedes visibilizar tus diferentes estancias y el número de dispositivos conectados en cada una de ellas.</Typography>
         </Paper>
-        
-        <RoomsList></RoomsList>
-    
+          <AddRoom></AddRoom>
+          <RoomsList></RoomsList>
     </Container>
     </>
   )

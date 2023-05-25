@@ -11,6 +11,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Homepage from './componentes/containers/Homepage';
 import HousePanel from './componentes/containers/HousePanel';
 import RoomPanel from './componentes/containers/RoomPanel';
+import Login from '../src/componentes/forms/loginForm/index.tsx';
 
 
 
@@ -35,6 +36,7 @@ function App() {
               <Route path='/homepage' element={<Homepage />} />
               <Route path='/housePanel' element={<HousePanel/>} />
               <Route path='/housePanel/:slug' element={<RoomPanel/>} />
+              <Route path='/Login' element={<Login/>} />
 
               <Route path='*' element={<p>No hemos encontrado esta página.</p>} /> TODO: Hay que crear la página de 404 NotFound
           </Routes>    

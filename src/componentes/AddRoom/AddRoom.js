@@ -1,12 +1,15 @@
 import React from 'react';
-import { Button } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
+import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 
 //Dentro de este componente, generamos el pop-up que nos permita añadir una nueva estancia a nuestro panel/hub.
 
 const AddRoom = () => {
   return (
-    <Button>Añadir nueva estancia</Button>
+    <IconButton>
+      <AddBoxOutlinedIcon fontsize='large' color='primary'></AddBoxOutlinedIcon>
+    </IconButton>
   )
 }
 
-export default AddRoom
+export default AddRoom ;

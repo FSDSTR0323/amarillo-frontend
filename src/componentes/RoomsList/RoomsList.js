@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { getAllRooms } from '../../apiService';
-import { Container, Typography, Button } from '@mui/material';
-import { RoomCard } from './RoomCard';
+import { Container, Typography, Button, Grid } from '@mui/material';
+import RoomCard from '../RoomsList/RoomCard/index.js'
 
 const RoomsList = () => {
     const [ rooms, setRooms ] = useState([]);
@@ -18,11 +18,11 @@ const RoomsList = () => {
     }, []);
   
     return (
-    <Container>
+        <>
+        {/* <Grid container spacing={2}> */}
         {rooms.length > 0 ? rooms.map( room => <RoomCard key={room._id} name={ room.name } />) : null }
-        <Button>Editar</Button>
-        <Button>Delete</Button>
-    </Container>
+        {/* </Grid> */}
+        </>
   )
 };
 
