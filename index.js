@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 
 require('dotenv').config();
 const port = process.env.PORT || 9000;
@@ -26,6 +27,9 @@ app.get('/', (req, res) => {
 //cargar rutas
 const rooms = require('./src/routes/rooms.js')
 app.use('/rooms', rooms)
+
+const users = require('./src/routes/users.js')
+app.use('/users', users)
 
 
 

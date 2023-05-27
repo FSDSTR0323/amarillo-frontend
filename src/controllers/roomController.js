@@ -135,7 +135,7 @@ const deleteRoom = (req, res) => {
 };
 
 
-module.exports ={
+module.exports = {
     addRoom,
     getRooms,
     updateRoom,

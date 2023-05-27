@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSchema= new Schema({
-    first_name:{
+    name:{
         type:String,
         required:true,
         minLength:2
@@ -12,6 +12,10 @@ const userSchema= new Schema({
     },
     email: {
         type: String, // TO DO -- VALIDACIÓN DE MAIL CON @ REGEX ----
+        required: true,
+    },
+    password: {
+        type: String,
         required: true,
     },
     phoneNumber: {
