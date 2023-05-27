@@ -36,9 +36,9 @@ export default function RoomCard({ name }) {
       </CardActionArea>
       <CardActions>
 
-        <IconButton>
+        {/* <IconButton>
           <CreateIcon></CreateIcon>
-        </IconButton>
+        </IconButton> */}
 
         <IconButton color='primary'>
           <DeleteIcon></DeleteIcon>

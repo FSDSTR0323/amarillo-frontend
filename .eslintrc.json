@@ -12,6 +12,6 @@
   "plugins": ["react"],
 
   "rules": {
-    //"react/prop-types": "on"
+    "react/prop-types": "off"
   }
 }

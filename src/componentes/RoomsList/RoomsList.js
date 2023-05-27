@@ -10,7 +10,7 @@ const RoomsList = () => {
 
     useEffect(() => {
         getAllRooms()
-            .then(data => {
+            .then( data => {
                 console.log('Esta es la info del backend: ', data);
                 setRooms(data)
              })
