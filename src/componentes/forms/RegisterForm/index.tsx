@@ -9,7 +9,7 @@ type FormValues = {
   password: string
 }
 
-const LoginForm = () => {
+const RegisterForm = () => {
 
   const form = useForm<FormValues>({
     defaultValues: {
@@ -43,4 +43,4 @@ const LoginForm = () => {
   )
 };
 
-export default LoginForm ;
+export default RegisterForm ;

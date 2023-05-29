@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,6 +12,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 const HomepageNavMenu = () => {
   return (
+    //<BrowserRouter>
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
@@ -26,11 +28,16 @@ const HomepageNavMenu = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             HomeHub360
           </Typography>
-          <Button color="inherit" sx={{m:'1rem'}}>Registrarme</Button>
-          <Button  color="inherit">Ir a mi panel</Button> 
+          <Link to='/register'>
+            <Button sx={{m:'1rem', color: 'white'}}>Registrarme</Button> 
+          </Link>
+          <Link to='/login'>
+            <Button  sx={{color: 'white'}}>Ir a mi panel</Button> 
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>
+   // </BrowserRouter>
   );
 }
 
