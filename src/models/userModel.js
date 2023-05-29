@@ -29,10 +29,6 @@ const userSchema= new Schema({
         default: 'superadmin',
         enum: ['superadmin','admin', 'viewer']
     },
-    token: {
-        type: String,
-        default: null,
-    }
 },
     {timestamps:true}
 );

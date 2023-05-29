@@ -12,6 +12,7 @@ const registerNewUser = async (req, res) => {
     try {
     //Tomamos el data que tengamos en el body - frontend
     const { name, email, password } = req.body;
+    console.log('este es el body de la petición: ', req.body);
     //todos los datos que necesitamos deben estar presentes para poder registrar al nuevo usuario:
     if (!( name && email && password )) {
         return res.status(400).send({msg:'Tienes que rellenar todos los campos para realizar el registro.'})
@@ -22,9 +23,9 @@ const registerNewUser = async (req, res) => {
         return res.status(400).send({msg:'Este usuario ya está registrado.'})
     }
     //Ahora requerimos de la libreria de bcrypt para encriptar la contraseña que nos pasan por el front.
-    const encriptedPassword = bcrypt.hash(password, 10)
+    const encriptedPassword = await bcrypt.hash(password, 10)
     //Generamos y guardamos el nuevo usuario que enviaremos a la BD
-    await User.create({
+    const newUser = await User.create({
         name,
         email,
         password: encriptedPassword,
@@ -35,8 +36,10 @@ const registerNewUser = async (req, res) => {
         mySecret, //este es el secreto que traemos como variable de entorno con process.env.TOKENSECRET
         { expiresIn: '2h'}
     );
-    User.token = token;
-    User.password = undefined;
+    //console.log(token);
+
+    newUser.token = token;
+    newUser.password = undefined;
 
     res.status(200).send({msg:'¡Usuario creado correctamente!'})
     } catch(error) {
@@ -110,6 +113,6 @@ const loginUser = (req, res, next) => {
 
 module.exports = {
     registerNewUser,
-    loginUser,
+    loginUser
 };
 
