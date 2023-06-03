@@ -1,10 +1,13 @@
 import React from 'react'
 import RegisterForm from '../forms/RegisterForm';
+import HomepageNavMenu from '../MenuBars/HomepageNavMenu';
 
-const Login = () => {
+const Register = () => {
   return (
-    <RegisterForm />
+    <>
+      <RegisterForm />
+    </>
   )
 };
 
-export default Login
+export default Register
