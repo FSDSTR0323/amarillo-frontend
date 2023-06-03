@@ -14,8 +14,12 @@ const deviceSchema= new Schema({
         enum: ['On', 'Off']
     },
     data: {},
+    roomId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Room'
+    },
 
-    deleteAt: {type: Date}
+    deletedAt: {type: Date}
 },
     { timestamps : true }
 );
