@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 
-app.listen(port, ()=>console.log("El servidor está escuchando en el port", port))
+app.listen(port, () => console.log("El servidor está escuchando en el port", port))
 
 const mongoose = require("mongoose");
 const mongoDB = "mongodb+srv://"+process.env.DB_USER+":"+process.env.DB_PASSWORD+"@proyectofinalcluster.kshe6if.mongodb.net/"+process.env.DB_NAME+"?retryWrites=true&w=majority"
