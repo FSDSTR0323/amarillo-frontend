@@ -1,5 +1,5 @@
 import React from 'react';
-
+import HomepageNavMenu from '../../MenuBars/HomepageNavMenu';
 import { Container, Typography, TextField, Button, Stack } from '@mui/material';
 
 import { useForm } from 'react-hook-form';
@@ -25,7 +25,9 @@ const RegisterForm = () => {
 
   //TO DO: IMPLEMENTAR ERRORES EN EL FORMULARIO DE LOGIN
   return (
-    <Container sx={{paddingTop: '2rem', paddingBottom: '2rem', display: 'flex', flexDirection: 'column', alignItems:'center'}}>
+  <>
+    <HomepageNavMenu></HomepageNavMenu>
+    <Container sx={{paddingTop: '2rem', paddingBottom: '2rem', display: 'flex', flexDirection: 'column', alignItems:'center', justifyContent: 'center'}}>
     <Typography variant='h4' sx={{paddingBottom: '2rem'}}>Formulario de registro</Typography>
     <Typography variant='body1' sx={{paddingBottom: '2rem'}}>Introduce tus datos para poder crear tu perfil de usuario en la aplicación.</Typography>
       <form onSubmit={handleSubmit(onSubmit)}> 
@@ -39,6 +41,7 @@ const RegisterForm = () => {
         </Stack>
       </form>
     </Container>
+  </>
     
   )
 };
