@@ -11,3 +11,8 @@ export const postNewRoom = async () => {
     getAllRooms(); //llamamos de nuevo al get nada más postear para que se realice una sincronización y recibamos la nueva habitación.
     return data;
 }
+
+export const getAllDevices = async () => {
+    const { data } = await axios.get('http://localhost:9000/devices/');
+    return data;
+};
