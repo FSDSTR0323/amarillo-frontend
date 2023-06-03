@@ -9,9 +9,11 @@ import { createTheme, ThemeProvider } from '@mui/system';
 //IMPORTANDO REACT ROUTER DOM --- ENRUTADO
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Homepage from './componentes/containers/Homepage';
+
 import HousePanel from './componentes/containers/HousePanel';
 import RoomPanel from './componentes/containers/RoomPanel';
 import Login from '../src/componentes/forms/loginForm/index.tsx';
+import MyHousesPanel from './componentes/containers/AllHousesPanel';
 
 
 
@@ -35,6 +37,7 @@ function App() {
           <Routes>
               <Route path='/homepage' element={<Homepage />} />
               <Route path='/housePanel' element={<HousePanel/>} />
+              <Route path='/myHouses' element={<MyHousesPanel/>} />
               <Route path='/housePanel/:slug' element={<RoomPanel/>} />
               <Route path='/Login' element={<Login/>} />
 
