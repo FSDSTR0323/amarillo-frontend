@@ -64,8 +64,6 @@ const getUsers = (req, res) => {
     .catch(error => res.status(400).send(error))
 };
 
-
-
 const loginUser = async (req, res) => {
     try {
         //1º Cogemos todos los datos del front con req.body
@@ -121,7 +119,6 @@ const myUser = (req, res) => {
         console.log('Hay un error al tratar de verificar el token.')
         res.status(400).send({msg: 'No es un token válido.'})
     }
-
 };
 
 

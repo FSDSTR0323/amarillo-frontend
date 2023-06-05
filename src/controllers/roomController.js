@@ -24,6 +24,7 @@ const addRoom = (req,res)=>{
     })
 };
 
+
 //Consultamos nuestras habitaciones. GET
 const getRooms = (req, res) => {
     if(req.params.roomId){ //al llamar al roomId, tenemos que hacer el método findById.
