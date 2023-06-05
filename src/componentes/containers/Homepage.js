@@ -6,9 +6,9 @@ import FlareIcon from '@mui/icons-material/Flare';
 import SettingsPowerIcon from '@mui/icons-material/SettingsPower';
 import SecurityIcon from '@mui/icons-material/Security';
 
-import wall1 from '../../assets/imgs/wall1.jpeg';
 
 import HomepageNavMenu from '../MenuBars/HomepageNavMenu';
+import Footer from '../HomeFooter/index';
 
 const homepageImages = require.context('../../assets/imgs', true);
 
@@ -17,8 +17,8 @@ const Homepage = () => {
     <>
         <HomepageNavMenu></HomepageNavMenu>
         {/* Hero de la Homepage */}
-        <Box sx={{ backgroundImage:`url('https://images.unsplash.com/photo-1620121478247-ec786b9be2fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80')`, backgroundRepeat:'false' ,height:'70vh', display:'flex', flexDirection:'column', justifyContent: 'center', color:'#252525'}}>
-          <Typography variant='h2' sx={{paddingLeft: '7rem', color:'white' }}>¡Bienvenido a HomeHub360!</Typography>
+        <Box sx={{ backgroundImage:`url('https://images.unsplash.com/photo-1620121478247-ec786b9be2fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80')`, backgroundRepeat:'false' ,height:'80vh', display:'flex', flexDirection:'column', justifyContent: 'center', color:'#252525'}}>
+          <Typography variant='h1' sx={{paddingLeft: '7rem', color:'white', fontSize:'3.5rem' }}>¡Bienvenido a HomeHub360!</Typography>
           <Typography variant='body1' sx={{paddingLeft: '7rem', paddingTop: '3rem', maxWidth:'60%', color:'whitesmoke' }}>Transforma tu hogar en un espacio inteligente y conectado con nuestra innovadora  aplicación de domótica. HomeHub360 te ofrece el control total de tus dispositivos domésticos desde la comodidad de tu smartphone.</Typography>
           <Typography variant='h5' sx={{paddingLeft: '7rem', marginTop:'2rem', maxWidth:'40%', color:'#28E5FF' }}>Simplifica tu vida cotidiana y experimenta una nueva forma de vivir en tu hogar.</Typography>
           {/* <Link to='/register'>
@@ -28,8 +28,8 @@ const Homepage = () => {
 
         {/* Beneficios de usar nuestra app */}
         <Box sx={{bgcolor:'#EAEAEA', padding: '2rem'}}>
-            <Typography variant='h4' align='center'>Todo lo que te ofrece homehub360.</Typography>
-            <Box sx={{display: 'flex', justifyContent:'center', columnGap: '2rem'}}>
+            <Typography variant='h5' align='center' sx={{color: '#303030'}}>Todo lo que te ofrece homehub360.</Typography>
+            <Box sx={{display: 'flex', justifyContent:'center', columnGap: '2.5rem'}}>
 
               <Card sx={{marginTop: '2rem', marginBottom:'2rem', p: '2rem', flexGrow:'1'}}>
                 <ControlCameraIcon fontSize='large' sx={{color:'#28E5FF'}}></ControlCameraIcon>
@@ -56,6 +56,7 @@ const Homepage = () => {
               </Card>
             </Box>
         </Box>
+        <Footer></Footer>
     </>
   )
 }
