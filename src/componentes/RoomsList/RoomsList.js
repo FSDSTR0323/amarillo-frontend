@@ -1,8 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { getAllRooms } from '../../apiService';
-import { Container, Typography, Button, Grid } from '@mui/material';
+import { Box } from '@mui/material';
 import RoomCard from '../RoomsList/RoomCard/index.js'
+
 
 const RoomsList = () => {
     const [ rooms, setRooms ] = useState([]);
@@ -18,11 +19,15 @@ const RoomsList = () => {
     }, []);
   
     return (
-        <>
+        <Box sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '2rem'
+        }}>
         {/* <Grid container spacing={2}> */}
         {rooms.length > 0 ? rooms.map( room => <RoomCard key={room._id} name={ room.name } />) : null }
         {/* </Grid> */}
-        </>
+        </Box>
   )
 };
 
