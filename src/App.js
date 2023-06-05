@@ -5,9 +5,11 @@ import React from 'react';
 //IMPORTANDO REACT ROUTER DOM --- ENRUTADO
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Homepage from './componentes/containers/Homepage';
+
 import HousePanel from './componentes/containers/HousePanel';
 import RoomPanel from './componentes/containers/RoomPanel';
 import RegisterForm from './componentes/forms/RegisterForm/index.tsx';
+import MyHousesPanel from './componentes/containers/AllHousesPanel';
 import Login from './componentes/containers/Login';
 
 /* A partir de aquí vamos a crear nuestro tema.
@@ -29,6 +31,7 @@ function App() {
           <Routes>
               <Route path='/homepage' element={<Homepage />} />
               <Route path='/housePanel' element={<HousePanel/>} />
+              <Route path='/myHouses' element={<MyHousesPanel/>} />
               <Route path='/housePanel/:slug' element={<RoomPanel/>} />
               <Route path='/register' element={<RegisterForm/>} />
               <Route path='/login' element={<Login/>} />
