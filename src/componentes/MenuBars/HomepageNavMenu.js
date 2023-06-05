@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -7,12 +8,14 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
+
 //TO DO: IMPLEMENTAR EL BOTÓN DE CLICK EN "IR A MI PANEL" Y QUE NOS LLEVE A LA RUTA /HOUSEPANEL
 
 const HomepageNavMenu = () => {
   return (
+    //<BrowserRouter>
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{bgcolor: '#303030'}}>
         <Toolbar>
           <IconButton
             size="large"
@@ -23,14 +26,23 @@ const HomepageNavMenu = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            HomeHub360
-          </Typography>
-          <Button color="inherit" sx={{m:'1rem'}}>Registrarme</Button>
-          <Button  color="inherit">Ir a mi panel</Button> 
+
+          <Link to='/homepage'>
+            <Button sx={{m:'1rem', color: 'white'}}>HomeHub360</Button> 
+          </Link>
+
+          <Link to='/register'>
+            <Button sx={{m:'1rem', color: 'white'}}>Registrarme</Button> 
+          </Link>
+
+          <Link to='/login'>
+            <Button  sx={{color: 'white'}}>Ir a mi panel</Button> 
+          </Link>
+
         </Toolbar>
       </AppBar>
     </Box>
+   // </BrowserRouter>
   );
 }
 

@@ -2,20 +2,15 @@ import './App.css';
 import React from 'react';
 
 
-//Importando MATERIAL UI
-import { Container, Paper, Typography, Button } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/system';
-
 //IMPORTANDO REACT ROUTER DOM --- ENRUTADO
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Homepage from './componentes/containers/Homepage';
 
 import HousePanel from './componentes/containers/HousePanel';
 import RoomPanel from './componentes/containers/RoomPanel';
-import Login from '../src/componentes/forms/loginForm/index.tsx';
+import RegisterForm from './componentes/forms/RegisterForm/index.tsx';
 import MyHousesPanel from './componentes/containers/AllHousesPanel';
-
-
+import Login from './componentes/containers/Login';
 
 /* A partir de aquí vamos a crear nuestro tema.
 const theme = createTheme({
@@ -29,7 +24,6 @@ const theme = createTheme({
 });
 */
 
-
 function App() {
   return (
    
@@ -39,7 +33,8 @@ function App() {
               <Route path='/housePanel' element={<HousePanel/>} />
               <Route path='/myHouses' element={<MyHousesPanel/>} />
               <Route path='/housePanel/:slug' element={<RoomPanel/>} />
-              <Route path='/Login' element={<Login/>} />
+              <Route path='/register' element={<RegisterForm/>} />
+              <Route path='/login' element={<Login/>} />
 
               <Route path='*' element={<p>No hemos encontrado esta página.</p>} /> TODO: Hay que crear la página de 404 NotFound
           </Routes>    

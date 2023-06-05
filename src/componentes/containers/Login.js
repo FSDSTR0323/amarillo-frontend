@@ -1,10 +1,14 @@
 import React from 'react'
-import LoginForm from '../forms/loginForm'
+import LoginForm from '../forms/LoginForm/index.tsx'
+import HomepageNavMenu from '../MenuBars/HomepageNavMenu'
 
 const Login = () => {
   return (
-    <LoginForm></LoginForm>
+    <>
+        <HomepageNavMenu></HomepageNavMenu>
+        <LoginForm />
+    </>
   )
-};
+}
 
 export default Login
