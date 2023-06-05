@@ -34,7 +34,12 @@ const houseSchema = new Schema({
     },
     size: {
         type: Number
-    }
+    },
+    userId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+
 },
     { timestamps : true}
 )
