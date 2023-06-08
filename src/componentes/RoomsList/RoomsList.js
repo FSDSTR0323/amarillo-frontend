@@ -4,7 +4,6 @@ import { getAllRooms } from '../../apiService';
 import { Box } from '@mui/material';
 import RoomCard from '../RoomsList/RoomCard/index.js'
 
-
 const RoomsList = () => {
     const [ rooms, setRooms ] = useState([]);
     console.log( rooms );
