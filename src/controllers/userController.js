@@ -95,16 +95,13 @@ const loginUser = async (req, res) => {
                     expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
                     httpOnly: true,
             };
-        //    return res.status(200).cookie('token', token, options).send({success: true})
-        
-            return res.status(200).cookie('token', token, options).send({success: true, 'token': token})
+            return res.status(200).json({success: true, token})
         } else { return res.status(400).send({msg: 'Usuario o contraseña incorrectos.'}) }
     } catch(error) {
         console.log(error);
         return res.status(400).send({msg: 'Usuario o contraseña incorrectos.'})
     }
 };
-
 
 //Este endpoint nos va a servir para llamarnos a nosotros mismos. Es el endpoint de "mi perfil"
 const myUser = (req, res) => {
