@@ -10,7 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CreateIcon from '@mui/icons-material/Create';
 
 
-export default function RoomCard({ name }) {
+export default function RoomCard({ name, devices }) {
   return (
     <Card sx={{ maxWidth: 345}}>
       <CardActionArea>
@@ -29,7 +29,7 @@ export default function RoomCard({ name }) {
           { name }
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Los dispositivos conectados en esta estancia son:
+            Los dispositivos conectados en esta estancia son: { devices }
           </Typography>
         </CardContent>
 
@@ -49,20 +49,6 @@ export default function RoomCard({ name }) {
   );
 }
 
-
-
-
-
-/*El propósito de este componente es simplemente pintar la RoomCard.
-const RoomCard = ({ name }) => {
-    return (
-    <Card sx={{m: '2rem'}}>
-        <Typography variant='h6'>{ name }</Typography>
-        <DeleteIcon />
-    </Card>
-  )
-};
-*/
 
 
 

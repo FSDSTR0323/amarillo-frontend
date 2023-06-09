@@ -4,7 +4,6 @@ import { getAllRooms } from '../../apiService';
 import { Box } from '@mui/material';
 import RoomCard from '../RoomsList/RoomCard/index.js'
 
-
 const RoomsList = () => {
     const [ rooms, setRooms ] = useState([]);
     //useState() es una función que crea internamente una variable donde podremos almacenar el estado de nuestro componente

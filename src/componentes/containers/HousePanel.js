@@ -3,7 +3,7 @@ import { Container, Paper, Typography, IconButton, Button, Box } from '@mui/mate
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import AddRoomForm from '../forms/AddRoomForm';
+import AddRoomForm from '../forms/AddRoomForm/index';
 import RoomsList from '../RoomsList/RoomsList';
 import HubNavBar from '../MenuBars/HubNavBar';
 
@@ -35,11 +35,11 @@ const HousePanel = () => {
 
         <Button color='primary' variant='contained' startIcon={<AddBoxIcon/>} 
         sx={{marginBottom: '2rem'}}
-        onclick={ () => toggleAddRoomPopup(!AddRoomPopup)}>
+        onClick={ () => toggleAddRoomPopup(true)}>
           Añadir nueva estancia
         </Button>
-        {AddRoomPopup && <AddRoomForm></AddRoomForm>}
-
+        { AddRoomPopup && <AddRoomForm closePopUp={ toggleAddRoomPopup } /> }
+    
         <RoomsList></RoomsList>
 
     </Container>
