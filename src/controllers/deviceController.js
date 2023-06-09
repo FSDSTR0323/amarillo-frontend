@@ -72,9 +72,70 @@ const getDevices = (req, res) => {
     }
 };
 
+//Podemos editar nuestra estancia. UPDATE CON PUT
+const updateDevice = (req, res) => {
+    Room.findByIdAndUpdate(
+        req.params.deviceId,
+        {
+            name: req.body.name,
+            // status: req.body.name: haría falta poder cambiar el estado de on a off
+            // o incluso cambiar volumen, velocidad...
+        }
+    )
+    .then(deviceDoc => {
+        if( deviceDoc === null ){
+            res.status(404).send({msg: 'No hemos encontrado este dispositivo.'})
+        } else {
+            res.status(200).send({msg: 'Dispositivo modificiado!'})
+        }
+    })
+    .catch( error => {
+        switch(error.name){
+            case 'CastError':
+                res.status(400).send({msg: 'Formato de id inválido.'})
+                break;
+            default :
+                res.status(200).send({msg: 'Ha habido un error'})
+        }
+    })
+};
 
-
-
+//Eliminamos nuestra estancia. DELETE
+const deleteDevice = (req, res) => {
+    Room.findOneAndUpdate(
+        {
+            _id: req.params.deviceId,
+            //status: { $ne: "DELETED" }
+        }
+        ,
+        /*
+        {
+            status: "DELETED",
+            deletedAt: new Date()
+        }, 
+        */
+        {
+            timestamps: false
+        }
+        )
+        .then(deviceDoc=>{
+            console.log(deviceDoc)
+            if ( roodeviceDocmDoc === null ) {
+                res.status(404).send({msg: "No se ha encontrado este dispositivo."})
+            } else {
+                res.status(200).send({msg:"Dispositivo eliminada."})   
+            }
+        })
+        .catch(error=>{
+            switch (error.name) {
+                case 'CastError':
+                    res.status(400).send({msg: 'Formato de id inválido'})
+                    break;
+                default:
+                    res.status(400).send(error)
+            }
+        })
+};
 
 
 
