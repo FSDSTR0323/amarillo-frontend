@@ -74,7 +74,6 @@ const LoginForm = () => {
                   pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
                   })} />
                   {errors.password?.type === 'required' && <Typography variant='body1' sx={{ color:'#FFD433', fontSize: '0,5rem'}}>Este campo es requerido.</Typography>}
-                <input type='submit'/>
                 <Button type='submit' variant='contained' color='primary'>
                     Acceder a mi panel
                 </Button>
