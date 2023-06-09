@@ -1,32 +1,21 @@
 import './App.css';
 import React from 'react';
-
+import './App.css';
 
 //IMPORTANDO REACT ROUTER DOM --- ENRUTADO
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Homepage from './componentes/containers/Homepage';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
+//Pages
+import Homepage from './componentes/containers/Homepage';
 import HousePanel from './componentes/containers/HousePanel';
 import RoomPanel from './componentes/containers/RoomPanel';
 import RegisterForm from './componentes/forms/RegisterForm/index.tsx';
 import MyHousesPanel from './componentes/containers/AllHousesPanel';
 import Login from './componentes/containers/Login';
 
-/* A partir de aquí vamos a crear nuestro tema.
-const theme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#ff4400',
-      //light, dark, contrastText --- estos son los 4 parámetros dentro de palette-primary.
-    }
-  }
-});
-*/
 
 function App() {
   return (
-   
         <BrowserRouter>
           <Routes>
               <Route path='/homepage' element={<Homepage />} />

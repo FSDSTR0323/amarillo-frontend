@@ -11,3 +11,8 @@ export const postNewRoom = async () => {
     getAllRooms(); //llamamos de nuevo al get nada más postear para que se realice una sincronización y recibamos la nueva habitación.
     return data;
 };
+
+export const registerUser = async ( name, email, password ) => {
+    const { data } = await axios.post('http://localhost:9000/users/register', userData);
+    return data
+};
