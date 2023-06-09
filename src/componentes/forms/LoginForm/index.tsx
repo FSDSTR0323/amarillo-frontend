@@ -50,6 +50,36 @@ const LoginForm = () => {
           <img className='loginImg' src={loginpic} alt='login-picture'/>
         </Box>
 
+<<<<<<< HEAD
+        <Box sx={{maxWidth:'100%', display: 'flex', flexDirection: 'column', alignItems:'center', alignContent:'center', justifyContent: 'center'}}>
+            <Typography variant='h4' sx={{paddingBottom: '2rem'}}>Bienvenido de nuevo</Typography>
+            <Typography variant='body1' sx={{paddingBottom: '2rem'}}>Por favor, introduce tus datos de usuario para acceder a HomeHub.</Typography>
+            
+            <form onSubmit={handleSubmit(onSubmit)}> 
+                <Stack spacing={2} width={400}>
+                <TextField variant='filled' label='Email' type='email' {...register('email', {
+                  required: true,
+                  pattern: /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/i
+                  })} />
+                  {errors.email?.type === 'required' && <Typography variant='body1' sx={{ color:'#FFD433', fontSize: '0,5rem'}}>Este campo es requerido.</Typography>}
+                  {errors.email?.type === 'pattern' && <Typography variant='body1' sx={{ color:'#FFD433', fontSize: '0,5rem'}}>El formato de email no es válido.</Typography>}
+                  
+                <TextField variant='filled' label='Contraseña' type='password' {...register('password', {
+                  required: true, 
+                  pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+                  })} />
+                  {errors.password?.type === 'required' && <Typography variant='body1' sx={{ color:'#FFD433', fontSize: '0,5rem'}}>Este campo es requerido.</Typography>}
+                <Button type='submit' variant='contained' color='primary'>
+                    Acceder a mi panel
+                </Button>
+                </Stack>
+            </form>
+
+        </Box>
+      </Box>
+    </>
+  )
+=======
     <Box sx={{maxWidth:'100%', display: 'flex', flexDirection: 'column', alignItems:'left', justifyContent: 'top', paddingLeft:'6rem', paddingTop:'4rem'}}>
       <Typography variant='h4' sx={{paddingBottom: '2rem'}}>Bienvenido de nuevo</Typography>
       <Typography variant='body1' sx={{paddingBottom: '2rem'}}>Por favor, introduce tus datos de usuario para acceder a HomeHub.      </Typography>
@@ -79,6 +109,7 @@ const LoginForm = () => {
   </Box>
   </>
   );
+>>>>>>> 6b4d918402ead42af84e8621230dbd8141b43002
 }
 
 export default LoginForm ;

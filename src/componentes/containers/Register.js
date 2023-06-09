@@ -5,6 +5,7 @@ import HomepageNavMenu from '../MenuBars/HomepageNavMenu';
 const Register = () => {
   return (
     <>
+      <HomepageNavMenu></HomepageNavMenu>
       <RegisterForm />
     </>
   )
