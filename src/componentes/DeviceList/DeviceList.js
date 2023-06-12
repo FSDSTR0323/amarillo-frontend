@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { getAllDevices } from '../../apiService';
 import { Container, Typography, Button, Grid } from '@mui/material';
 import DeviceCard from './DeviceCard';
+import { Box } from '@mui/material';
+
 
 
 const DeviceList = () => {
@@ -19,11 +21,15 @@ const DeviceList = () => {
     }, []);
   
     return (
-        <>
+        <Box sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '2rem'
+        }}>
         {/* <Grid container spacing={2}> */}
         {devices.length > 0 ? devices.map( device => <DeviceCard key={device._id} name={ device.name } type={ device.deviceType } status={ device.status }/>) : null }
         {/* </Grid> */}
-        </>
+        </Box>
   )
 };
 

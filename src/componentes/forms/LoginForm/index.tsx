@@ -41,7 +41,6 @@ const LoginForm = () => {
           <img className='loginImg' src={loginpic} alt='login-picture'/>
         </Box>
 
-<<<<<<< HEAD
         <Box sx={{maxWidth:'100%', display: 'flex', flexDirection: 'column', alignItems:'center', alignContent:'center', justifyContent: 'center'}}>
             <Typography variant='h4' sx={{paddingBottom: '2rem'}}>Bienvenido de nuevo</Typography>
             <Typography variant='body1' sx={{paddingBottom: '2rem'}}>Por favor, introduce tus datos de usuario para acceder a HomeHub.</Typography>
@@ -70,32 +69,6 @@ const LoginForm = () => {
       </Box>
     </>
   )
-=======
-    <Box sx={{maxWidth:'100%', display: 'flex', flexDirection: 'column', alignItems:'left', justifyContent: 'top', paddingLeft:'6rem', paddingTop:'4rem'}}>
-      <Typography variant='h4' sx={{paddingBottom: '2rem'}}>Bienvenido de nuevo</Typography>
-      <Typography variant='body1' sx={{paddingBottom: '2rem'}}>Por favor, introduce tus datos de usuario para acceder a HomeHub.      </Typography>
-        {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
-        <form onSubmit={handleSubmit(onSubmit)}>
-          {/* register your input into the hook by invoking the "register" function */}
-          <Stack spacing={2} width={400}>
-          <input defaultValue="email" {...register("email", {
-            required: true,
-            pattern: /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/i
-            })} />
-          
-          {/* include validation with required or other standard HTML validation rules */}
-          <input type='password'{...register('password', { required: true })} />
-          {/* errors will return when field validation fails  */}
-          {errors.password?.type === 'required' && <Typography variant='body1' sx={{ color:'#FFD433', fontSize: '0,5rem'}}>Este campo es requerido.</Typography>}
-          
-          <input type="submit" value='Acceder a mi panel' />
-          </Stack>
-        </form>
-    </Box>
-  </Box>
-  </>
-  );
->>>>>>> 6b4d918402ead42af84e8621230dbd8141b43002
 }
 
 export default LoginForm ;
