@@ -12,6 +12,14 @@ export const postNewRoom = async () => {
     const { data } = await axios.post('http://localhost:9000/rooms/', roomData)
     getAllRooms(); //llamamos de nuevo al get nada más postear para que se realice una sincronización y recibamos la nueva habitación.
     return data;
+<<<<<<< HEAD
+};
+
+export const registerUser = async ( name, email, password ) => {
+    const { data } = await axios.post('http://localhost:9000/users/register', userData);
+    return data
+};
+=======
 }
 
 export const getAllDevices = async () => {
@@ -25,3 +33,4 @@ export const postNewDevice = async () => {
     getAllDevices(); //llamamos de nuevo al get nada más postear para que se realice una sincronización y recibamos el nuevo device.
     return data;
 }
+>>>>>>> 4f940222e604a5ef43f91f7cc6146b7bc6492d7f

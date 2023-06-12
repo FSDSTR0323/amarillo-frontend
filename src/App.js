@@ -1,8 +1,14 @@
 import './App.css';
 import React from 'react';
-
+import './App.css';
 
 //IMPORTANDO REACT ROUTER DOM --- ENRUTADO
+<<<<<<< HEAD
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
+//Pages
+import Homepage from './componentes/containers/Homepage';
+=======
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 /*Estructura:
@@ -21,23 +27,13 @@ import Homepage from './componentes/containers/Homepage';               //Landin
 import RegisterForm from './componentes/forms/RegisterForm/index.tsx';   
 import Login from './componentes/containers/Login';                     //Ir a mi panel
 import MyHousesPanel from './componentes/containers/AllHousesPanel';    
+>>>>>>> 4f940222e604a5ef43f91f7cc6146b7bc6492d7f
 import HousePanel from './componentes/containers/HousePanel';
 import RoomPanel from './componentes/containers/RoomPanel';
 
 
 
 
-/* A partir de aquí vamos a crear nuestro tema.
-const theme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#ff4400',
-      //light, dark, contrastText --- estos son los 4 parámetros dentro de palette-primary.
-    }
-  }
-});
-*/
 
 
 // ver artículo https://www.escuelafrontend.com/react-router-6
@@ -46,7 +42,11 @@ const theme = createTheme({
 
 
 function App() {
+<<<<<<< HEAD
+  return (
+=======
   return (   
+>>>>>>> 4f940222e604a5ef43f91f7cc6146b7bc6492d7f
         <BrowserRouter>
           <Routes>
               <Route path='/' element={<Homepage/>} />
