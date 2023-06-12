@@ -1,22 +1,23 @@
-import React from "react";
 //recibir un listado de viviendas:
+
 //hook form para usuario y login,, en vez de useState y useEffect:
 
-import { useState } from "react";
+import React from 'react';
+import { useForm, useFieldArray } from 'react-hook-form';
 
 const NewHouseForm = () => {
-    const [inputFields, setInputFields] = useState([]);
+    const { register, control, handleSubmit } = useForm();
+     const { fields, append, remove } =useFieldArray({
+      control, 
+      name: 'inputFields',
+     });
   
-    const addInputFields = () => {
-      setInputFields([
-        ...inputFields,
-        { 
-        name: '', 
-        address: '',
-        size: '',
-        date: '' },
-      ]);
-    };
+const onSubmit = (data) => {
+     console.log(data);
+        
+    }
+
+    
   
     const handleInputChange = (index, event) => {
       const { name, value } = event.target;
@@ -33,41 +34,52 @@ const NewHouseForm = () => {
   
     return (
       <div>
-        <button onClick={addInputFields}>Agregar campos</button>
-        {inputFields.map((inputField, index) => (
-          <div key={index}>
+        <button type="button" onClick={() => append({ name: '', address: '', size: '', date: '' })}>
+        Agregar 
+        </button>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          { fields.map((field, index) =>(
+          <div key={field.id}>
             <input
               type="text"
-              name="nombre"
-              value={inputField.nombre}
-              onChange={(event) => handleInputChange(index, event)}
+              name={`inputFields[${index}].name`}
               placeholder="Nombre"
-            />
-            <input
-              type="text"
-              name="direccion"
-              value={inputField.direccion}
-              onChange={(event) => handleInputChange(index, event)}
-              placeholder="Dirección"
-            />
-            <input
-              type="text"
-              name="tamaño"
-              value={inputField.tamaño}
-              onChange={(event) => handleInputChange(index, event)}
-              placeholder="Tamaño"
-            />
-            <input
-              type="text"
-              name="fecha"
-              value={inputField.fecha}
-              onChange={(event) => handleInputChange(index, event)}
-              placeholder="Fecha"
-            />
-          </div>
-        ))}
+              ref={register()}
+              />
+              <input
+                type="text"
+                name={`inputFields[${index}].address`}
+                placeholder="Dirección"
+                ref={register()}
+              />
+              <input
+                type="text"
+                name={`inputFields[${index}].size`}
+                placeholder="Tamaño"
+                ref={register()}
+              />
+              <input
+                type="text"
+                name={`inputFields[${index}].date`}
+                placeholder="Fecha"
+                ref={register()}
+              />
+              <button type="button" onClick={() => remove(index)}>
+                Eliminar
+              </button>
+            </div>
+          ))}
+          <button type="submit">Enviar</button>
+        </form>
       </div>
     );
-  };
+  }
   
   export default NewHouseForm;
+  
+  
+  
+  
+  
+  
+  

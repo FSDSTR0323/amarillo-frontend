@@ -20,7 +20,7 @@ const AddDeviceForm = ({name, type, closePopUp}) => {
   //Creamos la función onSubmit que recopile los datos al usar el botón submit.
   const onSubmit = async ( deviceData ) => {
     console.log(deviceData);
-    // postDevice(deviceData.name, deviceData.type)
+    postDevice(deviceData.name, deviceData.type)
     
   };
 
@@ -37,7 +37,7 @@ const AddDeviceForm = ({name, type, closePopUp}) => {
 
   //Dentro del formulario, el type debe ser un SELECT entre los distintos tipos posibles de nuevos dispositivos.
 return (
-    <>
+    
         <Box className= "popUpDevice">
             <Box sx={{ margin:'2rem', padding: '1rem', display: 'flex', flexDirection: 'column', alignItems:'center', justifyContent: 'center', border:'solid 1px', borderRadius:'1rem'}}>
                 <Button onClick={() => closePopUp(false)}>X</Button>
@@ -75,7 +75,6 @@ return (
                 </form>
             </Box>
         </Box>
-    </>
 )
 };
 
