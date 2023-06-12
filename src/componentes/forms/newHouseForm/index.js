@@ -1,9 +1,9 @@
-import React from "react";
 //recibir un listado de viviendas:
+
 //hook form para usuario y login,, en vez de useState y useEffect:
 
-
-import { useState } from "react";
+import React from 'react';
+import { useForm, useFieldArray } from 'react-hook-form';
 
 const NewHouseForm = () => {
     const { register, control, handleSubmit } = useForm();
