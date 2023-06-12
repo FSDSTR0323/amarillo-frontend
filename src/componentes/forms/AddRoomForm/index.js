@@ -10,7 +10,6 @@ import MenuItem from '@mui/material/MenuItem';
 
 import { postNewRoom } from '../../../apiService';
 
-
 //TO DO: COMPLETAR EL FORMULARIO DE UNA NUEVA ESTANCIA.
 const AddRoomForm = ({name, type, closePopUp}) => {
 
@@ -24,32 +23,34 @@ const AddRoomForm = ({name, type, closePopUp}) => {
         setRoomType(roomType.target.value)
     };
 
-    //Creamos la función onSubmit que recopile los datos al usar el botón submit.
-    const onSubmit = async ( roomData ) => {
-        console.log(roomData);
-        postRoom(roomData.name, roomData.type)
-    };
+    // //Creamos la función onSubmit que recopile los datos al usar el botón submit.
+    // const onSubmit = async ( roomData ) => {
+    //     console.log(roomData);
+    //     postRoom(roomData.name, roomData.type)
+    // };
 
-    //Mandamos los datos al backend --- empleamos el hook UseEffect
-    useEffect(() => {
-        postNewRoom()
-            .then( data => {
-                console.log('Esta es la data de mi nueva estancia: ', data);
-                //Ahora tendríamos que llamar a las habitaciones incluyendo la nueva habitación. UseState. TO DO //
-            })
-            .catch(error => console.log('Algo ha ido mal: ', error))
-        }
-    );
-
+    // //Mandamos los datos al backend --- empleamos el hook UseEffect
+    // useEffect(() => {
+    //     postNewRoom()
+    //         .then( data => {
+    //             console.log('Esta es la data de mi nueva estancia: ', data);
+    //             //Ahora tendríamos que llamar a las habitaciones incluyendo la nueva habitación. UseState. TO DO //
+    //         })
+    //         .catch(error => console.log('Algo ha ido mal: ', error))
+    //     }
+    // );
 
 //Dentro del formulario, el type debe ser un SELECT entre los distintos tipos posibles de nuevas estancias.
 return (
-    <Box className='popUpRoom'>
-        <Box sx={{maxWidth:'500px', margin:'1rem', padding: '1rem', display: 'flex', flexDirection: 'column', alignItems:'center', justifyContent: 'center', border:'solid 1px #EAEAEA', borderRadius:'1rem'}}>
+    <Box className='addRoomWall'>
+        <Box className='popUpAddRoom' sx={{maxWidth:'500px', marginBottom:'2rem', padding: '1rem', display: 'flex', flexDirection: 'column', alignItems:'center', justifyContent: 'center', border:'solid 1px #EAEAEA', borderRadius:'1rem'}}>
             <Button onClick={() => closePopUp(false)}>X</Button>
             <Typography variant='h4' sx={{paddingBottom: '2rem'}}>Nueva estancia:</Typography>
 
-            <form onSubmit={handleSubmit(onSubmit)}> 
+            <form onSubmit={handleSubmit( async (values) => {
+                const res = await postNewRoom(values);
+                console.log(res);
+            })}> 
                 <Stack spacing={2} width={400}>
 
                 <TextField variant='filled' label='Name' type='name' {...register('name', {required: true})} />

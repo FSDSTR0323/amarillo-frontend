@@ -1,37 +1,80 @@
 import React from 'react';
 import './styles.css';
-import { Typography, Box, IconButton } from '@mui/material';
+import { Typography, Box, IconButton, Container, Grid } from '@mui/material';
 import logoWhite from '../../assets/logos/logowhite.png';
 
 import { Instagram, Twitter, Facebook } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
 
-const Footer = () => {
-  return (
-    <Box sx={{backgroundImage: `url('https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80')` ,height:'40vh', bgcolor: 'white', display: 'flex', flexDirection:'column', justifyContent: 'center'}}>
-        <Link to='/homepage'>
-            <img className='logoFooter' src={logoWhite} alt='homehub'/> 
-        </Link>
-        <Typography variant='h5' sx={{paddingLeft:'3rem', paddingBottom:'2rem', color:'#EAEAEA'}}>Simplifica y conecta tu día a día.</Typography>
-        
-        <Box sx={{display: 'flex', flexDirection: 'row', paddingLeft:'3rem', paddingBottom:'2rem'}}>
-            <IconButton color='primary'>
-                <Instagram />
-            </IconButton>
-
-            <IconButton color='primary'>
-                <Twitter />
-            </IconButton>
-
-            <IconButton color='primary'>
-                <Facebook />
-            </IconButton>
-
+const Footer = () =>{
+    return (
+        <Box
+          component="footer"
+          sx={{
+            // backgroundColor: (theme) =>
+            //   theme.palette.mode === "light"
+            //     ? theme.palette.grey[200]
+            //     : theme.palette.grey[800],
+            p: 6,
+          }}
+        >
+          <Container maxWidth="lg">
+            <Grid container spacing={5}>
+              <Grid item xs={12} sm={4}>
+                <Typography variant="h6" color="text.primary" gutterBottom>
+                  Sobre Homehub
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Simplifica y conecta tu día a día.
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <Typography variant="h6" color="text.primary" gutterBottom>
+                  Contacta con nosotros 
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  123 Cualquier parte, España 
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Email: info@homehub.com
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Phone: +1 234 567 8901
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <Typography variant="h6" color="text.primary" gutterBottom>
+                  Síguenos en redes
+                </Typography>
+                <Link href="https://www.facebook.com/" color="primary">
+                  <Facebook />
+                </Link>
+                <Link
+                  href="https://www.instagram.com/"
+                  color="primary"
+                  sx={{ pl: 1, pr: 1 }}
+                >
+                  <Instagram />
+                </Link>
+                <Link href="https://www.twitter.com/" color="primary">
+                  <Twitter />
+                </Link>
+              </Grid>
+            </Grid>
+            <Box mt={5}>
+              <Typography variant="body2" color="text.secondary" align="center">
+                {"Copyright © "}
+                <Link color="inherit" href="https://your-website.com/">
+                  Homehub
+                </Link>{" "}
+                {new Date().getFullYear()}
+                {"."}
+              </Typography>
+            </Box>
+          </Container>
         </Box>
-        <Typography variant='h6' fontSize={'small'} align='center' sx={{paddingTop:'4rem', color:'#EAEAEA'}}>| Privacidad y aviso legal | Nuclio 2023 |</Typography>
-    </Box>
-  )
-}
+      );
+};
 
 export default Footer

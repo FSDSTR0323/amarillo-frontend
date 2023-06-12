@@ -1,11 +1,12 @@
 import React from 'react';
-import { Container, Paper, Typography, IconButton, Button, Box } from '@mui/material';
+import { Paper, Typography, IconButton, Button, Box } from '@mui/material';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import AddRoomForm from '../forms/AddRoomForm/index';
 import RoomsList from '../RoomsList/RoomsList';
 import HubNavBar from '../MenuBars/HubNavBar';
+
 
 const HousePanel = () => {
 
@@ -14,12 +15,13 @@ const HousePanel = () => {
   return (
     <>
     <HubNavBar></HubNavBar>
-    <Container sx= {{
+    <Box sx= {{
         p: '2rem'
     }}>
-        <Paper elevation={3} sx={{
+        <Paper elevation={4} sx={{
             p: '2rem',
-            marginBottom: '2rem'
+            marginBottom: '2rem',
+            backgroundColor:'#FCFCFC'
         }}>
             <Typography variant='h4'>Bienvenido al panel de control de tu vivienda:</Typography>
             <Typography variant='body1'>En este área puedes visibilizar tus diferentes estancias y el número de dispositivos conectados en cada una de ellas.</Typography>
@@ -42,7 +44,7 @@ const HousePanel = () => {
     
         <RoomsList></RoomsList>
 
-    </Container>
+    </Box>
     </>
   )
 }

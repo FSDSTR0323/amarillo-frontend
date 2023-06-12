@@ -1,3 +1,8 @@
-.popUpRoom {
-    background-color: rgba(65, 65, 65, 0.75);
+/* .addRoomWall {
+    background-color: rgba(101, 101, 101, 0.5);
+} */
+
+.popUpAddRoom {
+    background-color: #f7f7f7;
+    box-shadow: 2px 8px 8px -4px rgb(202, 213, 216);
 }
