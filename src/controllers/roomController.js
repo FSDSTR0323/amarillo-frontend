@@ -1,5 +1,4 @@
 const Room = require('../models/roomModel.js');
-
 //Samuel: hay que indicar de qué casa es la habitación al hacer las peticiones
 // En el roomModel habría que indicar a qué casa pertenece cada una de las habitaciones
 
