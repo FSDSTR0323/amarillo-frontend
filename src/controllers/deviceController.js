@@ -1,22 +1,21 @@
-const Room = require('../models/roomModel.js');
+const Device = require('../models/deviceModel.js')
 
-//Samuel: hay que indicar de qué casa es la habitación al hacer las peticiones
-// En el roomModel habría que indicar a qué casa pertenece cada una de las habitaciones
-
-//Añadimos una nueva estancia
-const addRoom = (req,res)=>{
+//Añadimos una nuevo dispositivo
+const addDevice = (req,res)=>{
     console.log(req.body);
-    Room.create(
+    Device.create(
         {
-            name: req.body.name
+            name: req.body.name,
+            deviceType: req.body.deviceType,
+            roomId: req.body.roomId
         }
     )
-    .then( roomDoc=>res.status(200).send({msg:"Habitación añadida"}))
+    .then( deviceDoc=>res.status(200).send({msg:"Dispositivo añadido"}))
     .catch(error=>{
         console.error(error.code);
         switch(error.code){
             case 11000:
-                res.status(400).send({msg: "Error 11.000: Esta habitación ya existe. No puedes duplicarla"})
+                res.status(400).send({msg: "Error 11.000: Este dispositivo ya existe. No puedes duplicarlo"})
                 break;
             default :
             res.status(400).send(error);
@@ -24,18 +23,21 @@ const addRoom = (req,res)=>{
     })
 };
 
-//Consultamos nuestras habitaciones. GET
-const getRooms = (req, res) => {
-    if(req.params.roomId){ //al llamar al roomId, tenemos que hacer el método findById.
-        Room.findById(req.params.roomId)
-            .then( roomDoc => { //En este punto tenemos que pensar en si existirá o no la task con ese ID, accediendo a roomDoc
-                if(roomDoc === null ) {
-                    res.status(400).send({msg: 'Esta estancia no existe.'})
+//Consultamos dispositivos por habitación. GET
+//habría otro get para ver todos los dispositivos de la casa? No tendría roomid pero si houseid
+const getDevices = (req, res) => {
+    // podríamos pedir devices en habitación: on; tipo: persiana; todos
+    // Siempre necesitaré el roomId para saber 
+    if(req.params.roomId){
+        Device.findById(req.params.deviceId)
+            .then( devicesDoc => { 
+                if(devicesDoc.length === null ) {
+                    res.status(400).send({msg: 'Esta estancia no tiene dispositivos.'})
                 } else {
-                    res.status(200).send( roomDoc )
+                    res.status(200).send( devicesDoc )
                 }
             })
-            .catch( error => {  //De esta manera podemos controlar el hecho de que el error sea debido a un ID inválido
+            .catch( error => {  
                 switch (error.name){
                     case 'Cast Error':
                         res.status(400).send({msg: 'Formato de id inválido.'})
@@ -70,20 +72,21 @@ const getRooms = (req, res) => {
     }
 };
 
-
 //Podemos editar nuestra estancia. UPDATE CON PUT
-const updateRoom = (req, res) => {
+const updateDevice = (req, res) => {
     Room.findByIdAndUpdate(
-        req.params.roomId,
+        req.params.deviceId,
         {
             name: req.body.name,
+            // status: req.body.name: haría falta poder cambiar el estado de on a off
+            // o incluso cambiar volumen, velocidad...
         }
     )
-    .then(roomDoc => {
-        if( roomDoc === null ){
-            res.status(404).send({msg: 'No hemos encontrado esta estancia.'})
+    .then(deviceDoc => {
+        if( deviceDoc === null ){
+            res.status(404).send({msg: 'No hemos encontrado este dispositivo.'})
         } else {
-            res.status(200).send({msg: 'Estancia modificiada!'})
+            res.status(200).send({msg: 'Dispositivo modificiado!'})
         }
     })
     .catch( error => {
@@ -95,16 +98,13 @@ const updateRoom = (req, res) => {
                 res.status(200).send({msg: 'Ha habido un error'})
         }
     })
-    //res.status(200).send({msg: 'Estancia modificada correctamente!'})
 };
 
-
-
 //Eliminamos nuestra estancia. DELETE
-const deleteRoom = (req, res) => {
+const deleteDevice = (req, res) => {
     Room.findOneAndUpdate(
         {
-            _id: req.params.roomId,
+            _id: req.params.deviceId,
             //status: { $ne: "DELETED" }
         }
         ,
@@ -118,12 +118,12 @@ const deleteRoom = (req, res) => {
             timestamps: false
         }
         )
-        .then(roomDoc=>{
-            console.log(roomDoc)
-            if ( roomDoc === null ) {
-                res.status(404).send({msg: "No se ha encontrado esta estancia."})
+        .then(deviceDoc=>{
+            console.log(deviceDoc)
+            if ( roodeviceDocmDoc === null ) {
+                res.status(404).send({msg: "No se ha encontrado este dispositivo."})
             } else {
-                res.status(200).send({msg:"Estancia eliminada."})   
+                res.status(200).send({msg:"Dispositivo eliminada."})   
             }
         })
         .catch(error=>{
@@ -138,9 +138,11 @@ const deleteRoom = (req, res) => {
 };
 
 
+
+
 module.exports = {
-    addRoom,
-    getRooms,
-    updateRoom,
-    deleteRoom,
+    addDevice,
+    getDevices,
+    updateDevice,
+    deleteDevice,
 }
