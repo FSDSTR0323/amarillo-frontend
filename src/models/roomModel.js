@@ -10,7 +10,7 @@ const roomSchema= new Schema({
     roomType: {
         type: String,
         enum: ['KITCHEN', 'LOUNGE', 'ROOM', 'BATHROOM', 'GARDEN', 'DINING ROOM'],
-        require: true
+        required: true
     },
     //TO DO: METER LOS DEVICES
 

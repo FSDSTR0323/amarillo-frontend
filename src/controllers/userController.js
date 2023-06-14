@@ -19,7 +19,8 @@ const registerNewUser = async (req, res) => {
     //Chequeamos que el ususario no exista ya dentro de nuestra BD --- basado en el email
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-        return res.status(400).send({msg:'Este usuario ya está registrado.'})
+        res.status(400).json(['Este usuario ya está registrado.'])
+        return
     }
     //Ahora requerimos de la libreria de bcrypt para encriptar la contraseña que nos pasan por el front.
     const encriptedPassword = await bcrypt.hash(password, 10)
@@ -29,10 +30,9 @@ const registerNewUser = async (req, res) => {
         email,
         password: encriptedPassword,
     });
+    console.log(newUser);
 
     const userSaved = await newUser.save(); //Con la funcionalidad .save() guardamos este nuevo usuario en MongoDB
-    userSaved.token = token;
-    //newUser.password = undefined;
 
     //Finalmente, generamos el token para el usuario.
     const token = jwt.sign(
@@ -40,9 +40,10 @@ const registerNewUser = async (req, res) => {
         mySecret, //este es el secreto que traemos como variable de entorno con process.env.TOKENSECRET
         { expiresIn: '2h'}
     );
+    userSaved.token = token;
+    //newUser.password = undefined;
     //console.log(token);
-
-    res.status(200).send({msg:'¡Usuario creado correctamente!', userSaved, token})
+    return res.status(200).send({msg:'¡Usuario creado correctamente!', userSaved, token})
     } catch(error) {
         console.log(error)
     }
@@ -67,7 +68,7 @@ const loginUser = async (req, res) => {
     try {
         //1º Cogemos todos los datos del front con req.body
         const { email, password } = req.body;
-        console.log('mi req body es: ', req.body);
+        //console.log('mi req body es: ', req.body);
         if(!(email && password)){
             return res.status(400).send({msg:'Para acceder tienes que introducir tu email y tu contraseña de usuario.'})
         };
@@ -76,7 +77,7 @@ const loginUser = async (req, res) => {
 
         //Llamar a nuestro array de usuarios y encontrar el usuario que está haciendo login.
         const userFound = await User.findOne( { email: email } )
-        console.log('el usuario encontrado es: ', userFound);
+        //console.log('el usuario encontrado es: ', userFound);
         if (userFound && (await bcrypt.compare(password, userFound.password))) {
             //4º Si se cumple la condición de que existe el usuario y la contraseña es correcta -> Enviamos el token para este usuario.
             const token = jwt.sign(
