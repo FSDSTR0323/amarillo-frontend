@@ -1,15 +1,24 @@
 //Es dentro de esta carpeta de apiService en donde meteré todas las conexiones que hagamos con el backend, para que quede más limpio.
-
 import axios from "axios";
 
-export const registerRequest = (user) => axios.post('http://localhost:9000/users/register', user)
-// FUNCIÓN ANTIGUA
-// export const registerUser = async ( name, email, password ) => {
-//     const { data } = await axios.post('http://localhost:9000/users/register', userData);
-//     return data
-// };
+export const registerRequest = (user) => {
+    axios.post('http://localhost:9000/users/register', user)
+    console.log(user);
+};
 
-export const loginUser = () => console.log(''); // Hay que traer la llamada a la api del formulario de login a este archivo.
+export const loginUser = async (email, password) => {
+    try {
+      const response = await axios.post('http://localhost:9000/users/login', {email, password})
+      //console.log('La respuesta al login es: ', response);
+      const token = response.data.token ;
+      //console.log('este es el token: ', token);
+
+      window.localStorage.setItem('token', token); //Con esto estamos guardando en el LocalStorage el token del usuario.
+    } catch(error) {
+        console.log(error);
+        // setError(error.response.data.result)
+    }
+  };
 
 
 export const getMyHousePanel = async () => {
@@ -26,8 +35,8 @@ export const getAllRooms = async () => {
     return data;
 };
 
-export const postNewRoom = (roomData) => {
-    axios.post('http://localhost:9000/rooms/', roomData);
+export const postNewRoom = async (name, type) => {
+    const response = await axios.post('http://localhost:9000/rooms/', name, type);
     getAllRooms()
     return;
 };
@@ -37,9 +46,6 @@ export const postNewRoom = (roomData) => {
 //     getAllRooms(); //llamamos de nuevo al get nada más postear para que se realice una sincronización y recibamos la nueva habitación.
 //     return data;
 // };
-
-
-
 
 export const getAllDevices = async () => {
     const { data } = await axios.get('http://localhost:9000/devices/');

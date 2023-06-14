@@ -27,14 +27,6 @@ const HousePanel = () => {
             <Typography variant='body1'>En este área puedes visibilizar tus diferentes estancias y el número de dispositivos conectados en cada una de ellas.</Typography>
         </Paper>
 
-        
-        {/* <Box sx={{display: 'flex', padding: '1rem'}}>
-          <Typography variant='h6'>Añadir una nueva estancia:</Typography>
-          <IconButton color='primary'>
-            <AddBoxIcon></AddBoxIcon>
-          </IconButton>
-        </Box> */}
-
         <Button color='primary' variant='contained' startIcon={<AddBoxIcon/>} 
         sx={{marginBottom: '2rem'}}
         onClick={ () => toggleAddRoomPopup(true)}>

@@ -47,8 +47,8 @@ return (
             <Button onClick={() => closePopUp(false)}>X</Button>
             <Typography variant='h4' sx={{paddingBottom: '2rem'}}>Nueva estancia:</Typography>
 
-            <form onSubmit={handleSubmit( async (values) => {
-                const res = await postNewRoom(values);
+            <form onSubmit={handleSubmit( async (name, type) => {
+                const res = await postNewRoom(name, type);
                 console.log(res);
             })}> 
                 <Stack spacing={2} width={400}>

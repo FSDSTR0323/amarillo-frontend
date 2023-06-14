@@ -4,7 +4,7 @@ import './styles.css';
 import DeleteRoomPopUp from './DeleteRoomPopUp';
 
 //Elementos de material ui 
-import { Button, CardActionArea, CardActions, IconButton, Card, CardContent, Typography } from '@mui/material';
+import { CardActionArea, CardActions, IconButton, Card, CardContent, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 //Importamos las imágenes de la carpeta de assets.
@@ -16,8 +16,8 @@ export default function RoomCard({ name, type, devices }) {
   const [ deletePopUp, toggleDeletePopUp ] = useState(false)
 
   return (
-  <>
-    <Card sx={{ maxWidth: 345, boxShadow: '4px 8px 8px -4px rgb(202, 213, 216)'}}>
+
+    <Card sx={{ boxShadow: '4px 8px 8px -4px rgb(202, 213, 216)'}}>
       <CardActionArea>
         
         <img className='cardImage' src={bedroom} alt='bedroom' />
@@ -37,13 +37,14 @@ export default function RoomCard({ name, type, devices }) {
       </CardActionArea>
       <CardActions>
         <IconButton 
-        color='primary' >
-          <DeleteIcon onClick={() => toggleDeletePopUp(true) }></DeleteIcon>
+        color='primary' 
+        onClick={() => toggleDeletePopUp(true) }>
+          <DeleteIcon></DeleteIcon>
         </IconButton>
         { deletePopUp && <DeleteRoomPopUp closePopUp={toggleDeletePopUp}></DeleteRoomPopUp>}
       </CardActions>
     </Card>
-   </>
+
   );
 }
 
