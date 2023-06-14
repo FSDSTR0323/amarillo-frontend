@@ -77,7 +77,7 @@ const loginUser = async (req, res) => {
         //2º validamos y 3º Encontramos al ususario en la BD
         //Comprobamos que la contraseña que el usuario nos ha enviado es la correcta --- bcrypt nos ofrece facilidades para hacerlo.
 
-        //Llamar a nuestro array de ussuarios y encontrar el usuario que está haciendo login.
+        //Llamar a nuestro array de usuarios y encontrar el usuario que está haciendo login.
         const userFound = await User.findOne( { email: email } )
         console.log('el usuario encontrado es: ', userFound);
         if (userFound && (await bcrypt.compare(password, userFound.password))) {
@@ -88,6 +88,7 @@ const loginUser = async (req, res) => {
                 mySecret, //mySecret traido desde las variables de entorno .env
                 { expiresIn: '2h'} //propiedad para expirar el token en 2 horas.
             );
+            console.log("Token generado: ", token)
             userFound.token = token
             //userFound.password = undefined
 
@@ -96,7 +97,9 @@ const loginUser = async (req, res) => {
                     expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
                     httpOnly: true,
             };
-            return res.status(200).cookie('token', token, options).send({success: true})
+        //    return res.status(200).cookie('token', token, options).send({success: true})
+        
+            return res.status(200).cookie('token', token, options).send({success: true, 'token': token})
         } else { return res.status(400).send({msg: 'Usuario o contraseña incorrectos.'}) }
     } catch(error) {
         console.log(error);
