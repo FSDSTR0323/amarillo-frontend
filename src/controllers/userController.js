@@ -3,13 +3,11 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
 
-
 require('dotenv').config();
 
 const mySecret = process.env.TOKENSECRET;
 
 const registerNewUser = async (req, res) => {
-
     try {
     //Tomamos el data que tengamos en el body - frontend
     const { name, email, password } = req.body;
@@ -31,19 +29,20 @@ const registerNewUser = async (req, res) => {
         email,
         password: encriptedPassword,
     });
+
+    const userSaved = await newUser.save(); //Con la funcionalidad .save() guardamos este nuevo usuario en MongoDB
+    userSaved.token = token;
+    //newUser.password = undefined;
+
     //Finalmente, generamos el token para el usuario.
     const token = jwt.sign(
-        {id: User._id, email}, //este es el payload del token.
+        {id: userSaved._id, email}, //este es el payload del token.
         mySecret, //este es el secreto que traemos como variable de entorno con process.env.TOKENSECRET
         { expiresIn: '2h'}
     );
     //console.log(token);
 
-    newUser.token = token;
-    newUser.password = undefined;
-    // users.push(newUser);
-
-    res.status(200).send({msg:'¡Usuario creado correctamente!', token})
+    res.status(200).send({msg:'¡Usuario creado correctamente!', userSaved, token})
     } catch(error) {
         console.log(error)
     }

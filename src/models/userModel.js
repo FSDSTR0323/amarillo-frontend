@@ -3,15 +3,19 @@ const Schema = mongoose.Schema;
 
 const userSchema= new Schema({
     name:{
-        type:String,
-        minLength:2
+        type: String,
+        minLength:2,
+        trim: true
     },
     last_name: {
-        type:String
+        type: String,
+        trim: true
     },
     email: {
         type: String, // TO DO -- VALIDACIÓN DE MAIL CON @ REGEX ----
         required: true,
+        trim: true, //trim nos permite eliminar los espacios innecesarios en el form
+        unique: true //con unique estamos solicitando que el mail solo puede registrarse una vez
     },
     password: {
         type: String,
@@ -19,6 +23,7 @@ const userSchema= new Schema({
     },
     phoneNumber: {
         type: Number,
+        unique: true
     },
     birthyear: {
         type:Number

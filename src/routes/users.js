@@ -3,11 +3,6 @@ let router = express.Router();
 
 userController = require('../controllers/userController');
 
-//nuestro array de usuarios a continuación. Cada usuario será un objeto con un mail y una password.
-let users = [
-
-];
-
 //Ahora escribiremos las rutas que nos van a permitir gestionar los usuarios.
 
 router.post('/register', userController.registerNewUser);
