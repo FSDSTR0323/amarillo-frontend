@@ -1,32 +1,33 @@
 //Esta va a ser nuestra ficha de cad estancia-room. 
-import React from "react";
+import React, { useState } from "react";
+import './styles.css';
+import DeleteRoomPopUp from './DeleteRoomPopUp';
 
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions, IconButton } from '@mui/material';
+//Elementos de material ui 
+import { CardActionArea, CardActions, IconButton, Card, CardContent, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import CreateIcon from '@mui/icons-material/Create';
+
+//Importamos las imágenes de la carpeta de assets.
+import bedroom from '../../../assets/imgs/bedroom1.jpg'
 
 
-export default function RoomCard({ name, devices }) {
+export default function RoomCard({ name, type, devices }) {
+
+  const [ deletePopUp, toggleDeletePopUp ] = useState(false)
+
   return (
-    <Card sx={{ maxWidth: 345}}>
+
+    <Card sx={{ boxShadow: '4px 8px 8px -4px rgb(202, 213, 216)'}}>
       <CardActionArea>
-        {/* 
-          El código de acontinuación nos permitiría incorporar una imagen a cada card 
-          TO DO: Plantear la llamada a un banco de imagenes para cada habitación. 
-        <CardMedia
-          component="img"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-          alt="green iguana"
-        />
-        */}
+        
+        <img className='cardImage' src={bedroom} alt='bedroom' />
+        
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
           { name }
+          </Typography>
+          <Typography gutterBottom variant="body1" sx={{color: '#EAEAEA'}} component="div">
+            { type }
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Los dispositivos conectados en esta estancia son: { devices }
@@ -35,17 +36,15 @@ export default function RoomCard({ name, devices }) {
 
       </CardActionArea>
       <CardActions>
-
-        {/* <IconButton>
-          <CreateIcon></CreateIcon>
-        </IconButton> */}
-
-        <IconButton color='primary'>
+        <IconButton 
+        color='primary' 
+        onClick={() => toggleDeletePopUp(true) }>
           <DeleteIcon></DeleteIcon>
         </IconButton>
-
+        { deletePopUp && <DeleteRoomPopUp closePopUp={toggleDeletePopUp}></DeleteRoomPopUp>}
       </CardActions>
     </Card>
+
   );
 }
 

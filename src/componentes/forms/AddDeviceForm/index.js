@@ -35,11 +35,6 @@ const AddDeviceForm = ({name, type, closePopUp}) => {
     }
 );
 
-  
-
-
-
-
   //Dentro del formulario, el type debe ser un SELECT entre los distintos tipos posibles de nuevos dispositivos.
 return (
     

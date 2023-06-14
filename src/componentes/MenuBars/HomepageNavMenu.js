@@ -16,7 +16,7 @@ const HomepageNavMenu = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{bgcolor: '#303030'}}>
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             size="large"
             edge="start"
             color="inherit"
@@ -24,7 +24,7 @@ const HomepageNavMenu = () => {
             sx={{ mr: 2 }}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
 
           <Link to='/homepage'>
             <img className='logoWhite' src={logoWhite} alt='homehub'/> 
