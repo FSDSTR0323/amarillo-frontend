@@ -27,7 +27,6 @@ import Homepage from './componentes/containers/Homepage';               //Landin
 import RegisterForm from './componentes/forms/RegisterForm/index.tsx';   
 import Login from './componentes/containers/Login';                     //Ir a mi panel
 import MyHousesPanel from './componentes/containers/AllHousesPanel';    
->>>>>>> 4f940222e604a5ef43f91f7cc6146b7bc6492d7f
 import HousePanel from './componentes/containers/HousePanel';
 import RoomPanel from './componentes/containers/RoomPanel';
 
@@ -42,11 +41,7 @@ import RoomPanel from './componentes/containers/RoomPanel';
 
 
 function App() {
-<<<<<<< HEAD
-  return (
-=======
   return (   
->>>>>>> 4f940222e604a5ef43f91f7cc6146b7bc6492d7f
         <BrowserRouter>
           <Routes>
               <Route path='/' element={<Homepage/>} />
