@@ -1,7 +1,7 @@
 import React from "react";
 import { createContext, useState, useContext } from "react";
 import { registerRequest } from '../apiService/index';
-import { loginUser } from "../apiService/index";
+import { loginRequest } from "../apiService/index";
 
 export const AuthContext = createContext();
 
@@ -22,6 +22,8 @@ export const AuthProvider = ({children}) => {
     //Dentro de esta función validamos que el usuario se registra y lo marcamos como autenticado.
     const signUp = async (user) => {
         try {
+
+            //condición: si no hay token, no hay autenticación
             const res = await registerRequest(user)
             console.log(res);
             setUser(res);
@@ -34,7 +36,8 @@ export const AuthProvider = ({children}) => {
 
     const signIn = async (user) => {
         try{
-            const res = await loginUser(user)
+            const res = await loginRequest(user)
+            console.log(res);
             setUser(res);
             setIsAuthenticated(true);
         } catch(error){

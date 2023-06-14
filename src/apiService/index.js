@@ -6,14 +6,15 @@ export const registerRequest = (user) => {
     console.log(user);
 };
 
-export const loginUser = async (email, password) => {
+export const loginRequest = async (user) => {
     try {
-      const response = await axios.post('http://localhost:9000/users/login', {email, password})
+      const response = await axios.post('http://localhost:9000/users/login', user)
       //console.log('La respuesta al login es: ', response);
       const token = response.data.token ;
-      //console.log('este es el token: ', token);
+      console.log('este es el token: ', token);
 
       window.localStorage.setItem('token', token); //Con esto estamos guardando en el LocalStorage el token del usuario.
+    
     } catch(error) {
         console.log(error);
         // setError(error.response.data.result)
