@@ -5,7 +5,7 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 
 const port = process.env.PORT || 9000;
-
+// test conflicto jgalobart
 app.use(express.json());
 app.use(cors());
 app.listen(port, () => console.log("El servidor está escuchando en el port", port))
