@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles.css';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { loginUser } from '../../../apiService';
+import { Navigate, redirect, useNavigate } from 'react-router-dom';
+import { loginRequest } from '../../../apiService';
 
 import { Typography, TextField, Button, Stack, Box } from '@mui/material';
 import loginpic from '../../../assets/imgs/login-picture.jpeg';
 import { useForm } from 'react-hook-form';
+import { useAuth } from '../../../context/AuthContext';
 
 
 
@@ -13,15 +14,20 @@ import { useForm } from 'react-hook-form';
 const LoginForm = () => {
 
       const { register, handleSubmit, formState: { errors } } = useForm();
-      const [ loggedUser, setLoggedUser ] = useState(false);
+      const { signIn, isAuthenticated, errors: registerError } = useAuth();
+      // const [ loggedUser, setLoggedUser ] = useState(false);
       const navigate = useNavigate();
 
-      const onSubmit = data => {
-        console.log(data);
-        loginUser(data.email, data.password);
-        setLoggedUser(true)
-        if(loggedUser) return <Navigate to='/housePanel' />
-      };
+      // const onSubmit = data => {
+      //   console.log(data);
+      //   loginRequest(data.email, data.password);
+      //   isAuthenticated(true)
+
+        
+      // };
+      useEffect(() => {
+        if(isAuthenticated) navigate('/housePanel')
+      }, [isAuthenticated]);
 
   return (
 <>
@@ -34,7 +40,9 @@ const LoginForm = () => {
       <Typography variant='body1' sx={{paddingBottom: '2rem'}}>Por favor, introduce tus datos de usuario para acceder a HomeHub.      </Typography>
 
         {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(async(values)=>{
+          signIn(values)
+        })}>
           {/* register your input into the hook by invoking the "register" function */}
           <Stack spacing={2} width={400}>
           <TextField variant='filled' defaultValue='' label='Email' {...register("email", {

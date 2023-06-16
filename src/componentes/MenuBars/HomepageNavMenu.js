@@ -25,7 +25,7 @@ const HomepageNavMenu = () => {
           >
             <MenuIcon />
           </IconButton> */}
-
+          
           <Link to='/homepage'>
             <img className='logoWhite' src={logoWhite} alt='homehub'/> 
           </Link>
