@@ -7,7 +7,11 @@ const jwt = require('jsonwebtoken');
 const port = process.env.PORT || 9000;
 // test conflicto jgalobart
 //Hola, vamos a crear un conflicto 3 trentaitres.
+<<<<<<< HEAD
 //Hola, vamos a crear un conflicto - prueba 4 cuarentaycuatro.
+=======
+//Hola, vamos a crear un conflicto - prueba 4
+>>>>>>> d684302 (conflicto prueba 4)
 //Modificación Alvaro.
 app.use(express.json());
 app.use(cors());
