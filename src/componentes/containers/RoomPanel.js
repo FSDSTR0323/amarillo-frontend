@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 
-import { Container, Button, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { Paper } from '@mui/material';
 import AddDeviceForm from '../forms/AddDeviceForm';
 import DeviceList from '../DeviceList/DeviceList';
@@ -16,7 +16,7 @@ const RoomPanel = () => {
     return (
         <>
         <HubNavBar></HubNavBar>
-        <Container sx= {{
+        <Box sx= {{
             p: '2rem'
         }}>
                 <Paper elevation={3} sx={{
@@ -36,10 +36,9 @@ const RoomPanel = () => {
                 {AddDevicePopup && <AddDeviceForm closePopUp={toggleAddDevicePopup}></AddDeviceForm>}
                 
                 <DeviceList></DeviceList>
-        </Container>
+        </Box>
         </>
-    )
-        
+    )      
 };
 
 export default RoomPanel

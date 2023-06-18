@@ -44,8 +44,8 @@ const AddRoomForm = ({name, type, closePopUp}) => {
 return (
     <Box className='addRoomWall'>
         <Box className='popUpAddRoom' sx={{maxWidth:'500px', marginBottom:'2rem', padding: '1rem', display: 'flex', flexDirection: 'column', alignItems:'center', justifyContent: 'center', border:'solid 1px #EAEAEA', borderRadius:'1rem'}}>
-            <Button onClick={() => closePopUp(false)}>X</Button>
-            <Typography variant='h4' sx={{paddingBottom: '2rem'}}>Nueva estancia:</Typography>
+            {/* <Button onClick={() => closePopUp(false)}>X</Button> */}
+            <Typography variant='h4' sx={{p: '2rem'}}>Nueva estancia:</Typography>
 
             <form onSubmit={handleSubmit( async (name, type) => {
                 const res = await postNewRoom(name, type);
@@ -63,7 +63,7 @@ return (
                     label='Type'
                     {...register('type', {required: true})} 
                     >
-                    <MenuItem value="">
+                    <MenuItem value="Tipo de estancia">
                         <em>None</em>
                     </MenuItem>
                     <MenuItem value={'Kitchen'}>Cocina</MenuItem>
@@ -74,8 +74,15 @@ return (
                     <MenuItem value={'Dinning Room'}>Comedor</MenuItem>
                 </Select>
 
+                <Typography variant='body1' sx={{color:'#505050', paddingTop:'1rem'}}>Elige una imagen para tu estancia:</Typography>
+                <input 
+                    type='file' 
+                    id='imgRoomForm' 
+                    name='imgRoom' 
+                    accept='image/jpg, image/jpeg, image/png' />
+
                 </Stack>
-                <Box sx={{display: 'flex', flexDirection: 'row', gap:'1rem', justifyContent: 'center', paddingTop:'1rem'}}>
+                <Box sx={{display: 'flex', flexDirection: 'row', gap:'1rem', justifyContent: 'center', paddingTop:'2rem', paddingBottom:'1rem'}}>
                     <Button type='cancel' variant='outlined' color='info' onClick={() => closePopUp(false)}>
                         Cancelar
                     </Button>

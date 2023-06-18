@@ -1,12 +1,13 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
+
+import { Typography, Button, IconButton, Box, AppBar, Toolbar } from '@mui/material';
+
+//ICONOS
 import HomeIcon from '@mui/icons-material/Home';
-import { HomeMax } from '@mui/icons-material';
+import PersonIcon from '@mui/icons-material/Person';
+import TuneIcon from '@mui/icons-material/Tune';
+import LogoutIcon from '@mui/icons-material/Logout';
+
 
 const HubNavBar = () => {
     return (
@@ -24,9 +25,21 @@ const HubNavBar = () => {
             Vivienda en Mata Las Cañas
           </Typography>
 
-          <Button color="inherit" sx={{m:'1rem'}}>AJUSTES</Button>
+          <Button color='primary' variant='filled' startIcon={<TuneIcon/>} 
+                onClick={ () => ''}
+                >AJUSTES
+                </Button>
 
-          <Button  color="inherit">USUARIO</Button> 
+          <Button color='primary' variant='filled' startIcon={<PersonIcon/>} 
+                onClick={ () => ''}>
+                USUARIO
+                </Button> 
+
+          <Button color='primary' variant='filled' startIcon={<LogoutIcon/>} 
+                onClick={ () => LogUserOut()}>
+                CERRAR SESIÓN
+                </Button>
+
         </Toolbar>
       </AppBar>
     </Box>
