@@ -21,15 +21,14 @@ const DeviceList = () => {
     }, []);
   
     return (
-
         <Grid container spacing={2}>
             { devices.length > 0 ? rooms.map( device => {
                 return (
-                    <Grid item xs={12} sm={6} md={3} key={room._id}>
+                    <Grid item xs={12} sm={6} md={6} key={device._id}>
                         <Card sx={{ boxShadow: '4px 8px 8px -4px rgb(202, 213, 216)'}}>
 
-                            <CardActionArea>
-                                <img className='cardImage' src={bedroom} alt='bedroom' />
+                            <CardActionArea> TODO: IMPLEMENTAR LAS IMÁGENES DENTRO DE CADA dispositivo
+                                {/* <img className='cardImage' src={bedroom} alt='bedroom' /> */}
                                 
                                 <CardContent>
                                 <Typography gutterBottom variant="h5" component="div">

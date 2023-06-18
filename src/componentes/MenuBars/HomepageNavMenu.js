@@ -14,7 +14,7 @@ const HomepageNavMenu = () => {
   return (
     //<BrowserRouter>
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{bgcolor: '#303030'}}>
+      <AppBar position="static" sx={{bgcolor: '#252525'}}>
         <Toolbar>
           {/* <IconButton
             size="large"

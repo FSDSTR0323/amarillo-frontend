@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import './App.css';
+import { useEffect } from 'react';
 
 //Importamos el contexto para los ususarios
 import { AuthProvider } from './context/AuthContext';

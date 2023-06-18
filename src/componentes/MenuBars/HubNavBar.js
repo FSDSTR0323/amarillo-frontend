@@ -1,5 +1,8 @@
 import * as React from 'react';
+import { Router } from 'react-router-dom';
+import { logUserOut } from '../../apiService';
 
+//MATERIAL UI
 import { Typography, Button, IconButton, Box, AppBar, Toolbar } from '@mui/material';
 
 //ICONOS
@@ -10,6 +13,12 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 
 const HubNavBar = () => {
+
+  //Creamos la función para el logOut -> NOS LA TRAEMOS DE AUTHCONTEXT:
+  // const logUserOut = () => {
+  // window.localStorage.clear();
+  // }
+
     return (
     <Box sx={{ display: 'flex' }}>
       <AppBar position="static">
@@ -36,7 +45,7 @@ const HubNavBar = () => {
                 </Button> 
 
           <Button color='primary' variant='filled' startIcon={<LogoutIcon/>} 
-                onClick={ () => LogUserOut()}>
+                onClick={ () => logUserOut()}>
                 CERRAR SESIÓN
                 </Button>
 
