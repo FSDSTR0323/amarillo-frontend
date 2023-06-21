@@ -7,21 +7,23 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import HomeIcon from '@mui/icons-material/Home';
 import { HomeMax } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 const HubNavBar = () => {
     return (
     <Box sx={{ display: 'flex' }}>
       <AppBar position="static">
         <Toolbar>
-
+        <Link to='/myHouses'>
         <IconButton sx={{color: 'white'}}>
           <HomeIcon></HomeIcon>
-        </IconButton>
+        </IconButton> 
+        </Link>
 
           {/* <Button color="inherit" sx={{m:'1rem'}}>BOTÓN CASA/S</Button> */}
 
           <Typography variant="h6" component="div" sx={{flexGrow: 1, marginLeft:'2rem'}}>
-            Vivienda en Mata Las Cañas
+            HomeHub
           </Typography>
 
           <Button color="inherit" sx={{m:'1rem'}}>AJUSTES</Button>
