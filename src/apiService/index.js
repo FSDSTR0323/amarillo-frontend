@@ -1,6 +1,11 @@
 //Es dentro de esta carpeta de apiService en donde meteré todas las conexiones que hagamos con el backend, para que quede más limpio.
 import axios from "axios";
+import { BroadcastChannel } from "broadcast-channel";
 
+const logOutChannel = new BroadcastChannel('logOut')
+
+
+//REGISTRO Y LOG IN DE USUARIO ------------------------>
 export const registerRequest = (user) => {
     axios.post('http://localhost:9000/users/register', user)
     console.log(user);
@@ -20,8 +25,25 @@ export const loginRequest = async (user) => {
         // setError(error.response.data.result)
     }
   };
+//------------------------------------------------------------
 
 
+//LOG OUT DE USUARIO ------------->
+export const logUserOut = () => {
+    logOutChannel.postMessage('LogOut')
+    window.localStorage.removeItem('token');
+    window.location.href = window.location.origin + '/'
+};
+
+export const logOutAllTabs = () => {
+    logOutChannel.onmessage = () => {
+        logUserOut();
+        logOutChannel.close();
+    }
+};
+//------------------------------------------------
+
+//
 export const getMyHousePanel = async () => {
     try {
         const response = await axios.get('http://localhost:9000/rooms/', {headers: {Authorization: localStorage.getItem('token')}})
