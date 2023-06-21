@@ -60,7 +60,7 @@ export const getAllRooms = async () => {
 
 export const postNewRoom = async (name, type) => {
     const response = await axios.post('http://localhost:9000/rooms/', name, type);
-    getAllRooms()
+    getAllRooms() //NOS FALTA HACER PUSH DE LA NEWROOM A TODA NUESTRA LISTA Y LLAMAR AL GET
     return;
 };
 // FUNCIÓN ANTIGUA
