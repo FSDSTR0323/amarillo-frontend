@@ -3,13 +3,11 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
 
-
 require('dotenv').config();
 
 const mySecret = process.env.TOKENSECRET;
 
 const registerNewUser = async (req, res) => {
-
     try {
         //Tomamos el data que tengamos en el body - frontend
         const { name, email, password, savedToken } = req.body;
@@ -110,7 +108,6 @@ const myUser = (req, res) => {
         //console.log('Hay un error al tratar de verificar el token.')
         res.status(400).send({msg: 'No es un token válido.'})
     }
-
 };
 
 //Necesitamos crear una función que nos devuelva un array de objetos. Cada objeto es un usuario.

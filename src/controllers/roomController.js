@@ -5,8 +5,8 @@ const addRoom = (req,res)=>{
     //console.log(req.body);
     Room.create(
         {
-            name: req.body.name
-            
+            name: req.body.name,
+            type: req.body.type
         }
     )
     .then( roomDoc=>res.status(200).send({msg:"Habitación añadida"}))
@@ -22,12 +22,13 @@ const addRoom = (req,res)=>{
     })
 };
 
+
 //Consultamos nuestras habitaciones. GET
 const getRooms = (req, res) => {
     
     if(req.params.roomId){ //al llamar al roomId, tenemos que hacer el método findById.
         Room.findById(req.params.roomId)
-            .then( roomDoc => { //En este punto tenemos que pensar en si existirá o no la task con ese ID, accediendo a roomDoc
+            .then( roomDoc => { //En este punto tenemos que pensar en si existirá o no la room con ese ID, accediendo a roomDoc
                 if(roomDoc === null ) {
                     res.status(400).send({msg: 'Esta estancia no existe.'})
                 } else {
@@ -96,7 +97,6 @@ const updateRoom = (req, res) => {
     })
     //res.status(200).send({msg: 'Estancia modificada correctamente!'})
 };
-
 
 
 //Eliminamos nuestra estancia. DELETE
