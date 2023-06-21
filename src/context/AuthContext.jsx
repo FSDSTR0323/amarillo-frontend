@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createContext, useState, useContext } from "react";
 import { registerRequest } from '../apiService/index';
 import { loginRequest } from "../apiService/index";
@@ -13,20 +13,17 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({children}) => {
+    
     const [ user, setUser ] = useState(null);
-
-    //Creamos otros estados para decirle al resto de páginas que este usuario está autenticado. Y el estado de los errores.
     const [ isAuthenticated, setIsAuthenticated ] = useState(false);
     const [ errors, setErrors ] = useState([]);
 
     //Dentro de esta función validamos que el usuario se registra y lo marcamos como autenticado.
     const signUp = async (user) => {
         try {
-
-            //condición: si no hay token, no hay autenticación
             const res = await registerRequest(user)
-            console.log(res);
-            setUser(res);
+            //console.log("singup res", res);
+            setUser(user);
             setIsAuthenticated(true);
         } catch (error) {
             console.log(error);
@@ -34,17 +31,32 @@ export const AuthProvider = ({children}) => {
         }
     };
 
+     //Dentro de esta función validamos que el usuario se loguea y lo marcamos como autenticado.
     const signIn = async (user) => {
         try{
             const res = await loginRequest(user)
-            console.log(res);
-            setUser(res);
+            //console.log("singin res:",res);
+            setUser(user);
             setIsAuthenticated(true);
         } catch(error){
-            console.log(error);
-            setErrors(error.response.data);
+            console.log(error)
+            setErrors([error.response.data.message])
         }
     }
+
+
+    //eliminar mensajes de error tras 5 segundos
+    useEffect(()=>{
+        if(errors.length>0){
+            const timer = setTimeout(()=>{
+                setErrors([])
+            },5000)
+            return ()=>clearTimeout(timer)
+        }
+    }, [errors])
+
+    
+
 
     return (
         <AuthContext.Provider value={{
