@@ -4,7 +4,7 @@ const House = require ('../models/houseModel')
 
 //Añadimos una nueva estancia
 const addHouse = (req,res)=>{
-    console.log(req.body);
+    //console.log(req.body);
     House.create(
         {
             name: req.body.name,
@@ -58,7 +58,7 @@ const getHouse = (req, res) => {
             filter.dueDate = { $lte: new Date(req.query.datemax) }
         }
 
-        console.log(req.query.status,filter)
+        //console.log(req.query.status,filter)
         House.find(filter)
             .then(houseDocs => {
                 if(houseDocs.length === 0) {
@@ -120,7 +120,7 @@ const deleteHouse = (req, res) => {
         }
         )
         .then(houseDoc=>{
-            console.log(houseDoc)
+            //console.log(houseDoc)
             if ( houseDoc === null ) {
                 res.status(404).send({msg: "No se ha encontrado esta vivienda."})
             } else {
