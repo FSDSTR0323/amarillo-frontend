@@ -7,10 +7,15 @@ import { Typography, Button, IconButton, Box, AppBar, Toolbar } from '@mui/mater
 
 //ICONOS
 import HomeIcon from '@mui/icons-material/Home';
+<<<<<<< HEAD
+import { HomeMax } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
+=======
 import PersonIcon from '@mui/icons-material/Person';
 import TuneIcon from '@mui/icons-material/Tune';
 import LogoutIcon from '@mui/icons-material/Logout';
 
+>>>>>>> fc195470953493495eb7244931d0c229e587b614
 
 const HubNavBar = () => {
 
@@ -23,15 +28,16 @@ const HubNavBar = () => {
     <Box sx={{ display: 'flex' }}>
       <AppBar position="static">
         <Toolbar>
-
+        <Link to='/myHouses'>
         <IconButton sx={{color: 'white'}}>
           <HomeIcon></HomeIcon>
-        </IconButton>
+        </IconButton> 
+        </Link>
 
           {/* <Button color="inherit" sx={{m:'1rem'}}>BOTÓN CASA/S</Button> */}
 
           <Typography variant="h6" component="div" sx={{flexGrow: 1, marginLeft:'2rem'}}>
-            Vivienda en Mata Las Cañas
+            HomeHub
           </Typography>
 
           <Button color='primary' variant='filled' startIcon={<TuneIcon/>} 
