@@ -1,5 +1,9 @@
 //Es dentro de esta carpeta de apiService en donde meteré todas las conexiones que hagamos con el backend, para que quede más limpio.
 import axios from "axios";
+import { BroadcastChannel } from "broadcast-channel";
+
+const logOutChannel = new BroadcastChannel('logOut')
+
 
 
 const API = 'http://localhost:9000'

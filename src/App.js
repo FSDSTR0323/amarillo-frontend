@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import './App.css';
+import { useEffect } from 'react';
 
 //Importamos el contexto para los ususarios
 import { AuthProvider } from './context/AuthContext';
@@ -17,6 +17,7 @@ import MyHousesPanel from './componentes/containers/AllHousesPanel';
 import HousePanel from './componentes/containers/HousePanel';
 import RoomPanel from './componentes/containers/RoomPanel';
 import ProtectedRoutes from './ProtectedRoutes';
+import DeviceList from './componentes/DeviceList/DeviceList';
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
                 <Route element={<ProtectedRoutes />}>
                   <Route path='/myHouses' element={<MyHousesPanel/>} />
                   <Route path='/housePanel' element={<HousePanel/>} />
-                  <Route path='/housePanel/:slug' element={<RoomPanel/>} />
+                  <Route path='/housePanel/:slug' element={<RoomPanel/>} /> TODO: Revisar esta ruta: cada estancia nos redirige a un panel de dispositivos
                 </Route>
 
                 <Route path='*' element={<p>No hemos encontrado esta página.</p>} /> TODO: Hay que crear la página de 404 NotFound
