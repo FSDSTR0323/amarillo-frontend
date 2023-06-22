@@ -19,22 +19,6 @@ import RoomPanel from './componentes/containers/RoomPanel';
 import ProtectedRoutes from './ProtectedRoutes';
 import DeviceList from './componentes/DeviceList/DeviceList';
 
-/*Estructura:
-
-  App ->componentes ->containers
-                    ->forms
-      ->apiService: llamadas al back
-      ->assets: imágenes
-
-  Cada container es una página a renderizar para cada una de las pantallas que queremos mostrar
-
-
-*/
-// ver artículo https://www.escuelafrontend.com/react-router-6
-//BrowserRouter:poder declarar rutas individuales dentro de nuestra aplicación.
-//Route: rutas dentro del componente BrowserRouter como secundarias.
-
-
 function App() {
   return (
     <AuthProvider>

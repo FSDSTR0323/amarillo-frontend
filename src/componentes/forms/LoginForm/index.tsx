@@ -15,6 +15,7 @@ const LoginForm = () => {
 
       const { register, handleSubmit, formState: { errors } } = useForm();
       const { signIn, isAuthenticated, errors: registerError } = useAuth();
+
       // const [ loggedUser, setLoggedUser ] = useState(false);
       const navigate = useNavigate();
 
@@ -26,8 +27,9 @@ const LoginForm = () => {
         
       // };
       useEffect(() => {
+        console.log("autenticado?:", isAuthenticated)
         if(isAuthenticated) navigate('/housePanel')
-      }, [isAuthenticated]);
+      } );
 
   return (
 <>

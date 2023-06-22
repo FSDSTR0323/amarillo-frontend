@@ -4,7 +4,7 @@ import { getAllRooms } from '../../apiService';
 import { Box } from '@mui/material';
 import HouseCard from '../HousesList/HouseCard/index.js';
 
-
+//OJO: aquí habría que importar el número de casas y si solo es 1, getAllRooms, y si son varias, pintar una web de varias casas
 
 const HousesList = () => {
     const [ houses, setHouses ] = useState([]);
