@@ -10,13 +10,14 @@ const deviceSchema= new Schema({
     },
     status: {
         type: String,
-        required: true,
-        enum: ['On', 'Off']
+        enum: ['On', 'Off'],
+        required: true
     },
     data: {},       //Posibles datos de los dispositivos a representar
     roomId:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Room'
+        ref: 'Room',
+        required: true,
     },
 
     deletedAt: {type: Date}

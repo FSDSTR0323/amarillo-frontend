@@ -1,10 +1,8 @@
 const Room = require('../models/roomModel.js');
-//Samuel: hay que indicar de qué casa es la habitación al hacer las peticiones
-// En el roomModel habría que indicar a qué casa pertenece cada una de las habitaciones
 
 //Añadimos una nueva estancia
 const addRoom = (req,res)=>{
-    console.log(req.body);
+    //console.log(req.body);
     Room.create(
         {
             name: req.body.name,
@@ -27,6 +25,7 @@ const addRoom = (req,res)=>{
 
 //Consultamos nuestras habitaciones. GET
 const getRooms = (req, res) => {
+    
     if(req.params.roomId){ //al llamar al roomId, tenemos que hacer el método findById.
         Room.findById(req.params.roomId)
             .then( roomDoc => { //En este punto tenemos que pensar en si existirá o no la room con ese ID, accediendo a roomDoc
@@ -58,7 +57,7 @@ const getRooms = (req, res) => {
             filter.dueDate = { $lte: new Date(req.query.datemax) }
         }
 
-        console.log(req.query.status,filter)
+        //console.log(req.query.status,filter)
         Room.find(filter)
             .then(roomDocs => {
                 if(roomDocs.length === 0) {
@@ -119,7 +118,7 @@ const deleteRoom = (req, res) => {
         }
         )
         .then(roomDoc=>{
-            console.log(roomDoc)
+            //console.log(roomDoc)
             if ( roomDoc === null ) {
                 res.status(404).send({msg: "No se ha encontrado esta estancia."})
             } else {
