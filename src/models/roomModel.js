@@ -9,12 +9,14 @@ const roomSchema= new Schema({
     },
     roomType: {
         type: String,
-        enum: ['KITCHEN', 'LOUNGE', 'ROOM', 'BATHROOM', 'GARDEN', 'DINING ROOM'],
+        enum: ['Kitchen', 'Lounge', 'Room', 'Bathroom', 'Garden', 'Dinning Room'],
         required: true
+    },
+    roomImage: {
+        type: String,
     },
     //TO DO: METER LOS DEVICES
 
-    deletedAt: {type:Date},
     houseId:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'House'
