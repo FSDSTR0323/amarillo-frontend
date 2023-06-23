@@ -9,7 +9,6 @@ const logOutChannel = new BroadcastChannel('logOut')
 const API = 'http://localhost:9000'
 
 
-
 export const registerRequest = async (user) => {
     console.log("Usuario por registrar: ", user)
     try{
@@ -45,9 +44,12 @@ export const loginRequest = async (user) => {
 
 //LOG OUT DE USUARIO ------------->
 export const logUserOut = () => {
+    
     logOutChannel.postMessage('LogOut')
     window.localStorage.removeItem('token');
     window.location.href = window.location.origin + '/'
+    
+
 };
 
 export const logOutAllTabs = () => {

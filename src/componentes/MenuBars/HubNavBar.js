@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Router, Link } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { logUserOut } from '../../apiService';
 
 //MATERIAL UI
@@ -7,6 +7,8 @@ import { Typography, Button, IconButton, Box, AppBar, Toolbar } from '@mui/mater
 
 //ICONOS
 import HomeIcon from '@mui/icons-material/Home';
+import { HomeMax } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
 import TuneIcon from '@mui/icons-material/Tune';
 import LogoutIcon from '@mui/icons-material/Logout';
