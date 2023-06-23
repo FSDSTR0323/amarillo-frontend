@@ -2,7 +2,7 @@ const House = require ('../models/houseModel')
 
 // cambiar con house
 
-//Añadimos una nueva estancia
+//Añadimos una nueva vivienda
 const addHouse = (req,res)=>{
     console.log(req.body);
     House.create(
@@ -84,7 +84,7 @@ const updateHouse = (req, res) => {
         if( houseDoc === null ){
             res.status(404).send({msg: 'No hemos encontrado esta vivienda.'})
         } else {
-            res.status(200).send({msg: 'Vivienda modificiada!'})
+            res.status(200).send({msg: '¡Vivienda modificiada!'})
         }
     })
     .catch( error => {
@@ -96,7 +96,7 @@ const updateHouse = (req, res) => {
                 res.status(200).send({msg: 'Ha habido un error'})
         }
     })
-    //res.status(200).send({msg: 'Vivienda modificada correctamente!'})
+    //res.status(200).send({msg: '¡Vivienda modificada correctamente!'})
 };
 
 
