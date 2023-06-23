@@ -32,9 +32,10 @@ export const AuthProvider = ({children}) => {
     };
 
      //Dentro de esta función validamos que el usuario se loguea y lo marcamos como autenticado.
-    const signIn = async (user) => {
+    const signIn = async (user) => { //TODO: sustituir try catch por If ---> si res = true --> continua || si res = false --> 
         try{
             const res = await loginRequest(user)
+
             //console.log("singin res:",res);
             setUser(user);
             setIsAuthenticated(true);
