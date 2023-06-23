@@ -29,14 +29,31 @@ export const loginRequest = async (user) => {
     //console.log("Usuario login: ", user)
     try {
         const response = await axios.post(`${API}/users/login`, user)
+        console.log('esta es la response a login');
         const token = response.data.token ;
         if(token){
-        return window.localStorage.setItem('token', token); //Con esto estamos guardando en el LocalStorage el token del usuario.
+        window.localStorage.setItem('token', token);
+        return true //Con esto estamos guardando en el LocalStorage el token del usuario.
         }
         console.log("USER No válido");
     
     } catch(error) {
-        console.log(error);
+        console.log('Esto es el error al login: ', error);
+        return false
+    }
+};
+
+//LOG OUT DE USUARIO ------------->
+export const logUserOut = () => {
+    logOutChannel.postMessage('LogOut')
+    window.localStorage.removeItem('token');
+    window.location.href = window.location.origin + '/'
+};
+
+export const logOutAllTabs = () => {
+    logOutChannel.onmessage = () => {
+        logUserOut();
+        logOutChannel.close();
     }
 };
 
@@ -62,8 +79,9 @@ export const getAllRooms = async () => {
 };
 
 //postNewRoom: hay que enviar el id de la casa en la que creo la habitación a parte del token
-export const postNewRoom = async (name, type,) => {
-    const response = await axios.post(`${API}/rooms/`, name, type, {headers: {Authorization: localStorage.getItem('token')}});
+export const postNewRoom = async (name, type, image) => {
+    const response = await axios.post(`${API}/rooms/`, name, type, image ); // {headers: {Authorization: localStorage.getItem('token')}}
+    console.log('Esta es la respuesta al post: ', response);
     getAllRooms()
     return;
 };

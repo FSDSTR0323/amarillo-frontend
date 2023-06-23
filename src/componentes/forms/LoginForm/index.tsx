@@ -42,7 +42,7 @@ const LoginForm = () => {
       <Typography variant='body1' sx={{paddingBottom: '2rem'}}>Por favor, introduce tus datos de usuario para acceder a HomeHub.      </Typography>
 
         {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
-        <form onSubmit={handleSubmit(async(values)=>{
+        <form onSubmit={handleSubmit( (values)=>{
           signIn(values)
         })}>
           {/* register your input into the hook by invoking the "register" function */}

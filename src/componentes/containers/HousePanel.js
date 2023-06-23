@@ -10,7 +10,7 @@ import HubNavBar from '../MenuBars/HubNavBar';
 
 const HousePanel = () => {
 
-  const [ AddRoomPopup, toggleAddRoomPopup ] = useState(false);
+  const [ addRoomPopup, toggleAddRoomPopup ] = useState(false);
 
   return (
     <>
@@ -32,9 +32,9 @@ const HousePanel = () => {
         onClick={ () => toggleAddRoomPopup(true)}>
           Añadir nueva estancia
         </Button>
-        { AddRoomPopup && <AddRoomForm closePopUp={ toggleAddRoomPopup } /> }
+        { addRoomPopup && <AddRoomForm closePopUp={ toggleAddRoomPopup } /> }
     
-        <RoomsList></RoomsList>
+        <RoomsList refresh={addRoomPopup}></RoomsList>
 
     </Box>
     </>
