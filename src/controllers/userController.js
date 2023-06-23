@@ -94,7 +94,6 @@ const loginUser = async (req, res) => {
 };
 
 
-
 //Este endpoint nos va a servir para llamarnos a nosotros mismos. Es el endpoint de "mi perfil"
 const myUser = (req, res) => {
     const token = req.headers.authorization.split(' ')[1]
