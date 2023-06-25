@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getAllRooms } from '../../apiService';
 
@@ -11,6 +12,7 @@ import bedroom from '../../assets/imgs/bedroom1.jpg'
 
 
 import DeleteRoomPopUp from './RoomCard/DeleteRoomPopUp';
+import { Navigate } from 'react-router-dom';
 
 const RoomsList = ( {refresh} ) => {
     const [ rooms, setRooms ] = useState([]);
@@ -65,7 +67,7 @@ const RoomsList = ( {refresh} ) => {
                     <Grid item xs={12} sm={6} md={3} key={room._id}>
                         <Card sx={{ boxShadow: '4px 8px 8px -4px rgb(202, 213, 216)'}}>
 
-                            <CardActionArea>
+                            <CardActionArea onClick={ ()=> <Link to={`/housePanel/${room._id}`} /> }>
                                 { rooms.length > 0 ? rooms.map( room => {
                                     switch (room.roomType) {
                                         case 'Kitchen':

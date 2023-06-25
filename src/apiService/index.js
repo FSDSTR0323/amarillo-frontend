@@ -48,8 +48,6 @@ export const logUserOut = () => {
     logOutChannel.postMessage('LogOut')
     window.localStorage.removeItem('token');
     window.location.href = window.location.origin + '/'
-    
-
 };
 
 export const logOutAllTabs = () => {
