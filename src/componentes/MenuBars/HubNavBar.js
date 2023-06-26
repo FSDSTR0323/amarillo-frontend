@@ -14,9 +14,7 @@ import TuneIcon from '@mui/icons-material/Tune';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 const HubNavBar = () => {
-
-
-
+ 
     return (
     <Box sx={{ display: 'flex' }}>
       <AppBar position="static">
@@ -38,10 +36,11 @@ const HubNavBar = () => {
                 >AJUSTES
                 </Button>
 
-          <Button color='primary' variant='filled' startIcon={<PersonIcon/>} 
-                onClick={ () => ''}>
+          <Link to='/myUser'>
+            <Button sx={{color: 'white'}} variant='filled' startIcon={<PersonIcon/>}>
                 USUARIO
-                </Button> 
+            </Button>
+          </Link> 
 
           <Button color='primary' variant='filled' startIcon={<LogoutIcon/>} 
                 onClick={ () => logUserOut()}>
