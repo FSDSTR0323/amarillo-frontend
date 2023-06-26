@@ -5,6 +5,9 @@ import { useEffect } from 'react';
 //Importamos el contexto para los ususarios
 import { AuthProvider } from './context/AuthContext';
 
+//Importamos AddHouseForm
+
+
 //IMPORTANDO REACT ROUTER DOM --- ENRUTADO
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
@@ -12,6 +15,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Homepage from './componentes/containers/Homepage';               //Landing page HOMEHUB360
 import RegisterForm from './componentes/forms/RegisterForm/index.tsx';   
 import Login from './componentes/containers/Login';                     //Ir a mi panel
+import AddHouseForm from './componentes/forms/AddHouseForm';
 import MyHousesPanel from './componentes/containers/AllHousesPanel';    
 
 import HousePanel from './componentes/containers/HousePanel';
@@ -30,6 +34,7 @@ function App() {
                 <Route path='/login' element={<Login/>} />
 
                 <Route element={<ProtectedRoutes />}>
+                  <Route path='/myFirstHouse' element={<AddHouseForm/>}/>
                   <Route path='/myHouses' element={<MyHousesPanel/>} />
                   <Route path='/housePanel' element={<HousePanel/>} />
                   <Route path='/housePanel/:slug' element={<RoomPanel/>} /> TODO: Revisar esta ruta: cada estancia nos redirige a un panel de dispositivos

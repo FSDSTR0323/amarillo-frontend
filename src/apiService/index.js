@@ -2,7 +2,7 @@
 import axios from "axios";
 import { BroadcastChannel } from "broadcast-channel";
 
-const logOutChannel = new BroadcastChannel('logOut')
+const logOutChannel = new BroadcastChannel('logOut');
 
 
 
@@ -98,4 +98,8 @@ export const postNewDevice = async () => {
     getAllDevices(); //llamamos de nuevo al get nada más postear para que se realice una sincronización y recibamos el nuevo device.
     return data;
 }
-
+//postNewHouse:
+export const postNewHouse = async () => {
+    const {data} = await axios.post(`${API}/houses/`, {headers: {Authorization: localStorage.getItem('token')}})
+    return data;
+}
