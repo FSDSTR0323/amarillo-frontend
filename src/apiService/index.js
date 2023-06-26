@@ -9,7 +9,6 @@ const logOutChannel = new BroadcastChannel('logOut');
 const API = 'http://localhost:9000'
 
 
-
 export const registerRequest = async (user) => {
     console.log("Usuario por registrar: ", user)
     try{
@@ -45,6 +44,7 @@ export const loginRequest = async (user) => {
 
 //LOG OUT DE USUARIO ------------->
 export const logUserOut = () => {
+    
     logOutChannel.postMessage('LogOut')
     window.localStorage.removeItem('token');
     window.location.href = window.location.origin + '/'
@@ -80,10 +80,16 @@ export const getAllRooms = async () => {
 
 //postNewRoom: hay que enviar el id de la casa en la que creo la habitación a parte del token
 export const postNewRoom = async (name, type, image) => {
-    const response = await axios.post(`${API}/rooms/`, name, type, image ); // {headers: {Authorization: localStorage.getItem('token')}}
+    const response = await axios.post(`${API}/rooms/`, name, type, image, ); // {headers: {Authorization: localStorage.getItem('token')}}
     console.log('Esta es la respuesta al post: ', response);
     getAllRooms()
     return;
+};
+
+export const deleteRoom = async(id) => {
+    const res = await axios.delete(`${API}/rooms/${id}`);
+    console.log('Habitación eliminada correctamente', res);
+    return getAllRooms()
 };
 
 //postNewRoom: hay que enviar el id de la room de la que quiero el listado de devices a parte del token

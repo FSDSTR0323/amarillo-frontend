@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { createContext, useState, useContext } from "react";
 import { registerRequest } from '../apiService/index';
@@ -33,15 +34,13 @@ export const AuthProvider = ({children}) => {
 
      //Dentro de esta función validamos que el usuario se loguea y lo marcamos como autenticado.
     const signIn = async (user) => { //TODO: sustituir try catch por If ---> si res = true --> continua || si res = false --> 
-        try{
-            const res = await loginRequest(user)
-
-            //console.log("singin res:",res);
+        const res = await loginRequest(user)
+        if (res){
             setUser(user);
-            setIsAuthenticated(true);
-        } catch(error){
-            console.log(error)
-            setErrors([error.response.data.message])
+            setIsAuthenticated(true);  
+        } else{
+            console.log("Error en el logueo")
+            return <Typography>El usuario o la contraseña no son válidos.</Typography>
         }
     }
 

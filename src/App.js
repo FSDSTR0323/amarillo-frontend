@@ -22,6 +22,7 @@ import HousePanel from './componentes/containers/HousePanel';
 import RoomPanel from './componentes/containers/RoomPanel';
 import ProtectedRoutes from './ProtectedRoutes';
 import DeviceList from './componentes/DeviceList/DeviceList';
+import MyUserPanel from './componentes/containers/MyUserPanel';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
                   <Route path='/myFirstHouse' element={<AddHouseForm/>}/>
                   <Route path='/myHouses' element={<MyHousesPanel/>} />
                   <Route path='/housePanel' element={<HousePanel/>} />
+                  <Route path='/myUser' element={<MyUserPanel/>} />
                   <Route path='/housePanel/:slug' element={<RoomPanel/>} /> TODO: Revisar esta ruta: cada estancia nos redirige a un panel de dispositivos
                 </Route>
 

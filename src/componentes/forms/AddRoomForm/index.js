@@ -76,7 +76,6 @@ return (
                         <Select
                         labelId="demo-simple-select-required-label"
                         id="demo-simple-select-required"
-                        value='Room'
                         label="Tipo de estancia *"
                         onChange={handleChange}
                         {...register('type', {required: true})}
@@ -88,6 +87,7 @@ return (
                         <MenuItem value={'Lounge'}>Salón</MenuItem>
                         <MenuItem value={'Room'}>Habitación</MenuItem>
                         <MenuItem value={'Bathroom'}>Baño</MenuItem>
+                        <MenuItem value={'Office'}>Oficina</MenuItem>
                         <MenuItem value={'Garden'}>Jardín</MenuItem>
                         <MenuItem value={'Dinning Room'}>Comedor</MenuItem>
                         </Select>
