@@ -1,3 +1,4 @@
+const { findById } = require('../models/roomModel.js');
 const Room = require('../models/roomModel.js');
 
 
@@ -100,10 +101,9 @@ const updateRoom = (req, res) => {
     //res.status(200).send({msg: 'Estancia modificada correctamente!'})
 };
 
-
-//Eliminamos nuestra estancia. DELETE
+// Eliminamos nuestra estancia. DELETE 1
 const deleteRoom = (req, res) => {
-    Room.findOneAndUpdate(
+    Room.findOneAndDelete(
         {
             _id: req.params.roomId,
             //status: { $ne: "DELETED" }
@@ -137,6 +137,22 @@ const deleteRoom = (req, res) => {
             }
         })
 };
+
+// DELETE Nº 2 ---> COMO EJECUTAMOS EL DELETE DE ESTA ESTANCIA?¿?¿?¿?
+// const deleteRoom = (req, res) => {
+//     if(req.params.roomId){
+//         Room.findById(req.params.roomId)
+//         .then( Room.remove( error => {
+//             res.status(500).send({msg:`Error al borrar esta estancia! ${error}`})
+//             res.status(200).send({msg:`Estancia elimianda correctamente!`})
+//         }))
+//         .catch(error => res.status(400).send(error))
+//     } else {
+//         res.status(500).send({msg:`No hemos encontrado id! ${error}`})
+//     }
+// };
+
+
 
 module.exports = {
     addRoom,

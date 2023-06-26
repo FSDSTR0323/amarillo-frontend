@@ -7,7 +7,7 @@ const userSchema= new Schema({
         minLength:2,
         trim: true
     },
-    last_name: {
+    lastName: {
         type: String,
         trim: true
     },
@@ -26,7 +26,7 @@ const userSchema= new Schema({
         type: Number,
         unique: true
     },
-    birthyear: {
+    birthYear: {
         type:Number
     },
     userType: {
