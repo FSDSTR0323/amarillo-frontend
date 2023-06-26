@@ -36,10 +36,11 @@ const HubNavBar = () => {
                 >AJUSTES
                 </Button>
 
-          <Button color='primary' variant='filled' startIcon={<PersonIcon/>} 
-                onClick={ () => ''}>
+          <Link to='/myUser'>
+            <Button sx={{color: 'white'}} variant='filled' startIcon={<PersonIcon/>}>
                 USUARIO
-                </Button> 
+            </Button>
+          </Link> 
 
           <Button color='primary' variant='filled' startIcon={<LogoutIcon/>} 
                 onClick={ () => logUserOut()}>
