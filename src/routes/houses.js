@@ -4,8 +4,8 @@ var router = express.Router();
 houseController =require('../controllers/houseController.js');
 
 router.post('/', houseController.addHouse);
-router.get('/:roomId?', houseController.getHouse); 
-router.put('/:roomId', houseController.updateHouse);
-router.delete('/:roomId', houseController.deleteHouse);
+router.get('/:houseId?', authRequired, houseController.getHouses); 
+router.put('/:houseId', authRequired,houseController.updateHouse);
+router.delete('/:houseId', houseController.deleteHouse);
 
 module.exports = router;
