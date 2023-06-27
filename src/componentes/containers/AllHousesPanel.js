@@ -22,7 +22,7 @@ const MyHousesPanel = () => {
             marginBottom: '2rem',
             backgroundColor:'#FCFCFC'
         }}>
-            <Typography variant='h4'>Te damos la bienvenida a Homehub.</Typography>
+            <Typography variant='h4'>Te damos la bienvenida a HomeHub.</Typography>
             <Typography variant='body1' sx={{paddingTop:'1rem'}}>En este área puedes registrar y guardar tus diferentes viviendas.</Typography>
         </Paper>
         

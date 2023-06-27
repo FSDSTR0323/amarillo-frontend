@@ -92,7 +92,6 @@ export const deleteRoom = async(id) => {
     return getAllRooms()
 };
 
-//postNewRoom: hay que enviar el id de la room de la que quiero el listado de devices a parte del token
 export const getAllDevices = async () => {
     const { data } = await axios.get(`${API}/devices/`, {headers: {Authorization: localStorage.getItem('token')}});
     return data;
@@ -106,9 +105,15 @@ export const postNewDevice = async () => {
 }
 
 //ALL HOUSES 
-export const getAllHouses= async () => {
+export const getAllHouses = async () => {
     console.log("Se piden las viviendas")
     const { data } = await axios.get(`${API}/houses/`, {headers: {Authorization: localStorage.getItem('token')}});
     console.log(data)
     return data;
+};
+
+export const postNewHouse = async (...props) => {
+    const { data } = await axios.post(`${API}/houses/`, props);
+    getAllHouses()
+    return;
 };
