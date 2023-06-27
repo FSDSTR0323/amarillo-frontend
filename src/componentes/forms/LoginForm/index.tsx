@@ -59,7 +59,9 @@ const LoginForm = () => {
           <TextField variant='filled' type='password' label='Contraseña' {...register('password', { required: true })} />
           {/* errors will return when field validation fails  */}
           {errors.password?.type === 'required' && <Typography variant='body1' sx={{ color:'#FC3F25', fontSize: '0,5rem'}}>Este campo es requerido.</Typography>}
-          
+
+          {/* TODO --- CONTROLAR ERROR DE CONTRASEÑA ERRÓNEA */}
+          {errors.password && <Typography variant='body1' sx={{ color:'#FC3F25', fontSize: '0,5rem'}}>Parece que la contraseña no es correcta.</Typography>}
           <Button 
             type="submit" 
             variant='contained'

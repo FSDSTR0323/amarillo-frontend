@@ -105,3 +105,10 @@ export const postNewDevice = async () => {
     return data;
 }
 
+//ALL HOUSES 
+export const getAllHouses= async () => {
+    console.log("Se piden las viviendas")
+    const { data } = await axios.get(`${API}/houses/`, {headers: {Authorization: localStorage.getItem('token')}});
+    console.log(data)
+    return data;
+};

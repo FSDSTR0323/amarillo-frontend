@@ -38,8 +38,9 @@ export const AuthProvider = ({children}) => {
         if (res){
             setUser(user);
             setIsAuthenticated(true);  
-        } else{
-            console.log("Error en el logueo")
+        } else {
+            //console.log("Error en el logueo");
+            setErrors("Error en el logueo");
             return <Typography>El usuario o la contraseña no son válidos.</Typography>
         }
     }

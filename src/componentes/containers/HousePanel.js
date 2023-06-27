@@ -19,13 +19,13 @@ const HousePanel = () => {
     <Box sx= {{
         p: '2rem'
     }}>
-        <Paper elevation={4} sx={{
+        <Paper elevation={8} sx={{
             p: '2rem',
             marginBottom: '2rem',
             backgroundColor:'#FCFCFC'
         }}>
-            <Typography variant='h4'>Bienvenido al panel de control de tu vivienda:</Typography>
-            <Typography variant='body1'>En este área puedes visibilizar tus diferentes estancias y el número de dispositivos conectados en cada una de ellas.</Typography>
+            <Typography variant='h4'>Panel de control de la vivienda:</Typography>
+            <Typography variant='body1' sx={{paddingTop:'1rem'}}>En este área puedes visibilizar tus diferentes estancias y el número de dispositivos conectados en cada una de ellas.</Typography>
         </Paper>
 
         <Button color='primary' variant='contained' startIcon={<AddBoxIcon/>} 
