@@ -2,7 +2,7 @@
 import axios from "axios";
 import { BroadcastChannel } from "broadcast-channel";
 
-const logOutChannel = new BroadcastChannel('logOut')
+const logOutChannel = new BroadcastChannel('logOut');
 
 
 
