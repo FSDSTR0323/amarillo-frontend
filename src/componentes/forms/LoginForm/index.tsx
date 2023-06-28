@@ -56,23 +56,19 @@ const LoginForm = () => {
             {errors.email?.type === 'required' && <Typography variant='body1' sx={{ color:'#FC3F25', fontSize: '0,5rem'}}>Este campo es requerido.</Typography>}
             {errors.email?.type === 'pattern' && <Typography variant='body1' sx={{ color:'#FC3F25', fontSize: '0,5rem'}}>Introduce un correo válido.</Typography>}
 
-            
-            {/* include validation with required or other standard HTML validation rules */}
-            <TextField variant='filled' type='password' label='Contraseña' {...register('password', { required: true })} />
-            {/* errors will return when field validation fails  */}
-            {errors.password?.type === 'required' && <Typography variant='body1' sx={{ color:'#FC3F25', fontSize: '0,5rem'}}>Este campo es requerido.</Typography>}
-            
-            <Button 
-              type="submit" 
-              variant='contained'
-              // onClick={() => navigate('/housePanel')}
-              >Acceder a mi panel
-            </Button>
-            <Button 
-              type="button" 
-              variant='text'
-                onClick={() => navigate('/register')}
-                >No estoy registrado en HomeHub
+          
+          {/* include validation with required or other standard HTML validation rules */}
+          <TextField variant='filled' type='password' label='Contraseña' {...register('password', { required: true })} />
+          {/* errors will return when field validation fails  */}
+          {errors.password?.type === 'required' && <Typography variant='body1' sx={{ color:'#FC3F25', fontSize: '0,5rem'}}>Este campo es requerido.</Typography>}
+
+          {/* TODO --- CONTROLAR ERROR DE CONTRASEÑA ERRÓNEA */}
+          {errors.password && <Typography variant='body1' sx={{ color:'#FC3F25', fontSize: '0,5rem'}}>Parece que la contraseña no es correcta.</Typography>}
+          <Button 
+            type="submit" 
+            variant='contained'
+            // onClick={() => navigate('/housePanel')}
+            >Acceder a mi panel
             </Button>
           </Stack>
         </form>

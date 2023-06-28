@@ -19,7 +19,7 @@ const RegisterForm = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(isAuthenticated) navigate('/housePanel')
+    if(isAuthenticated) navigate('/myFirstHouse')
   }, [isAuthenticated])
 
 

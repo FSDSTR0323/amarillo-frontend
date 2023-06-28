@@ -28,33 +28,28 @@ const RoomsList = ( {refresh} ) => {
             .catch( error => console.error(error))
     }, [refresh]);
 
-    // //Esta es la función que seleccionará la imagen en función del tipo de habitación roomType
-    // const roomPictureSelect = () => {
-    //     rooms.length > 0 ? rooms.map( room => {
-    //         switch (room.roomType) {
-    //             case 'Kitchen':
-    //                 <img src='https://res.cloudinary.com/dwuej2jjm/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1687442485/homehub/kitchen2_yufu0a.jpg' alt='Kitchen/Cocina'/>
-    //                 break;
-    //             case 'Lounge':
-    //                 <img src='https://res.cloudinary.com/dwuej2jjm/image/upload/v1687534855/homehub/livingRoom3_epxa8z.jpg' alt='Lounge/Salón'/>
-    //                 break;
-    //             case 'Room':
-    //                 <img src='https://res.cloudinary.com/dwuej2jjm/image/upload/v1687442485/homehub/bedroom2_okuzvt.jpg' alt='Lounge/Salón'/>
-    //                 break;
-    //             case 'Bathroom':
-    //                 <img src='' alt='Lounge/Salón'/>
-    //                 break;
-    //             case 'Garden':
-    //                 // traemos imagen de cloudinary
-    //                 break;
-    //             case 'Dinning Room':
-    //                 //traemos imagen de cloud.
-    //                 break;
-    //             default:
-    //                 <img src='https://res.cloudinary.com/dwuej2jjm/image/upload/v1687535056/defaultRoom_zsmamz.jpg' alt='Default'/>
-    //         }
-    //     }) : null
-    // };
+const imagePicker = (roomType) => { switch (roomType) {
+        case 'Kitchen':
+            return <img className='roomPicture' src='https://res.cloudinary.com/dwuej2jjm/image/upload/v1687778447/homehub/kitchen2_yufu0a.jpg' alt='Kitchen/Cocina'/>;
+            break;
+        case 'Lounge':
+            return <img className='roomPicture' src='https://res.cloudinary.com/dwuej2jjm/image/upload/v1687534855/homehub/livingRoom3_epxa8z.jpg' alt='Lounge/Salón'/>
+            break;
+        case 'Room':
+            return <img className='roomPicture' src='https://res.cloudinary.com/dwuej2jjm/image/upload/v1687778377/homehub/bedroom2_okuzvt.jpg' alt='Lounge/Salón'/>
+            break;
+        case 'Bathroom':
+            return <img className='roomPicture' src='https://res.cloudinary.com/dwuej2jjm/image/upload/v1687778985/homehub/bathroom1-homehub_xpu4pv.jpg' alt='Garden/Jardín'/>
+        case 'Garden':
+            return <img className='roomPicture' src='https://res.cloudinary.com/dwuej2jjm/image/upload/v1687778542/homehub/garden1_pmq2rk.jpg' alt='Garden/Jardín'/>
+            break;
+        case 'Office':
+            return <img className='roomPicture' src='https://res.cloudinary.com/dwuej2jjm/image/upload/v1687778739/homehub/despacho1_mojeju.jpg' alt='Office/Oficina' />
+            break;
+        default:
+            return <img className='roomPicture' src='https://res.cloudinary.com/dwuej2jjm/image/upload/v1687779279/homehub/default1_es7lku.jpg' alt='Default room'/>
+    }
+};
 
     return (
         <Grid container spacing={2}>
@@ -65,29 +60,7 @@ const RoomsList = ( {refresh} ) => {
 
                             <CardActionArea 
                                 onClick={()=>''}>
-                                { rooms.length > 0 ? rooms.map( room => {
-                                    switch (room.roomType) {
-                                        case 'Kitchen':
-                                            return <img className='roomPicture' src='https://res.cloudinary.com/dwuej2jjm/image/upload/v1687778447/homehub/kitchen2_yufu0a.jpg' alt='Kitchen/Cocina'/>;
-                                            break;
-                                        case 'Lounge':
-                                            return <img className='roomPicture' src='https://res.cloudinary.com/dwuej2jjm/image/upload/v1687534855/homehub/livingRoom3_epxa8z.jpg' alt='Lounge/Salón'/>
-                                            break;
-                                        case 'Room':
-                                            return <img className='roomPicture' src='https://res.cloudinary.com/dwuej2jjm/image/upload/v1687778377/homehub/bedroom2_okuzvt.jpg' alt='Lounge/Salón'/>
-                                            break;
-                                        case 'Bathroom':
-                                            return <img className='roomPicture' src='https://res.cloudinary.com/dwuej2jjm/image/upload/v1687778985/homehub/bathroom1-homehub_xpu4pv.jpg' alt='Garden/Jardín'/>
-                                        case 'Garden':
-                                            return <img className='roomPicture' src='https://res.cloudinary.com/dwuej2jjm/image/upload/v1687778542/homehub/garden1_pmq2rk.jpg' alt='Garden/Jardín'/>
-                                            break;
-                                        case 'Office':
-                                            return <img className='roomPicture' src='https://res.cloudinary.com/dwuej2jjm/image/upload/v1687778739/homehub/despacho1_mojeju.jpg' alt='Office/Oficina' />
-                                            break;
-                                        default:
-                                            return <img className='roomPicture' src='https://res.cloudinary.com/dwuej2jjm/image/upload/v1687779279/homehub/default1_es7lku.jpg' alt='Default room'/>
-                                    }
-                                }) : null }
+                                {imagePicker(room.roomType)}
                                 
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">
