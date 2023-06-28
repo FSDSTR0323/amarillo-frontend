@@ -67,8 +67,12 @@ const RegisterForm = () => {
               <Button type='submit' variant='contained' color='primary'>
                 Crear nuevo usuario
               </Button>
-
-              <Typography variant='h6' sx={{fontSize: '0.8rem'}} onClick={()=> navigate('/login')}>Ya tengo una cuenta en HomeHub</Typography>
+              <Button
+              type="button" 
+              variant='text'
+                onClick={() => navigate('/login')}
+                >Ya tengo cuenta en HomeHub
+            </Button>
 
             </Stack>
           </form>

@@ -14,7 +14,7 @@ import { useAuth } from '../../../context/AuthContext';
 const LoginForm = () => {
 
       const { register, handleSubmit, formState: { errors } } = useForm();
-      const { signIn, isAuthenticated, errors: registerError } = useAuth();
+      const { signIn, isAuthenticated } = useAuth();
 
       // const [ loggedUser, setLoggedUser ] = useState(false);
       const navigate = useNavigate();
@@ -29,6 +29,8 @@ const LoginForm = () => {
       useEffect(() => {
         //console.log("autenticado?:", isAuthenticated)
         if(isAuthenticated) navigate('/housePanel')
+        //si no autenticado, mostrar mensaje
+
       } );
 
   return (
@@ -47,26 +49,31 @@ const LoginForm = () => {
         })}>
           {/* register your input into the hook by invoking the "register" function */}
           <Stack spacing={2} width={400}>
-          <TextField variant='filled' defaultValue='' label='Email' {...register("email", {
-            required: true,
-            pattern: /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/i
-            })} />
-          {errors.email?.type === 'required' && <Typography variant='body1' sx={{ color:'#FC3F25', fontSize: '0,5rem'}}>Este campo es requerido.</Typography>}
-          {errors.email?.type === 'pattern' && <Typography variant='body1' sx={{ color:'#FC3F25', fontSize: '0,5rem'}}>Introduce un correo válido.</Typography>}
+            <TextField variant='filled' defaultValue='' label='Email' {...register("email", {
+              required: true,
+              pattern: /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/i
+              })} />
+            {errors.email?.type === 'required' && <Typography variant='body1' sx={{ color:'#FC3F25', fontSize: '0,5rem'}}>Este campo es requerido.</Typography>}
+            {errors.email?.type === 'pattern' && <Typography variant='body1' sx={{ color:'#FC3F25', fontSize: '0,5rem'}}>Introduce un correo válido.</Typography>}
 
-          
-          {/* include validation with required or other standard HTML validation rules */}
-          <TextField variant='filled' type='password' label='Contraseña' {...register('password', { required: true })} />
-          {/* errors will return when field validation fails  */}
-          {errors.password?.type === 'required' && <Typography variant='body1' sx={{ color:'#FC3F25', fontSize: '0,5rem'}}>Este campo es requerido.</Typography>}
-          
-          <Button 
-            type="submit" 
-            variant='contained'
-            // onClick={() => navigate('/housePanel')}
-            >Acceder a mi panel
+            
+            {/* include validation with required or other standard HTML validation rules */}
+            <TextField variant='filled' type='password' label='Contraseña' {...register('password', { required: true })} />
+            {/* errors will return when field validation fails  */}
+            {errors.password?.type === 'required' && <Typography variant='body1' sx={{ color:'#FC3F25', fontSize: '0,5rem'}}>Este campo es requerido.</Typography>}
+            
+            <Button 
+              type="submit" 
+              variant='contained'
+              // onClick={() => navigate('/housePanel')}
+              >Acceder a mi panel
             </Button>
-            <Typography variant='h6' sx={{fontSize: '0.8rem'}} onClick={()=> <Navigate to='/register' />}>No estoy registrado en HomeHub</Typography>
+            <Button 
+              type="button" 
+              variant='text'
+                onClick={() => navigate('/register')}
+                >No estoy registrado en HomeHub
+            </Button>
           </Stack>
         </form>
     </Box>

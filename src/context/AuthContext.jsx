@@ -1,8 +1,9 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { createContext, useState, useContext } from "react";
 import { registerRequest } from '../apiService/index';
 import { loginRequest } from "../apiService/index";
+import { Label } from "@mui/icons-material";
 
 export const AuthContext = createContext();
 
@@ -40,7 +41,6 @@ export const AuthProvider = ({children}) => {
             setIsAuthenticated(true);  
         } else{
             console.log("Error en el logueo")
-            return <Typography>El usuario o la contraseña no son válidos.</Typography>
         }
     }
 
