@@ -18,9 +18,6 @@ const RoomsList = ( {refresh} ) => {
     console.log( rooms );
 
     const navigate = useNavigate();
-    const goToRoom = () => {
-        navigate(`/housePanel/${room.type}`)
-    }
 
     // useEffect(), función
     // Esta función se ejecuta por defecto cuando el componente se renderiza por primera vez, y después cada vez que el componente se actualice. Segundo parámetro: elemes de los qe depende-> no vacío [] se ejecutará cuando cambie nuo de esos elems
