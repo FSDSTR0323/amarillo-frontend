@@ -35,7 +35,7 @@ function App() {
                 <Route path='/login' element={<Login/>} />
 
                 <Route element={<ProtectedRoutes />}>
-                  <Route path='/myFirstHouse' element={<AddHouseForm/>}/>
+                  <Route path='/newHouseForm' element={<AddHouseForm/>}/>
                   <Route path='/myHouses' element={<MyHousesPanel/>} />
                   <Route path='/housePanel' element={<HousePanel/>} />
                   <Route path='/myUser' element={<MyUserPanel/>} />
