@@ -14,7 +14,7 @@ import { useAuth } from '../../../context/AuthContext';
 const LoginForm = () => {
 
       const { register, handleSubmit, formState: { errors } } = useForm();
-      const { signIn, isAuthenticated, errors: registerError } = useAuth();
+      const { signIn, isAuthenticated } = useAuth();
 
       // const [ loggedUser, setLoggedUser ] = useState(false);
       const navigate = useNavigate();
@@ -29,6 +29,8 @@ const LoginForm = () => {
       useEffect(() => {
         //console.log("autenticado?:", isAuthenticated)
         if(isAuthenticated) navigate('/housePanel')
+        //si no autenticado, mostrar mensaje
+
       } );
 
   return (
@@ -47,12 +49,12 @@ const LoginForm = () => {
         })}>
           {/* register your input into the hook by invoking the "register" function */}
           <Stack spacing={2} width={400}>
-          <TextField variant='filled' defaultValue='' label='Email' {...register("email", {
-            required: true,
-            pattern: /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/i
-            })} />
-          {errors.email?.type === 'required' && <Typography variant='body1' sx={{ color:'#FC3F25', fontSize: '0,5rem'}}>Este campo es requerido.</Typography>}
-          {errors.email?.type === 'pattern' && <Typography variant='body1' sx={{ color:'#FC3F25', fontSize: '0,5rem'}}>Introduce un correo válido.</Typography>}
+            <TextField variant='filled' defaultValue='' label='Email' {...register("email", {
+              required: true,
+              pattern: /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/i
+              })} />
+            {errors.email?.type === 'required' && <Typography variant='body1' sx={{ color:'#FC3F25', fontSize: '0,5rem'}}>Este campo es requerido.</Typography>}
+            {errors.email?.type === 'pattern' && <Typography variant='body1' sx={{ color:'#FC3F25', fontSize: '0,5rem'}}>Introduce un correo válido.</Typography>}
 
           
           {/* include validation with required or other standard HTML validation rules */}
@@ -68,7 +70,6 @@ const LoginForm = () => {
             // onClick={() => navigate('/housePanel')}
             >Acceder a mi panel
             </Button>
-            <Typography variant='h6' sx={{fontSize: '0.8rem'}} onClick={()=> <Navigate to='/register' />}>No estoy registrado en HomeHub</Typography>
           </Stack>
         </form>
     </Box>
