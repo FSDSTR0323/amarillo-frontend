@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { deleteRoom, getAllRooms } from '../../apiService';
 
@@ -16,6 +16,11 @@ const RoomsList = ( {refresh} ) => {
     const [ deletePopUp, toggleDeletePopUp ] = useState(false);
     //useState() es una función que crea internamente una variable donde podremos almacenar el estado de nuestro componente
     console.log( rooms );
+
+    const navigate = useNavigate();
+    const goToRoom = () => {
+        navigate(`/housePanel/${room.type}`)
+    }
 
     // useEffect(), función
     // Esta función se ejecuta por defecto cuando el componente se renderiza por primera vez, y después cada vez que el componente se actualice. Segundo parámetro: elemes de los qe depende-> no vacío [] se ejecutará cuando cambie nuo de esos elems
@@ -59,7 +64,7 @@ const imagePicker = (roomType) => { switch (roomType) {
                         <Card sx={{ boxShadow: '4px 8px 8px -4px rgb(202, 213, 216)'}}>
 
                             <CardActionArea 
-                                onClick={()=>''}>
+                                onClick={ () =>  navigate(`/housePanel/${room._id}`) }>
                                 {imagePicker(room.roomType)}
                                 
                                 <CardContent>

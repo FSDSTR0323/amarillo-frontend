@@ -5,7 +5,6 @@ import { BroadcastChannel } from "broadcast-channel";
 const logOutChannel = new BroadcastChannel('logOut');
 
 
-
 const API = 'http://localhost:9000'
 
 
@@ -41,6 +40,7 @@ export const loginRequest = async (user) => {
         return false
     }
 };
+
 
 //LOG OUT DE USUARIO ------------->
 export const logUserOut = () => {
@@ -92,8 +92,8 @@ export const deleteRoom = async(id) => {
     return getAllRooms()
 };
 
-export const getAllDevices = async () => {
-    const { data } = await axios.get(`${API}/devices/`, {headers: {Authorization: localStorage.getItem('token')}});
+export const getDevices = async () => {
+    const { data } = await axios.get(`${API}/devices/`); //{headers: {Authorization: localStorage.getItem('token')}}
     return data;
 };
 

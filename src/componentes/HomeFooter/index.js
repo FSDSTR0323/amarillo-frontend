@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 import { Typography, Box, IconButton, Container, Grid } from '@mui/material';
-import logoWhite from '../../assets/logos/logowhite.png';
+import logoBlack from '../../assets/logos/logo150black.jpg'
 
 import { Instagram, Twitter, Facebook } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
@@ -21,14 +21,14 @@ const Footer = () =>{
         >
           <Container maxWidth="lg">
             <Grid container spacing={5}>
+
               <Grid item xs={12} sm={4}>
-                <Typography variant="h6" color="text.primary" gutterBottom>
-                  Sobre Homehub
-                </Typography>
+                <img className='logoFooter' src={logoBlack} alt='HomeHubLogo' />
                 <Typography variant="body2" color="text.secondary">
                   Simplifica y conecta tu día a día.
                 </Typography>
               </Grid>
+
               <Grid item xs={12} sm={4}>
                 <Typography variant="h6" color="text.primary" gutterBottom>
                   Contacta con nosotros 
@@ -43,17 +43,18 @@ const Footer = () =>{
                   Phone: +1 234 567 8901
                 </Typography>
               </Grid>
+
               <Grid item xs={12} sm={4}>
                 <Typography variant="h6" color="text.primary" gutterBottom>
                   Síguenos en redes
                 </Typography>
-                <Link href="https://www.facebook.com/" color="primary">
+                <Link href="https://www.facebook.com/" >
                   <Facebook />
                 </Link>
                 <Link
                   href="https://www.instagram.com/"
                   color="primary"
-                  sx={{ pl: 1, pr: 1 }}
+                  sx={{ pl: 2, pr: 2 }}
                 >
                   <Instagram />
                 </Link>
@@ -61,7 +62,9 @@ const Footer = () =>{
                   <Twitter />
                 </Link>
               </Grid>
+
             </Grid>
+
             <Box mt={5}>
               <Typography variant="body2" color="text.secondary" align="center">
                 {"Copyright © "}

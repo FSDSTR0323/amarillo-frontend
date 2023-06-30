@@ -24,7 +24,7 @@ import ProtectedRoutes from './ProtectedRoutes';
 import DeviceList from './componentes/DeviceList/DeviceList';
 import MyUserPanel from './componentes/containers/MyUserPanel';
 
-function App() {
+function App( {user, room} ) {
   return (
     <AuthProvider>
           <BrowserRouter>
@@ -34,12 +34,13 @@ function App() {
                 <Route path='/register' element={<RegisterForm/>} />
                 <Route path='/login' element={<Login/>} />
 
+              {/* Las rutas deben empezar con el id del user que está logeado */}
                 <Route element={<ProtectedRoutes />}>
                   <Route path='/myFirstHouse' element={<AddHouseForm/>}/>
                   <Route path='/myHouses' element={<MyHousesPanel/>} />
                   <Route path='/housePanel' element={<HousePanel/>} />
                   <Route path='/myUser' element={<MyUserPanel/>} />
-                  <Route path='/housePanel/:slug' element={<RoomPanel/>} /> TODO: Revisar esta ruta: cada estancia nos redirige a un panel de dispositivos
+                  <Route path='/housePanel/:slug' element={<RoomPanel/>} />
                 </Route>
 
                 <Route path='*' element={<p>No hemos encontrado esta página.</p>} /> TODO: Hay que crear la página de 404 NotFound

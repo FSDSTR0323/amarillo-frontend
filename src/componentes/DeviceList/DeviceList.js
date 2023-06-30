@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { getAllDevices } from '../../apiService';
+import { getDevices } from '../../apiService';
 
 //MATERIAL UI COMPONENTS
 import { Grid, Card } from '@mui/material';
@@ -12,7 +12,7 @@ const DeviceList = () => {
     console.log( devices );
 
     useEffect(() => {
-        getAllDevices()
+        getDevices()
             .then( data => {
                 console.log('Esta es la info del backend: ', data);
                 setDevices(data)
@@ -59,18 +59,3 @@ const DeviceList = () => {
 };
 
 export default DeviceList;
-
-
-//ESTRUCTURA ANTIGUA
-        // <Box sx={{
-        //     display: 'flex',
-        //     flexDirection: 'row',
-        //     gap: '2rem'
-        // }}>
-        // {/* <Grid container spacing={2}> */}
-        // {devices.length > 0 ? devices.map( device => <DeviceCard key={device._id} name={ device.name } type={ device.deviceType } status={ device.status }/>) : null }
-        // {/* </Grid> */}
-        // </Box>
-
-//LÓGICA PARA PINTAR LOS DEVICES:
-        // {devices.length > 0 ? devices.map( device => <DeviceCard key={device._id} name={ device.name } type={ device.deviceType } status={ device.status }/>) : null }
