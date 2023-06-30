@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 //MATERIAL UI
 import { Paper, Typography, IconButton, Button, Box } from '@mui/material';
 import AddBoxIcon from '@mui/icons-material/AddBox';
@@ -10,6 +11,7 @@ import HousesList from "../HousesList/HousesList";
 
 
 const MyHousesPanel = () => {
+const navigate = useNavigate () ;
     return (
     <> 
         <HubNavBar></HubNavBar>
@@ -29,7 +31,8 @@ const MyHousesPanel = () => {
         {/* DENTRO DE ESTE BOTÓN IMPLEMENTAMOS LA LÓGICA DEL POP UP PARA AÑADIR UNA NUEVA VIVIENDA --- NEWHOUSEFORM */}
         <Button color='primary' variant='contained' startIcon={<AddBoxIcon/>} 
         sx={{marginBottom: '2rem'}}
-        onClick={ () => ''}>
+        onClick={ () => navigate('/newHouseForm') }>
+        
           Añadir nueva vivienda
         </Button>
 
