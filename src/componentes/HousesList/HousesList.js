@@ -13,7 +13,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const HousesList = ( {refresh} ) => {
     const [ houses, setHouses ] = useState([]);
-    console.log( houses );
+    //const [ houseId, setHouseId ] = useState('');
 
     useEffect(() => {
         getAllHouses()
@@ -29,9 +29,13 @@ const HousesList = ( {refresh} ) => {
             { houses.length > 0 ? houses.map( house => {
                 return (
                     <Grid item xs={12} md={12} key={house._id}>
-                        
                         <Card sx={{ display:'flex', maxHeight:'270px', boxShadow: '4px 8px 8px -4px rgb(202, 213, 216)'}}
-                            onClick={()=> ''}
+                            onClick={()=> {
+                                //setHouseId(house._id)
+                                console.log ("houseID: ", house._id)
+                                return house._id
+                            }
+                            }
                             >
 
                             <Box sx={{display:'flex', flexDirection:'column'}}>

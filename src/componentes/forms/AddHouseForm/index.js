@@ -33,7 +33,7 @@ const AddHouseForm = () => {
     values[index][name] = value;
     setTextFields(values);
   };
-//meter todos los cmapos que tiene el formulario en la funcion onsubmit linea 37, de la misma forma q estan en el back., ademas tb tengo que añadir la funcion upload. (todo esto es paraa cuando le de al boton, me lleve a la sig pantalla.)
+//meter todos los campos que tiene el formulario en la funcion onsubmit linea 37, de la misma forma q estan en el back., ademas tb tengo que añadir la funcion upload. (todo esto es paraa cuando le de al boton, me lleve a la sig pantalla.)
   const onSubmit = async (data) => {
     const { name, type, adress, metrosCuadrados, roomsNumber } = data;
     const res = await postNewHouse(name, type, adress, metrosCuadrados, roomsNumber);
