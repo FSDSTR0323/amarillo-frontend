@@ -1,13 +1,14 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { getDevices } from '../../apiService';
+import { deleteDevice, getDevices } from '../../apiService';
 
 //MATERIAL UI COMPONENTS
 import { Grid, Card } from '@mui/material';
 import { CardActionArea, CardActions, IconButton, CardContent, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const DeviceList = () => {
+
+const DeviceList = ( {refresh} ) => {
     const [ devices, setDevices ] = useState([]);
     console.log( devices );
 
@@ -18,19 +19,20 @@ const DeviceList = () => {
                 setDevices(data)
              })
             .catch( error => console.error(error))
-    }, []);
+    }, [refresh]);
   
     return (
         <Grid container spacing={2}>
-            { devices.length > 0 ? rooms.map( device => {
+            { devices.length > 0 ? devices.map( device => {
                 return (
                     <Grid item xs={12} sm={6} md={6} key={device._id}>
                         <Card sx={{ boxShadow: '4px 8px 8px -4px rgb(202, 213, 216)'}}>
 
-                            <CardActionArea> TODO: IMPLEMENTAR LAS IMÁGENES DENTRO DE CADA dispositivo
-                                {/* <img className='cardImage' src={bedroom} alt='bedroom' /> */}
+                            <CardActionArea> 
+                                <img className='lightbulb' src='https://thumb.ac-illust.com/bb/bb7ebd3add42ffefa5f8b3471ec4baa8_t.jpeg' alt='lightbulb' />
                                 
                                 <CardContent>
+
                                 <Typography gutterBottom variant="h5" component="div">
                                     { device.name }
                                 </Typography>
@@ -45,7 +47,10 @@ const DeviceList = () => {
                             <CardActions>
                                 <IconButton 
                                 color='primary' 
-                                onClick={() => toggleDeletePopUp(true) }>
+                                onClick={() => {
+                                    deleteDevice(device._id)
+                                    console.log(device._id)
+                                    refresh}}>
                                 <DeleteIcon></DeleteIcon>
                                 </IconButton>
                                 {/* { deletePopUp && <DeleteRoomPopUp closePopUp={toggleDeletePopUp}></DeleteRoomPopUp>} */}

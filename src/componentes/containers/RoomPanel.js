@@ -22,7 +22,7 @@ const RoomPanel = () => {
                     marginTop: '1rem',
                     marginBottom: '1rem'
                 }}>
-                    <Typography variant='h4'>Dispositivos conectados en:</Typography>
+                    <Typography variant='h4'sx={{marginBottom:'1rem'}}>Dispositivos conectados en:</Typography>
                     <Typography variant='body1'>En este área puedes visibilizar tus diferentes dispositivos y el estado de cada uno de ellos.</Typography>
                 </Paper>
                         

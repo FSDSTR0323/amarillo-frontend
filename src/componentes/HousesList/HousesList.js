@@ -30,7 +30,7 @@ const HousesList = ( {refresh} ) => {
                 return (
                     <Grid item xs={12} md={12} key={house._id}>
                         
-                        <Card sx={{ display:'flex', maxHeight:'270px', boxShadow: '4px 8px 8px -4px rgb(202, 213, 216)'}}
+                        <Card sx={{ display:'flex', maxHeight:'270px', boxShadow: '4px 8px 8px -4px rgb(202, 213, 216)', border:'solid 1px #f2f2f2', borderRadius:'1rem'}}
                             onClick={()=> ''}
                             >
 

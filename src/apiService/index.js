@@ -60,7 +60,6 @@ export const logOutAllTabs = () => {
 
 //myHousePanel: hay que enviar el id del usuario a través del token, para autenticación en el back
 
-    
 export const getMyHousePanel = async (token) => {
     try {
         const response = await axios.get(`${API}/rooms/`, {headers: {Authorization: localStorage.getItem('token')}})
@@ -89,22 +88,37 @@ export const postNewRoom = async (name, type, image) => {
 export const deleteRoom = async(id) => {
     const res = await axios.delete(`${API}/rooms/${id}`);
     console.log('Habitación eliminada correctamente', res);
-    return getAllRooms()
+    getAllRooms()
+    return;
 };
 
+
+
+
+
+
+//--- DEVICES ----------
 export const getDevices = async () => {
     const { data } = await axios.get(`${API}/devices/`); //{headers: {Authorization: localStorage.getItem('token')}}
     return data;
 };
 
 //postNewDevice: hay que enviar el id de la room en la que creo el device a parte del token
-export const postNewDevice = async () => {
-    const { data } = await axios.post(`${API}/devices/`, {headers: {Authorization: localStorage.getItem('token')}}/*datos del post{nameDevice, typeDevice}*/)
-    getAllDevices(); //llamamos de nuevo al get nada más postear para que se realice una sincronización y recibamos el nuevo device.
+export const postNewDevice = async (props) => {
+    const { data } = await axios.post(`${API}/devices/`, props )
+    getDevices(); //llamamos de nuevo al get nada más postear para que se realice una sincronización y recibamos el nuevo device.
     return data;
-}
+}; 
 
-//ALL HOUSES 
+export const deleteDevice = async (id) => {
+    const res = await axios.delete(`${API}/devices/${id}`);
+    console.log('Dispositivo eliminado correctamente', res);
+    return getDevices()
+};
+
+
+
+//ALL HOUSES -----------------
 export const getAllHouses = async () => {
     console.log("Se piden las viviendas")
     const { data } = await axios.get(`${API}/houses/`, {headers: {Authorization: localStorage.getItem('token')}});

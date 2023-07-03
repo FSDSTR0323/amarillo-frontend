@@ -50,6 +50,7 @@ const imagePicker = (roomType) => { switch (roomType) {
             break;
         default:
             return <img className='roomPicture' src='https://res.cloudinary.com/dwuej2jjm/image/upload/v1687779279/homehub/default1_es7lku.jpg' alt='Default room'/>
+            break;
     }
 };
 
@@ -58,7 +59,7 @@ const imagePicker = (roomType) => { switch (roomType) {
             { rooms.length > 0 ? rooms.map( room => {
                 return (
                     <Grid item xs={12} sm={6} md={3} key={room._id}>
-                        <Card sx={{ boxShadow: '4px 8px 8px -4px rgb(202, 213, 216)'}}>
+                        <Card sx={{ boxShadow: '4px 8px 8px -4px rgb(202, 213, 216)', border:'solid 1px #f2f2f2', borderRadius:'1rem'}}>
 
                             <CardActionArea 
                                 onClick={ () =>  navigate(`/housePanel/${room._id}`) }>
@@ -78,7 +79,7 @@ const imagePicker = (roomType) => { switch (roomType) {
                             </CardActionArea>
 
                             <CardActions>
-                                <IconButton 
+                                <IconButton
                                 color='primary' 
                                 onClick={() => {
                                     deleteRoom(room._id)

@@ -18,9 +18,12 @@ const AddRoomForm = ({name, type, closePopUp}) => {
     //Empleamos los hooks que nos ofrece useForm({default values: si queremos...})
     const { register, formState: { errors }, handleSubmit } = useForm();
 
+    //Para poder hacer un upload de la imagen
+    const [ file, setFile ] = useState('');
+
     //Para poder cambiar el estado del select dentro del formulario de nuevas estancias.
     const [ roomType, setRoomType ] = useState('');
-    const [ file, setFile ] = useState('');
+
     const [ url, setUrl ] = useState('');
 
     console.log('useState asset de ', file);
@@ -29,30 +32,16 @@ const AddRoomForm = ({name, type, closePopUp}) => {
         setRoomType(event.target.value)
     };
 
-    const handleFile = (event) => {
-        setFile(event.target.value)
-    }
-
-    const mediaType = 'image';
     //La función de upload nos va a hacer un POST a la url de Cloudinary
-    const upload = archivo => {
 
-        const data = new FormData();
-        data.append('file', archivo)
-        data.append('upload_preset', 'alvaro_preset1') //Me falta el upload preset
-        data.append('cloud_name', 'dwuej2jjm')
+    const uploadImage = () => {
+        const formData = new FormData()
+        formData.append('file', file)
+        formData.append('upload_preset', 'alvaro_preset1')
 
-        fetch(`https://api.cloudinary.com/v1_1/dwuej2jjm/${mediaType}/upload`, {
-            method: 'post',
-            body: data
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log('url: ', data)
-            setUrl(prev => prev.concat(data.url))
-        })
-        .catch(error => console.log(error))
-    };
+        axios.post('https://api.cloudinary.com/v1_1/dwuej2jjm/image/upload', formData)
+        .then( (response) => console.log(response))
+    }
 
 
 //Dentro del formulario, el type debe ser un SELECT entre los distintos tipos posibles de nuevas estancias.
@@ -80,7 +69,7 @@ return (
                         onChange={handleChange}
                         {...register('type', {required: true})}
                         >
-                        <MenuItem value="Kitchen">
+                        <MenuItem value="Default">
                             <em>None</em>
                         </MenuItem>
                         <MenuItem value={'Kitchen'}>Cocina</MenuItem>
@@ -103,7 +92,9 @@ return (
                         <input
                             type="file"
                             hidden
-                            onChange={handleFile}
+                            onChange={(event) => {
+                                setFile(event.target.files[0])
+                            }}
                         />
                 </Button>
 
@@ -112,7 +103,7 @@ return (
                     <Button type='cancel' variant='outlined' color='info' onClick={() => closePopUp(false)}>
                         Cancelar
                     </Button>
-                    <Button type='submit' variant='contained' color='primary'>
+                    <Button type='submit' variant='contained' color='primary' onClick={uploadImage}>
                         Crear nueva estancia
                     </Button>
                 </Box>
