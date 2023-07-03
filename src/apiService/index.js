@@ -27,7 +27,7 @@ export const loginRequest = async (user) => {
     //console.log("Usuario login: ", user)
     try {
         const response = await axios.post(`${API}/users/login`, user)
-        console.log('esta es la response a login');
+        console.log('esta es la response a login: ', response.data);
         const token = response.data.token ;
         if(token){
         window.localStorage.setItem('token', token);
@@ -63,16 +63,20 @@ export const logOutAllTabs = () => {
 export const getMyHousePanel = async (token) => {
     try {
         const response = await axios.get(`${API}/rooms/`, {headers: {Authorization: localStorage.getItem('token')}})
+        //const response = await axios.get(`${API}/rooms?house=houseID`, {headers: {Authorization: localStorage.getItem('token')}})
         console.log('Que es response: ', response);
     } catch (error) {
         console.log('Este es el error: ', error)
     }
 };
 
-//getAllRooms: hay que enviar el id de la casa de la que necesito las habitaciones a parte del token
+
+//ESto sería para pruebas, pero deberíamos experar siempre un id de casa
 export const getAllRooms = async () => {
     console.log("Se piden habitaciones:")
+    // const { data } = await axios.get(`${API}/rooms?houseId=${houseId}`, {headers: {Authorization: localStorage.getItem('token')}});
     const { data } = await axios.get(`${API}/rooms/`, {headers: {Authorization: localStorage.getItem('token')}});
+    
     console.log(data)
     return data;
 };
@@ -80,6 +84,8 @@ export const getAllRooms = async () => {
 //postNewRoom: hay que enviar el id de la casa en la que creo la habitación a parte del token
 export const postNewRoom = async (name, type, image) => {
     const response = await axios.post(`${API}/rooms/`, name, type, image, ); // {headers: {Authorization: localStorage.getItem('token')}}
+//    const response = await axios.post(`${API}/rooms/house=houseID`, name, type, image, ); // {headers: {Authorization: localStorage.getItem('token')}}
+
     console.log('Esta es la respuesta al post: ', response);
     getAllRooms()
     return;
@@ -92,6 +98,7 @@ export const deleteRoom = async(id) => {
     return;
 };
 
+//al ser por habitación, deberíamos pasar el id de la room además del token
 
 
 
@@ -116,16 +123,16 @@ export const deleteDevice = async (id) => {
     return getDevices()
 };
 
-
-
 //ALL HOUSES -----------------
+//ALL HOUSES 
 export const getAllHouses = async () => {
-    console.log("Se piden las viviendas")
+    console.log("Se piden las viviendas del usuario")
     const { data } = await axios.get(`${API}/houses/`, {headers: {Authorization: localStorage.getItem('token')}});
     console.log(data)
     return data;
 };
 
+// Se debería enviar el token y el usuario al que pertenece la casa en la petición
 export const postNewHouse = async (...props) => {
     const { data } = await axios.post(`${API}/houses/`, props);
     getAllHouses()

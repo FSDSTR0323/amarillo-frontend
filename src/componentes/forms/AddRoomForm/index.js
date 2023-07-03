@@ -25,9 +25,15 @@ const AddRoomForm = ({name, type, closePopUp}) => {
     const [ roomType, setRoomType ] = useState('');
 
     const [ url, setUrl ] = useState('');
-
+    const [ houseID, setHouseID ] = useState('');
+    
+    
     console.log('useState asset de ', file);
     
+    const handleHouse = (event) => {
+        setHouseID(event.target.value)
+    };
+
     const handleChange = (event) => {
         setRoomType(event.target.value)
     };
