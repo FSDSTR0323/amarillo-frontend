@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { postNewHouse } from '../../../apiService';
-import { TextField, Stack, Select, MenuItem, FormControl, Box, InputLabel, FormHelperText,Button } from '@mui/material';
+import { TextField, Stack, Select, MenuItem, FormControl, Box, InputLabel, FormHelperText, Button, Typography} from '@mui/material';
 
 const AddHouseForm = () => {
   const { register, handleSubmit } = useForm();
   const [textFields, setTextFields] = useState([]);
-  const [houseType, setHouseType] = useState ('');
+  const [houseType, setHouseType] = useState('');
   const [roomsError, setRoomsError] = useState(false);
-  
+  const [metersError, setMetersError] = useState(false);
 
-const addTextFields = () => {
+  const addTextFields = () => {
     setTextFields([
       ...textFields,
       { nombre: '', direccion: '', tamaño: '', fecha: '' },
     ]);
   };
 
+  const handleChange = (event) => {
+    setHouseType(event.target.value);
+  };
 
-const handleChange = (event) => {
-    setHouseType(event.target.value)
-}
   const handleTextChange = (index, event) => {
     const { name, value } = event.target;
     const values = [...textFields];
@@ -35,82 +35,98 @@ const handleChange = (event) => {
   };
 //meter todos los cmapos que tiene el formulario en la funcion onsubmit linea 37, de la misma forma q estan en el back., ademas tb tengo que añadir la funcion upload. (todo esto es paraa cuando le de al boton, me lleve a la sig pantalla.)
   const onSubmit = async (data) => {
-    const { name, type } = data;
-    const res = await postNewHouse(name, type);
+    const { name, type, adress, metrosCuadrados, roomsNumber } = data;
+    const res = await postNewHouse(name, type, adress, metrosCuadrados, roomsNumber);
     console.log(res);
+    // Aquí puedes hacer la redirección a la siguiente pantalla
+  };
+
+  const handleFile = (event) => {
+    const file = event.target.files[0];
+    // Aquí puedes implementar la lógica de subida de archivo
+    <>
+      <Typography variant="body1" sx={{ color: '#505050', paddingTop: '1rem' }}>
+        Elige una imagen para tu vivienda:
+      </Typography><Button variant="contained" component="label">
+        Seleccionar una imagen
+        <input type="file" hidden onChange={handleFile} />
+      </Button></>
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={2} width={400}>
         <TextField
-          variant='filled'
-          label='Asignar nombre a vivienda'
-          type= "text"
+          variant="filled"
+          label="Asignar nombre a vivienda"
+          type="text"
           {...register('name', { required: true })}
-           inputProps={{ maxLength: 30 }}
+          inputProps={{ maxLength: 30 }}
         />
-        
+
         <FormControl required sx={{ m: 1, minWidth: 120 }}>
-            <InputLabel id="demo-simple-select-required-label">Tipo de vivienda</InputLabel>
+          <InputLabel id="demo-simple-select-required-label">Tipo de vivienda</InputLabel>
           <Select
-              
-                labelId="demo-simple-select-required-label"
-                id="demo-simple-select-required"
-                label="Tipo de vivienda *"
-                onChange={handleChange}
-                {...register('type', {required: true})}
-                  >
+            labelId="demo-simple-select-required-label"
+            id="demo-simple-select-required"
+            label="Tipo de vivienda *"
+            onChange={handleChange}
+            {...register('type', { required: true })}
+          >
             <MenuItem value="House">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={'House'}>Casa</MenuItem>
-                  <MenuItem value={'Farmhouse'}>Cortijo</MenuItem>
-                  <MenuItem value={'Apartment'}>Apartamento</MenuItem>
-                  <MenuItem value={'Office'}>Oficina</MenuItem>
-                  <MenuItem value={'Chalet'}>Chalet</MenuItem>
-        </Select>
-           <FormHelperText>Required</FormHelperText>
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={'House'}>Casa</MenuItem>
+            <MenuItem value={'Farmhouse'}>Cortijo</MenuItem>
+            <MenuItem value={'Apartment'}>Apartamento</MenuItem>
+            <MenuItem value={'Office'}>Oficina</MenuItem>
+            <MenuItem value={'Chalet'}>Chalet</MenuItem>
+          </Select>
+          <FormHelperText>Required</FormHelperText>
           {/* Opciones del Select */}
-      </FormControl>
+        </FormControl>
 
-      <TextField
-          variant='filled'
-          label='Dirección'
-          type= 'adress'
-          {...register('adress', { required: true})}
-           inputProps={{ maxLength: 30 }}
+        <TextField
+          variant="filled"
+          label="Dirección"
+          type="adress"
+          {...register('adress', { required: true })}
+          inputProps={{ maxLength: 30 }}
         />
-         
-      <TextField
-          variant='filled'
-          label= 'Metros cuadrados'
-          type='number'
-          {...register('metrosCuadrados')}
+
+        <TextField
+          variant="filled"
+          label="Metros cuadrados"
+          type="number"
+          {...register('metrosCuadrados', { min: { value: 1, message: 'Mínimo un metro cuadrado por vivienda.' } })}
+          error={metersError}
+          helperText={metersError && 'Mínimo un metro cuadrado por vivienda.'}
           inputProps={{ min: 0 }}
+          onChange={(e) => setMetersError(e.target.value < 0)}
         />
 
-      <TextField
-          variant='filled'
-          label='Número de habitaciones'
-          type='roomsNumber'
+        <TextField
+          variant="filled"
+          label="Número de habitaciones"
+          type="roomsNumber"
           {...register('roomsNumber', { min: { value: 1, message: 'Debe haber al menos una habitación.' } })}
           error={roomsError}
           helperText={roomsError && 'Debe haber al menos una habitación.'}
           inputProps={{ min: 0 }}
           onChange={(e) => setRoomsError(e.target.value === '0')}
-      />
-
+        />
       </Stack>
 
-      <Box sx={{display: 'flex', flexDirection: 'row', gap:'1rem', justifyContent: 'left', paddingTop:'2rem', paddingBottom:'1rem'}}>
-                    <Button type='cancel' variant='outlined' color='info' onClick={() => closePopUp(false)}>
-                        Cancelar
-                    </Button>
-                    <Button type='submit' variant='contained' color='primary'>
-                        Crear nueva vivienda
-                    </Button>
-                </Box>  
+      <Box sx={{ display: 'flex', flexDirection: 'row', gap: '1rem', justifyContent: 'left', paddingTop: '2rem', paddingBottom: '1rem' }}>
+        <Button type="cancel" variant="outlined" color="info" onClick={() => closePopUp(false)}>
+          Cancelar
+        </Button>
+        <Button type="submit" variant="contained" color="primary">
+          Crear nueva vivienda
+        </Button>
+      </Box>
+
+     
     </form>
   );
 };
