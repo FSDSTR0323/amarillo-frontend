@@ -6,7 +6,7 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 
 //Componentes
 import HubNavBar from "../MenuBars/HubNavBar";
-import NewHouseForm from "../forms/newHouseForm";
+import AddHouseForm from "../forms/AddHouseForm";
 import HousesList from "../HousesList/HousesList";
 
 
@@ -31,7 +31,7 @@ const navigate = useNavigate () ;
         {/* DENTRO DE ESTE BOTÓN IMPLEMENTAMOS LA LÓGICA DEL POP UP PARA AÑADIR UNA NUEVA VIVIENDA --- NEWHOUSEFORM */}
         <Button color='primary' variant='contained' startIcon={<AddBoxIcon/>} 
         sx={{marginBottom: '2rem'}}
-        onClick={ () => navigate('/newHouseForm') }>
+        onClick={ () => navigate('/addHouseForm') }>
         
           Añadir nueva vivienda
         </Button>

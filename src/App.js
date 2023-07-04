@@ -36,7 +36,7 @@ function App( {user, room} ) {
 
               {/* Las rutas deben empezar con el id del user que está logeado */}
                 <Route element={<ProtectedRoutes />}>
-                  <Route path='/newHouseForm' element={<AddHouseForm/>}/>
+                  <Route path='/addHouseForm' element={<AddHouseForm/>}/>
                   <Route path='/myHouses' element={<MyHousesPanel/>} />
                   <Route path='/housePanel' element={<HousePanel/>} />
                   <Route path='/myUser' element={<MyUserPanel/>} />
