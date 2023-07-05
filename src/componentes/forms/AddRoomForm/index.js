@@ -68,8 +68,8 @@ return (
             {/* <Button onClick={() => closePopUp(false)}>X</Button> */}
             <Typography variant='h4' sx={{p: '2rem'}}>Nueva estancia:</Typography>
 
-            <form onSubmit={handleSubmit( async (name, type, image) => {
-                const res = await postNewRoom(name, type, image);
+            <form onSubmit={handleSubmit( async (name, type, file) => {
+                const res = await postNewRoom(name, type, file);
                 closePopUp(false);
                 console.log('Estos son los datos que estamos pasando en el formulario: ', res);
             })}> 
@@ -118,7 +118,7 @@ return (
                     <Button type='cancel' variant='outlined' color='info' onClick={() => closePopUp(false)}>
                         Cancelar
                     </Button>
-                    <Button type='submit' variant='contained' color='primary'>
+                    <Button type='submit' value ="" variant='contained' color='primary'>
                         Crear nueva estancia
                     </Button>
                 </Box>
