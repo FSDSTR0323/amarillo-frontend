@@ -63,7 +63,7 @@ const imagePicker = (roomType) => { switch (roomType) {
 
                             <CardActionArea 
                                 onClick={ () =>  navigate(`/housePanel/${room._id}`) }>
-                                {imagePicker(room.roomType)}
+                                { !room.roomImage ? imagePicker(room.roomType) : <img className='roomPicture' src={room.roomImage} alt={room.name} />}
                                 
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">
