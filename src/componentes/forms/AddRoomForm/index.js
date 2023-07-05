@@ -20,13 +20,18 @@ const AddRoomForm = ({name, type, closePopUp}) => {
 
     //Para poder cambiar el estado del select dentro del formulario de nuevas estancias.
     const [ roomType, setRoomType ] = useState('');
+
+    //Para poder hacer un upload de la imagen
     const [ file, setFile ] = useState('');
+    console.log('useState asset de ', file);
+
+    //Dani --- Cloudinary --- metemos la data.url en el estado de url
     const [ url, setUrl ] = useState('');
+    const [ roomImg, setRoomImg ] = useState('');
+    console.log('esto es roomImg: ', roomImg);
     const [ houseID, setHouseID ] = useState('');
     
-    
-    console.log('useState asset de ', file);
-    
+
     const handleHouse = (event) => {
         setHouseID(event.target.value)
     };
@@ -35,30 +40,31 @@ const AddRoomForm = ({name, type, closePopUp}) => {
         setRoomType(event.target.value)
     };
 
-    const handleFile = (event) => {
-        setFile(event.target.value)
-    }
-
-    const mediaType = 'image';
     //La función de upload nos va a hacer un POST a la url de Cloudinary
-    const upload = archivo => {
 
-        const data = new FormData();
-        data.append('file', archivo)
-        data.append('upload_preset', 'alvaro_preset1') //Me falta el upload preset
-        data.append('cloud_name', 'dwuej2jjm')
 
-        fetch(`https://api.cloudinary.com/v1_1/dwuej2jjm/${mediaType}/upload`, {
-            method: 'post',
-            body: data
+    //Queremos poder acceder a formData.data.url
+    const uploadImage = () => {
+        const formData = new FormData()
+        formData.append('file', file)
+        formData.append('upload_preset', 'alvaro_preset1')
+
+        axios.post('https://api.cloudinary.com/v1_1/dwuej2jjm/image/upload', formData)
+        .then( (response) => {
+            console.log('este es la response al que quiero acceder: ', response)
+            console.log('esta es la url que yo necesito mandar al backend: ', response.data.url);
+            setRoomImg(response.data.url)
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log('url: ', data)
-            setUrl(prev => prev.concat(data.url))
-        })
-        .catch(error => console.log(error))
+        .catch( (err) => console.log(err))
     };
+
+    const envioForm = ( async ( {name, type} ) => {
+        console.log('esto es roomImg: ', {name, type, roomImg});
+
+        const res = await postNewRoom(name, type, roomImg);
+        closePopUp(false);
+        console.log('Estos son los datos que estamos pasando en el formulario: ', res);
+    });
 
 
 //Dentro del formulario, el type debe ser un SELECT entre los distintos tipos posibles de nuevas estancias.
@@ -68,11 +74,7 @@ return (
             {/* <Button onClick={() => closePopUp(false)}>X</Button> */}
             <Typography variant='h4' sx={{p: '2rem'}}>Nueva estancia:</Typography>
 
-            <form onSubmit={handleSubmit( async (name, type, file) => {
-                const res = await postNewRoom(name, type, file);
-                closePopUp(false);
-                console.log('Estos son los datos que estamos pasando en el formulario: ', res);
-            })}> 
+            <form onSubmit={handleSubmit(envioForm)}> 
                 <Stack spacing={2} width={400}>
 
                 <TextField variant='outlined' label='Name' type='name' value={name} {...register('name', {required: true})} />
@@ -86,7 +88,7 @@ return (
                         onChange={handleChange}
                         {...register('type', {required: true})}
                         >
-                        <MenuItem value="Kitchen">
+                        <MenuItem value="Default">
                             <em>None</em>
                         </MenuItem>
                         <MenuItem value={'Kitchen'}>Cocina</MenuItem>
@@ -109,9 +111,12 @@ return (
                         <input
                             type="file"
                             hidden
-                            onChange={handleFile}
+                            onChange={(event) => {
+                                setFile(event.target.files[0])
+                            }}
                         />
                 </Button>
+                <Button onClick={uploadImage}>Subir imagen</Button>
 
                 </Stack>
                 <Box sx={{display: 'flex', flexDirection: 'row', gap:'1rem', justifyContent: 'center', paddingTop:'2rem', paddingBottom:'1rem'}}>

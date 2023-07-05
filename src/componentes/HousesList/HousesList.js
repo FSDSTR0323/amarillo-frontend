@@ -28,12 +28,9 @@ const HousesList = ( {refresh} ) => {
             { houses.length > 0 ? houses.map( house => {
                 return (
                     <Grid item xs={12} md={12} key={house._id}>
-                        <Card sx={{ display:'flex', maxHeight:'270px', boxShadow: '4px 8px 8px -4px rgb(202, 213, 216)'}}
-                            onClick={()=> {
-                                console.log ("houseID: ", house._id)
-                                return house._id
-                            }
-                            }
+                        
+                        <Card sx={{ display:'flex', maxHeight:'270px', boxShadow: '4px 8px 8px -4px rgb(202, 213, 216)', border:'solid 1px #f2f2f2', borderRadius:'1rem'}}
+                            onClick={ () =>  <Link to='/housePanel/'></Link> }
                             >
 
                             <Box sx={{display:'flex', flexDirection:'column'}}>
@@ -46,10 +43,10 @@ const HousesList = ( {refresh} ) => {
                                         </Typography>
                                     </Link>
                                     <Typography gutterBottom variant="body1" sx={{color: '#A1A1A1'}} component="div">
-                                        { house.address.street }, { house.address.number }
+                                        { house.street }, { house.number }
                                     </Typography>
                                     <Typography gutterBottom variant="body1" sx={{color: '#A1A1A1', fontSize:'0.8rem'}} component="div">
-                                        { house.address.district }, { house.address.city  }
+                                        { house.district }, { house.city  }
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary" sx={{paddingTop:'1rem', fontSize:'1.1rem'}}>
                                         El número de estancias que tiene la vivienda son: { house.roomsNumber }

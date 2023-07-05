@@ -12,6 +12,7 @@ import { useForm } from 'react-hook-form';
 import Footer from '../../HomeFooter';
 
 
+
 const RegisterForm = () => {
 
   const { register, handleSubmit, formState: { errors }} = useForm();
@@ -19,7 +20,7 @@ const RegisterForm = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(isAuthenticated) navigate('/myFirstHouse')
+    if(isAuthenticated) navigate('/addHouseForm')
   }, [isAuthenticated])
 
 

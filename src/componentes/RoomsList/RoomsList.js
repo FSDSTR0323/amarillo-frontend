@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { deleteRoom, getAllRooms } from '../../apiService';
 
@@ -16,6 +16,8 @@ const RoomsList = ( {refresh} ) => {
     const [ deletePopUp, toggleDeletePopUp ] = useState(false);
     //useState() es una función que crea internamente una variable donde podremos almacenar el estado de nuestro componente
     console.log( rooms );
+
+    const navigate = useNavigate();
 
     // useEffect(), función
     // Esta función se ejecuta por defecto cuando el componente se renderiza por primera vez, y después cada vez que el componente se actualice. Segundo parámetro: elemes de los qe depende-> no vacío [] se ejecutará cuando cambie nuo de esos elems
@@ -48,6 +50,7 @@ const imagePicker = (roomType) => { switch (roomType) {
             break;
         default:
             return <img className='roomPicture' src='https://res.cloudinary.com/dwuej2jjm/image/upload/v1687779279/homehub/default1_es7lku.jpg' alt='Default room'/>
+            break;
     }
 };
 
@@ -56,11 +59,11 @@ const imagePicker = (roomType) => { switch (roomType) {
             { rooms.length > 0 ? rooms.map( room => {
                 return (
                     <Grid item xs={12} sm={6} md={3} key={room._id}>
-                        <Card sx={{ boxShadow: '4px 8px 8px -4px rgb(202, 213, 216)'}}>
+                        <Card sx={{ boxShadow: '4px 8px 8px -4px rgb(202, 213, 216)', border:'solid 1px #f2f2f2', borderRadius:'1rem'}}>
 
                             <CardActionArea 
-                                onClick={()=>''}>
-                                {imagePicker(room.roomType)}
+                                onClick={ () =>  navigate(`/housePanel/${room._id}`) }>
+                                { !room.roomImage ? imagePicker(room.roomType) : <img className='roomPicture' src={room.roomImage} alt={room.name} />}
                                 
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">
@@ -76,7 +79,7 @@ const imagePicker = (roomType) => { switch (roomType) {
                             </CardActionArea>
 
                             <CardActions>
-                                <IconButton 
+                                <IconButton
                                 color='primary' 
                                 onClick={() => {
                                     deleteRoom(room._id)

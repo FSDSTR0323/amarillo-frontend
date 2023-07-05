@@ -5,7 +5,6 @@ import { BroadcastChannel } from "broadcast-channel";
 const logOutChannel = new BroadcastChannel('logOut');
 
 
-
 const API = 'http://localhost:9000'
 
 
@@ -42,6 +41,7 @@ export const loginRequest = async (user) => {
     }
 };
 
+
 //LOG OUT DE USUARIO ------------->
 export const logUserOut = () => {
     
@@ -60,8 +60,6 @@ export const logOutAllTabs = () => {
 
 //myHousePanel: hay que enviar el id del usuario a través del token, para autenticación en el back
 
-//getAllRooms: hay que enviar el id de la casa de la que necesito las habitaciones a parte del token
-    
 export const getMyHousePanel = async (token) => {
     try {
         const response = await axios.get(`${API}/rooms/`, {headers: {Authorization: localStorage.getItem('token')}})
@@ -84,8 +82,8 @@ export const getAllRooms = async () => {
 };
 
 //postNewRoom: hay que enviar el id de la casa en la que creo la habitación a parte del token
-export const postNewRoom = async (name, type, image) => {
-    const response = await axios.post(`${API}/rooms/`, name, type, image, ); // {headers: {Authorization: localStorage.getItem('token')}}
+export const postNewRoom = async (name, type, roomImage) => {
+    const response = await axios.post(`${API}/rooms/`, {name, type, roomImage} ); // {headers: {Authorization: localStorage.getItem('token')}}
 //    const response = await axios.post(`${API}/rooms/house=houseID`, name, type, image, ); // {headers: {Authorization: localStorage.getItem('token')}}
 
     console.log('Esta es la respuesta al post: ', response);
@@ -96,23 +94,37 @@ export const postNewRoom = async (name, type, image) => {
 export const deleteRoom = async(id) => {
     const res = await axios.delete(`${API}/rooms/${id}`);
     console.log('Habitación eliminada correctamente', res);
-    return getAllRooms()
+    getAllRooms()
+    return;
 };
 
 //al ser por habitación, deberíamos pasar el id de la room además del token
-export const getAllDevices = async () => {
-    const { data } = await axios.get(`${API}/devices/`, {headers: {Authorization: localStorage.getItem('token')}});
+
+
+
+
+
+//--- DEVICES ----------
+export const getDevices = async () => {
+    const { data } = await axios.get(`${API}/devices/`); //{headers: {Authorization: localStorage.getItem('token')}}
     return data;
 };
 
 //postNewDevice: hay que enviar el id de la room en la que creo el device a parte del token
-export const postNewDevice = async () => {
-    const { data } = await axios.post(`${API}/devices/`, {headers: {Authorization: localStorage.getItem('token')}}/*datos del post{nameDevice, typeDevice}*/)
-    getAllDevices(); //llamamos de nuevo al get nada más postear para que se realice una sincronización y recibamos el nuevo device.
+export const postNewDevice = async (props) => {
+    const { data } = await axios.post(`${API}/devices/`, props )
+    getDevices(); //llamamos de nuevo al get nada más postear para que se realice una sincronización y recibamos el nuevo device.
     return data;
-}
+}; 
 
-//ALL HOUSES de un usuario, por eso se envía el token
+export const deleteDevice = async (id) => {
+    const res = await axios.delete(`${API}/devices/${id}`);
+    console.log('Dispositivo eliminado correctamente', res);
+    return getDevices()
+};
+
+//ALL HOUSES -----------------
+//ALL HOUSES 
 export const getAllHouses = async () => {
     console.log("Se piden las viviendas del usuario")
     const { data } = await axios.get(`${API}/houses/`, {headers: {Authorization: localStorage.getItem('token')}});
@@ -121,8 +133,8 @@ export const getAllHouses = async () => {
 };
 
 // Se debería enviar el token y el usuario al que pertenece la casa en la petición
-export const postNewHouse = async (...props) => {
-    const { data } = await axios.post(`${API}/houses/`, props);
+export const postNewHouse = async (name, type, street, number, district, city, country, houseSize, roomsNumber) => {
+    const { data } = await axios.post(`${API}/houses/`, name, type, street, number, district, city, country, houseSize, roomsNumber);
     getAllHouses()
     return;
 };

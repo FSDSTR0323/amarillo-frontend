@@ -44,7 +44,6 @@ export const AuthProvider = ({children}) => {
         }
     }
 
-
     //eliminar mensajes de error tras 5 segundos
     useEffect(()=>{
         if(errors.length>0){

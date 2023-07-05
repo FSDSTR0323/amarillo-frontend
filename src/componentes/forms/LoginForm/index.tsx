@@ -70,6 +70,12 @@ const LoginForm = () => {
             // onClick={() => navigate('/housePanel')}
             >Acceder a mi panel
             </Button>
+            <Button
+              type="button" 
+              variant='text'
+                onClick={() => navigate('/register')}
+                >Todavía no tengo una cuenta
+            </Button>
           </Stack>
         </form>
     </Box>

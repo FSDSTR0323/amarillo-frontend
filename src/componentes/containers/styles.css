@@ -1,3 +1,7 @@
 .banner360 {
     width: 100vw;
 }
+
+:hover.benefitCard {
+    background-color: aliceblue;
+}

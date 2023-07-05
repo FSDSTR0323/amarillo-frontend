@@ -9,9 +9,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 //ReactDOM se importa para crear root, que será el que renderice la página
 //Se crea la App
 root.render(
-  <React.StrictMode>
+
     <App />
-  </React.StrictMode>
+
 );
 
 reportWebVitals();
