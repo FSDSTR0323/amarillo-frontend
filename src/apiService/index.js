@@ -123,13 +123,13 @@ export const deleteDevice = async (id) => {
 export const getAllHouses = async () => {
     console.log("Se piden las viviendas del usuario")
     const { data } = await axios.get(`${API}/houses/`, {headers: {Authorization: localStorage.getItem('token')}});
-    console.log(data)
-    return data;
+    console.log('Las viviendas del usuario son: ', { data });
+    return data ;
 };
 
 // Se debería enviar el token y el usuario al que pertenece la casa en la petición
-export const postNewHouse = async (name, type, street, number, district, city, country, houseSize, roomsNumber) => {
-    const { data } = await axios.post(`${API}/houses/`, {name, type, street, number, district, city, country, houseSize, roomsNumber}, {headers: {Authorization: localStorage.getItem('token')}});
+export const postNewHouse = async (name, type, street, number, district, city, country, houseSize, roomsNumber, houseImg) => {
+    const { data } = await axios.post(`${API}/houses/`, {name, type, street, number, district, city, country, houseSize, roomsNumber, houseImg}, {headers: {Authorization: localStorage.getItem('token')}});
     getAllHouses()
     return;
 };
