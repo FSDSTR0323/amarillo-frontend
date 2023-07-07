@@ -133,7 +133,7 @@ return (
                     <Button type='cancel' variant='outlined' color='info' onClick={() => closePopUp(false)}>
                         Cancelar
                     </Button>
-                    <Button type='submit' variant='contained' color='primary'>
+                    <Button type='submit' value ="" variant='contained' color='primary'>
                         Crear nueva estancia
                     </Button>
                 </Box>

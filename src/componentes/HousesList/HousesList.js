@@ -13,7 +13,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const HousesList = ( {refresh} ) => {
     const [ houses, setHouses ] = useState([]);
-    //const [ houseId, setHouseId ] = useState('');
 
     useEffect(() => {
         getAllHouses()
