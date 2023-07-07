@@ -50,7 +50,7 @@ const HousesList = ( {refresh} ) => {
                                         { house.district }, { house.city  }
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary" sx={{paddingTop:'1rem', fontSize:'1.1rem'}}>
-                                        El número de estancias que tiene la vivienda son: { house.roomsNumber }
+                                        El número de estancias en este espacio son: { house.roomsNumber }
                                     </Typography>
                                 </CardContent>
                             {/* </CardActionArea> */}

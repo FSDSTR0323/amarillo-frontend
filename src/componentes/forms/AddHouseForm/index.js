@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { postNewHouse } from '../../../apiService';
-import { TextField, Stack, Select, MenuItem, FormControl, Box, InputLabel, FormHelperText, Button, Typography} from '@mui/material';
+import { TextField, Stack, Select, MenuItem, FormControl, Box, InputLabel, FormHelperText, Button, IconButton, Typography} from '@mui/material';
+import SaveIcon from '@mui/icons-material/Save';
 
 import './styles.css';
 
@@ -13,6 +14,10 @@ const AddHouseForm = () => {
   const [houseType, setHouseType] = useState('');
   const [roomsError, setRoomsError] = useState(false);
   const [metersError, setMetersError] = useState(false);
+
+  const [ file, setFile ] = useState('');
+  console.log('useState asset de ', file);
+  const [ houseImg, setHouseImg ] = useState('');
 
   const navigate = useNavigate();
 
@@ -27,30 +32,43 @@ const AddHouseForm = () => {
     setHouseType(event.target.value);
   };
 
-  const handleTextChange = (index, event) => {
-    const { name, value } = event.target;
-    const values = [...textFields];
+  // const handleTextChange = (index, event) => {
+  //   const { name, value } = event.target;
+  //   const values = [...textFields];
 
-    // Validar longitud máxima del campo "nombre"
-    if (name === 'nombre' && value.length > 20) {
-      return; // No permitir más caracteres si se alcanza la longitud máxima
-    }
+  //   // Validar longitud máxima del campo "nombre"
+  //   if (name === 'nombre' && value.length > 20) {
+  //     return; // No permitir más caracteres si se alcanza la longitud máxima
+  //   }
+  //   values[index][name] = value;
+  //   setTextFields(values);
+  // };
 
-    values[index][name] = value;
-    setTextFields(values);
+
+//A partir de este punto quedaría la función para añadir una imagen a tu vivienda.------------------------------------
+  const uploadImage = () => {
+    const formData = new FormData()
+    formData.append('file', file)
+    formData.append('upload_preset', 'alvaro_preset1')
+
+    axios.post('https://api.cloudinary.com/v1_1/dwuej2jjm/image/upload', formData)
+    .then( response => {
+      console.log('Esta es la url de la imagen que mandamos al backend: ', response.data.url)
+      setHouseImg(response.data.url)
+    })
+    .catch( (err) => console.log(err))
   };
 
-  const handleFile = (event) => {
-    const file = event.target.files[0];
-    // Aquí puedes implementar la lógica de subida de archivo
-    <>
-      <Typography variant="body1" sx={{ color: '#505050', paddingTop: '1rem' }}>
-        Elige una imagen para tu vivienda:
-      </Typography><Button variant="contained" component="label">
-        Seleccionar una imagen
-        <input type="file" hidden onChange={handleFile} />
-      </Button></>
-  };
+
+//--------------------------------------------------------------------------------
+//FUNCIÓN PARA HACER SUBMIT DE TODOS LOS DATOS QUE PASAMOS EN EL FORMULARIO DE NUEVA VIVIENDA.
+  const envioForm = ( async ({name, type, street, number, district, city, country, houseSize, roomsNumber}) => {
+    console.log('Estos son los datos que mandamos de la nueva vivienda: ', name, type, street, number, district, city, country, houseSize, roomsNumber );
+    const response = await postNewHouse(name, type, street, number, district, city, country, houseSize, roomsNumber);
+    console.log('Estos son los datos que estamos pasando en el formulario: ', response);
+  });
+
+
 
   return (
   
@@ -68,10 +86,7 @@ const AddHouseForm = () => {
 
     <Box sx={{display:'flex', justifyContent:'center', paddingTop:'3rem', paddingBottom:'5rem'}}>
       <Box sx={{maxWidth:'600px', bgcolor:'#FEFEFE', padding:'2rem', boxShadow:'4px 8px 8px -4px rgb(202, 213, 216)', borderRadius:'1rem'}}>
-      <form onSubmit={handleSubmit( async (name, type, street, number, district, city, country, houseSize, roomsNumber) => {
-        const res = await postNewHouse(name, type, street, number, district, city, country, houseSize, roomsNumber);
-        console.log('Los datos que pasamos para la nueva vivienda: ', res);
-      })}>
+      <form onSubmit={handleSubmit(envioForm)}>
         <Stack spacing={2} width={400}>
           <TextField
             variant="filled"
@@ -171,14 +186,40 @@ const AddHouseForm = () => {
             inputProps={{ min: 0 }}
             onChange={(e) => setRoomsError(e.target.value === '0')}
           />
+
+
+        <Typography sx={{paddingTop:'2rem'}}>Elige una imagen para tu nueva vivienda/oficina y súbela a la nube de HomeHub:</Typography>
+        <Box sx={{display:'flex', gap:'1rem'}}>
+                <Button
+                    variant="info"
+                    component="label"
+                    >
+                    Seleccionar una imagen
+                        <input
+                            type="file"
+                            hidden
+                            onChange={(event) => {
+                                setFile(event.target.files[0])
+                            }}
+                        />
+                </Button>
+              <Button variant='contained'
+                      color='success'
+                      onClick={uploadImage}
+                      startIcon={<SaveIcon/>}
+                      sx={{}}></Button>
+          </Box>
+
         </Stack>
+
+        <Typography sx={{textAlign:'center', paddingTop:'1rem', color:'#AEAEAE'}}>___________</Typography>
 
         <Box sx={{ display: 'flex', flexDirection: 'row', gap: '1rem', justifyContent: 'left', paddingTop: '2rem', paddingBottom: '1rem' }}>
           <Button type="cancel" variant="outlined" color="info" onClick={() => navigate('/myHouses')}>
             Cancelar
           </Button>
           <Button type="submit" variant="contained" color="primary">
-            registrar nueva vivienda
+            Registrar nueva vivienda
           </Button>
         </Box>
       </form>

@@ -6,6 +6,8 @@ import axios from 'axios';
 import './styles.css';
 
 import { Typography, TextField, Button, Stack, Box, InputLabel, FormControl, FormHelperText } from '@mui/material';
+import SaveIcon from '@mui/icons-material/Save';
+
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
@@ -26,7 +28,6 @@ const AddRoomForm = ({name, type, closePopUp}) => {
     console.log('useState asset de ', file);
 
     //Dani --- Cloudinary --- metemos la data.url en el estado de url
-    const [ url, setUrl ] = useState('');
     const [ roomImg, setRoomImg ] = useState('');
     console.log('esto es roomImg: ', roomImg);
     const [ houseID, setHouseID ] = useState('');
@@ -59,7 +60,7 @@ const AddRoomForm = ({name, type, closePopUp}) => {
     };
 
     const envioForm = ( async ( {name, type} ) => {
-        console.log('esto es roomImg: ', {name, type, roomImg});
+        //console.log('esto es roomImg: ', {name, type, roomImg});
 
         const res = await postNewRoom(name, type, roomImg);
         closePopUp(false);
@@ -103,23 +104,32 @@ return (
                     </FormControl>
 
                 <Typography variant='body1' sx={{color:'#505050', paddingTop:'1rem'}}>Elige una imagen para tu estancia:</Typography>
-                <Button
-                    variant="contained"
-                    component="label"
-                    >
-                    Seleccionar una imagen
-                        <input
-                            type="file"
-                            hidden
-                            onChange={(event) => {
-                                setFile(event.target.files[0])
-                            }}
-                        />
-                </Button>
-                <Button onClick={uploadImage}>Subir imagen</Button>
 
+                <Box sx={{display:'flex', gap:'1rem'}}>
+                    <Button
+                        variant="info"
+                        component="label"
+                        >
+                        Seleccionar una imagen
+                            <input
+                                type="file"
+                                hidden
+                                onChange={(event) => {
+                                    setFile(event.target.files[0])
+                                }}
+                            />
+                    </Button>
+                    <Button variant='contained'
+                      color='success'
+                      onClick={uploadImage}
+                      startIcon={<SaveIcon/>}
+                      sx={{}}></Button>
+                </Box>
                 </Stack>
-                <Box sx={{display: 'flex', flexDirection: 'row', gap:'1rem', justifyContent: 'center', paddingTop:'2rem', paddingBottom:'1rem'}}>
+
+                <Typography sx={{textAlign:'center', paddingTop:'1rem', color:'#AEAEAE'}}>___________</Typography>
+
+                <Box sx={{display: 'flex', flexDirection: 'row', gap:'1rem', justifyContent: 'center', paddingTop:'1rem', paddingBottom:'1rem'}}>
                     <Button type='cancel' variant='outlined' color='info' onClick={() => closePopUp(false)}>
                         Cancelar
                     </Button>

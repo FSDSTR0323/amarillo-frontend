@@ -134,7 +134,9 @@ export const getAllHouses = async () => {
 
 // Se debería enviar el token y el usuario al que pertenece la casa en la petición
 export const postNewHouse = async (name, type, street, number, district, city, country, houseSize, roomsNumber) => {
-    const { data } = await axios.post(`${API}/houses/`, name, type, street, number, district, city, country, houseSize, roomsNumber);
+    const response = await axios.post(`${API}/houses/`, {name, type, street, number, district, city, country, houseSize, roomsNumber} );
+
+    console.log('Esta es la respuesta al post: ', response);
     getAllHouses()
     return;
 };
