@@ -12,6 +12,7 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
 import { postNewRoom } from '../../../apiService';
+import { useParams } from 'react-router-dom';
 
 
 //TO DO: COMPLETAR EL FORMULARIO DE UNA NUEVA ESTANCIA.
@@ -32,6 +33,9 @@ const AddRoomForm = ({name, type, closePopUp}) => {
     console.log('esto es roomImg: ', roomImg);
     const [ houseID, setHouseID ] = useState('');
     
+    const houseId = useParams().slug;
+    console.log("houseId en addRoomForm: ", houseId)
+
 
     const handleHouse = (event) => {
         setHouseID(event.target.value)
@@ -62,7 +66,7 @@ const AddRoomForm = ({name, type, closePopUp}) => {
     const envioForm = ( async ( {name, type} ) => {
         //console.log('esto es roomImg: ', {name, type, roomImg});
 
-        const res = await postNewRoom(name, type, roomImg);
+        const res = await postNewRoom(name, type, roomImg, houseId);
         closePopUp(false);
         console.log('Estos son los datos que estamos pasando en el formulario: ', res);
     });
