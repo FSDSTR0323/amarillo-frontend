@@ -40,7 +40,7 @@ function App( {user, room} ) {
                   <Route path='/myHouses' element={<MyHousesPanel/>} />
                   <Route path='/housePanel' element={<HousePanel/>} />
                   <Route path='/myUser' element={<MyUserPanel/>} />
-                  <Route path='/housePanel/:slug' element={<RoomPanel/>} />
+                  <Route path='/housePanel/:slug' element={<HousePanel/>} />
                 </Route>
 
                 <Route path='*' element={<p>No hemos encontrado esta página.</p>} /> TODO: Hay que crear la página de 404 NotFound

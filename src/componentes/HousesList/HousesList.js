@@ -30,14 +30,14 @@ const HousesList = ( {refresh} ) => {
                     <Grid item xs={12} md={12} key={house._id}>
                         
                         <Card sx={{ display:'flex', maxHeight:'270px', boxShadow: '4px 8px 8px -4px rgb(202, 213, 216)', border:'solid 1px #f2f2f2', borderRadius:'1rem'}}
-                            onClick={ () =>  <Link to='/housePanel/'></Link> }
+                            onClick={ () =>  <Link to = {`/housePanel/${house._id}`}></Link> }
                             >
 
                             <Box sx={{display:'flex', flexDirection:'column'}}>
                             
                             {/* <CardActionArea> */}
                                 <CardContent>
-                                    <Link to='/housePanel'>
+                                    <Link to = {`/housePanel/${house._id}`}>
                                         <Typography gutterBottom variant="h5" component="div">
                                             { house.name }
                                         </Typography>
@@ -70,7 +70,7 @@ const HousesList = ( {refresh} ) => {
                             </Box>
                             
                             <CardActionArea sx={{flexGrow:2}}>
-                                <Link to='/housePanel'>
+                                <Link to = {`/housePanel/${house._id}`}>
                                     {/* Aquí metemos la lógica que llame a las imágenes  */}
                                     { !house.houseImg ? <img src='https://images.unsplash.com/photo-1514895413746-feb3d266273d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'
                                     className='housePicture' /> : <img className='housePicture' src={house.houseImg} alt={house.name} />}

@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { deleteRoom, getAllRooms } from '../../apiService';
 
@@ -18,11 +18,12 @@ const RoomsList = ( {refresh} ) => {
     console.log( rooms );
 
     const navigate = useNavigate();
+    const houseId = useParams().slug;
 
     // useEffect(), función
     // Esta función se ejecuta por defecto cuando el componente se renderiza por primera vez, y después cada vez que el componente se actualice. Segundo parámetro: elemes de los qe depende-> no vacío [] se ejecutará cuando cambie nuo de esos elems
     useEffect(() => {
-        getAllRooms()
+        getAllRooms(houseId)
             .then( data => {
                 console.log('Esta es la info del backend: ', data);
                 setRooms(data)

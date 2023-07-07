@@ -28,7 +28,7 @@ const LoginForm = () => {
       // };
       useEffect(() => {
         //console.log("autenticado?:", isAuthenticated)
-        if(isAuthenticated) navigate('/housePanel')
+        if(isAuthenticated) navigate('/myHouses')
         //si no autenticado, mostrar mensaje
 
       } );
