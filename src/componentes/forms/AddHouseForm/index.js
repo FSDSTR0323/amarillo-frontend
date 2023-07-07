@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { postNewHouse } from '../../../apiService';
@@ -64,7 +66,7 @@ const AddHouseForm = () => {
 //FUNCIÓN PARA HACER SUBMIT DE TODOS LOS DATOS QUE PASAMOS EN EL FORMULARIO DE NUEVA VIVIENDA.
   const envioForm = ( async ({name, type, street, number, district, city, country, houseSize, roomsNumber}) => {
     console.log('Estos son los datos que mandamos de la nueva vivienda: ', name, type, street, number, district, city, country, houseSize, roomsNumber );
-    const response = await postNewHouse(name, type, street, number, district, city, country, houseSize, roomsNumber);
+    const response = await postNewHouse(name, type, street, number, district, city, country, houseSize, roomsNumber, houseImg);
     console.log('Estos son los datos que estamos pasando en el formulario: ', response);
   });
 
