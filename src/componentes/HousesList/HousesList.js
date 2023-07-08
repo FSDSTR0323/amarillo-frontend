@@ -49,7 +49,7 @@ const HousesList = ( {refresh} ) => {
                                         { house.district }, { house.city  }
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary" sx={{paddingTop:'1rem', fontSize:'1.1rem'}}>
-                                        El número de estancias que tiene la vivienda son: { house.roomsNumber }
+                                        El número de estancias en este espacio son: { house.roomsNumber }
                                     </Typography>
                                 </CardContent>
                             {/* </CardActionArea> */}
@@ -72,8 +72,9 @@ const HousesList = ( {refresh} ) => {
                             <CardActionArea sx={{flexGrow:2}}>
                                 <Link to = {`/housePanel/${house._id}`}>
                                     {/* Aquí metemos la lógica que llame a las imágenes  */}
-                                    <img src='https://images.unsplash.com/photo-1514895413746-feb3d266273d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'
-                                    className='housePicture' />
+                                    { !house.houseImg ? <img src='https://images.unsplash.com/photo-1514895413746-feb3d266273d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'
+                                    className='housePicture' /> : <img className='housePicture' src={house.houseImg} alt={house.name} />}
+
                                 </Link>
                             </CardActionArea>
 
