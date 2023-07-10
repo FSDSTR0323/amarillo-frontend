@@ -91,8 +91,8 @@ export const postNewRoom = async (name, type, roomImage, houseId) => {
     return;
 };
 
-export const deleteRoom = async(id) => {
-    const res = await axios.delete(`${API}/rooms/${id}`);
+export const deleteRoom = async(id, houseId) => {
+    const res = await axios.delete(`${API}/rooms/${id}`, {headers: {Authorization: localStorage.getItem('token')}});
     console.log('Habitación eliminada correctamente', res);
     getAllRooms(houseId)
     return;
@@ -130,6 +130,13 @@ export const getAllHouses = async () => {
 // Se debería enviar el token y el usuario al que pertenece la casa en la petición
 export const postNewHouse = async (name, type, street, number, district, city, country, houseSize, roomsNumber, houseImg) => {
     const { data } = await axios.post(`${API}/houses/`, {name, type, street, number, district, city, country, houseSize, roomsNumber, houseImg}, {headers: {Authorization: localStorage.getItem('token')}});
+    getAllHouses()
+    return;
+};
+
+export const deleteHouse = async(id) => {
+    const res = await axios.delete(`${API}/houses/${id}`, {headers: {Authorization: localStorage.getItem('token')}});
+    console.log('Este espacio se ha eliminado correctamente', res);
     getAllHouses()
     return;
 };

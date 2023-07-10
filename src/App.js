@@ -21,8 +21,8 @@ import MyHousesPanel from './componentes/containers/AllHousesPanel';
 import HousePanel from './componentes/containers/HousePanel';
 import RoomPanel from './componentes/containers/RoomPanel';
 import ProtectedRoutes from './ProtectedRoutes';
-import DeviceList from './componentes/DeviceList/DeviceList';
 import MyUserPanel from './componentes/containers/MyUserPanel';
+import SupportChat from './componentes/SupportChat';
 
 function App( {user, room} ) {
   return (
@@ -33,14 +33,15 @@ function App( {user, room} ) {
                 <Route path='/' element={<Homepage/>} />
                 <Route path='/register' element={<RegisterForm/>} />
                 <Route path='/login' element={<Login/>} />
+                {/* <Route path='/soporte' element={<SupportChat />} /> */}
 
               {/* Las rutas deben empezar con el id del user que está logeado */}
                 <Route element={<ProtectedRoutes />}>
                   <Route path='/addHouseForm' element={<AddHouseForm/>}/>
                   <Route path='/myHouses' element={<MyHousesPanel/>} />
-                  <Route path='/housePanel' element={<HousePanel/>} />
                   <Route path='/myUser' element={<MyUserPanel/>} />
                   <Route path='/housePanel/:slug' element={<HousePanel/>} />
+                  <Route path='/housePanel/Devices/:slug' element={<RoomPanel />} />
                 </Route>
 
                 <Route path='*' element={<p>No hemos encontrado esta página.</p>} /> TODO: Hay que crear la página de 404 NotFound

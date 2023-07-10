@@ -1,12 +1,11 @@
 import React from 'react';
 import './styles.css';
 import { useState, useEffect } from 'react';
-import { getAllHouses } from '../../apiService';
+import { deleteHouse, getAllHouses } from '../../apiService';
 import { Link } from 'react-router-dom';
 
 //MATERIAL UI
-import { Grid, Card, Box, Stack } from '@mui/material';
-import { CardActionArea, CardActions, IconButton, CardContent, Typography } from '@mui/material';
+import { Grid, Card, Box, Stack, CardActionArea, CardActions, IconButton, CardContent, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 //OJO: aquí habría que importar el número de casas y si solo es 1, getAllRooms, y si son varias, pintar una web de varias casas
@@ -57,14 +56,11 @@ const HousesList = ( {refresh} ) => {
                             <CardActions>
                                 <IconButton 
                                 color='primary' 
-                                onClick={() => console.log('Estas tratando de borrar esta vivienda.')
-                                    }>
+                                onClick={() => { 
+                                    window.confirm("¿Estás seguro de que quieres eliminar los datos e información de estancias y dispositivos de esta vivienda?") && deleteHouse(house._id) 
+                                }}>
                                 <DeleteIcon></DeleteIcon>
                                 </IconButton>
-
-                                {/* //TODO COMO PODEMOS HACER QUE EL POP UP APAREZCA INDIVIDUALMENTE EN CADA CARD???
-                                { deletePopUp && <DeleteRoomPopUp closePopUp={toggleDeletePopUp}></DeleteRoomPopUp>} */}
-
                             </CardActions>
                             
                             </Box>

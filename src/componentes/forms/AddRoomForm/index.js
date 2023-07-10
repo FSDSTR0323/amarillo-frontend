@@ -63,7 +63,7 @@ const AddRoomForm = ({name, type, closePopUp}) => {
         .catch( (err) => console.log(err))
     };
 
-    const envioForm = ( async ( {name, type} ) => {
+    const envioForm = ( async ({name, type}) => {
         //console.log('esto es roomImg: ', {name, type, roomImg});
 
         const res = await postNewRoom(name, type, roomImg, houseId);

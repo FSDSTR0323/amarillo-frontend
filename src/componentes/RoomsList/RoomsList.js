@@ -63,7 +63,7 @@ const imagePicker = (roomType) => { switch (roomType) {
                         <Card sx={{ boxShadow: '4px 8px 8px -4px rgb(202, 213, 216)', border:'solid 1px #f2f2f2', borderRadius:'1rem'}}>
 
                             <CardActionArea 
-                                onClick={ () =>  navigate(`/housePanel/${room._id}`) }>
+                                onClick={ () =>  navigate(`/housePanel/Devices/${room._id}`)}>
                                 { !room.roomImage ? imagePicker(room.roomType) : <img className='roomPicture' src={room.roomImage} alt={room.name} />}
                                 
                                 <CardContent>
@@ -83,15 +83,14 @@ const imagePicker = (roomType) => { switch (roomType) {
                                 <IconButton
                                 color='primary' 
                                 onClick={() => {
-                                    deleteRoom(room._id)
+                                    window.confirm("¿Estás seguro de que quieres eliminar esta estancia y los dispositivos conectados dentro de la misma?") && deleteRoom(room._id)
                                     console.log(room._id)}
+                                    
+                                    // TODO: COMO IMPLEMENTAR EL REFRESH AL CONFIRMAR EL DELETEO
+
                                     }>
                                 <DeleteIcon></DeleteIcon>
                                 </IconButton>
-
-                                {/* //TODO COMO PODEMOS HACER QUE EL POP UP APAREZCA INDIVIDUALMENTE EN CADA CARD???
-                                { deletePopUp && <DeleteRoomPopUp closePopUp={toggleDeletePopUp}></DeleteRoomPopUp>} */}
-
                             </CardActions>
                         </Card>
                     </Grid>

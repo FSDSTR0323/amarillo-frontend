@@ -7,7 +7,6 @@ import { Grid, Card } from '@mui/material';
 import { CardActionArea, CardActions, IconButton, CardContent, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-
 const DeviceList = ( {refresh} ) => {
     const [ devices, setDevices ] = useState([]);
     console.log( devices );
@@ -48,7 +47,7 @@ const DeviceList = ( {refresh} ) => {
                                 <IconButton 
                                 color='primary' 
                                 onClick={() => {
-                                    deleteDevice(device._id)
+                                    window.confirm('¿Estás seguro de que quieres eliminar por completo los datos de este dispositivo?') && deleteDevice(device._id)
                                     console.log(device._id)
                                     refresh}}>
                                 <DeleteIcon></DeleteIcon>

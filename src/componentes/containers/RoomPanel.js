@@ -8,8 +8,10 @@ import AddDeviceForm from '../forms/AddDeviceForm';
 import DeviceList from '../DeviceList/DeviceList';
 import HubNavBar from '../MenuBars/HubNavBar';
 
-const RoomPanel = () => {
+const RoomPanel = ( room ) => {
     const [ AddDevicePopup, toggleAddDevicePopup ] = useState(false);
+
+    //Podemos hacer fetch y traer la info de la room en la que nos encontramos.
 
     return (
         <>
@@ -17,12 +19,13 @@ const RoomPanel = () => {
         <Box sx= {{
             p: '2rem'
         }}>
-                <Paper elevation={3} sx={{
+                <Paper elevation={8} sx={{
                     p: '2rem',
                     marginTop: '1rem',
                     marginBottom: '1rem'
                 }}>
-                    <Typography variant='h4'sx={{marginBottom:'1rem'}}>Dispositivos conectados en:</Typography>
+                    <Typography variant='h4'sx={{marginBottom:'1rem'}}>Dispositivos conectados en: { room.name }</Typography>
+                    {console.log('esto es el nombre de mi estancia actual: ', room.name)}
                     <Typography variant='body1'>En este área puedes visibilizar tus diferentes dispositivos y el estado de cada uno de ellos.</Typography>
                 </Paper>
                         
