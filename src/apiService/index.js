@@ -27,7 +27,7 @@ export const loginRequest = async (user) => {
     //console.log("Usuario login: ", user)
     try {
         const response = await axios.post(`${API}/users/login`, user)
-        console.log('esta es la response a login: ', response.data);
+        //console.log('esta es la response a login: ', response.data);
         const token = response.data.token ;
         if(token){
         window.localStorage.setItem('token', token);
@@ -130,6 +130,13 @@ export const getAllHouses = async () => {
 // Se debería enviar el token y el usuario al que pertenece la casa en la petición
 export const postNewHouse = async (name, type, street, number, district, city, country, houseSize, roomsNumber, houseImg) => {
     const { data } = await axios.post(`${API}/houses/`, {name, type, street, number, district, city, country, houseSize, roomsNumber, houseImg}, {headers: {Authorization: localStorage.getItem('token')}});
+    getAllHouses()
+    return;
+};
+
+
+export const deleteHouse = async (houseId) => {
+    const { data } = await axios.delete(`${API}/houses/${houseId}`, {headers: {Authorization: localStorage.getItem('token')}});
     getAllHouses()
     return;
 };

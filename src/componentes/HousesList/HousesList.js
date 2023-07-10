@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 import { useState, useEffect } from 'react';
-import { getAllHouses } from '../../apiService';
+import { deleteHouse, getAllHouses } from '../../apiService';
 import { Link } from 'react-router-dom';
 
 //MATERIAL UI
@@ -22,6 +22,7 @@ const HousesList = ( {refresh} ) => {
              })
             .catch( error => console.error(error))
     }, [refresh]);
+    //console.log('Refresh: ', refresh);
   
     return (
         <Grid container spacing={2}>
@@ -57,7 +58,10 @@ const HousesList = ( {refresh} ) => {
                             <CardActions>
                                 <IconButton 
                                 color='primary' 
-                                onClick={() => console.log('Estas tratando de borrar esta vivienda.')
+                                onClick={() => {
+                                    deleteHouse(house._id)
+                                    console.log('Estas tratando de borrar esta vivienda.')
+                                    }
                                     }>
                                 <DeleteIcon></DeleteIcon>
                                 </IconButton>
