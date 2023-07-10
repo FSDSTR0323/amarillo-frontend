@@ -39,6 +39,7 @@ function App( {user, room} ) {
                 <Route element={<ProtectedRoutes />}>
                   <Route path='/addHouseForm' element={<AddHouseForm/>}/>
                   <Route path='/myHouses' element={<MyHousesPanel/>} />
+                  {/* <Route path='/housePanel' element={<HousePanel/>} /> */}
                   <Route path='/myUser' element={<MyUserPanel/>} />
                   <Route path='/housePanel/:slug' element={<HousePanel/>} />
                   <Route path='/housePanel/Devices/:slug' element={<RoomPanel />} />

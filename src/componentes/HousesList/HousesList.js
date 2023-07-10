@@ -21,6 +21,7 @@ const HousesList = ( {refresh} ) => {
              })
             .catch( error => console.error(error))
     }, [refresh]);
+    //console.log('Refresh: ', refresh);
   
     return (
         <Grid container spacing={2}>
@@ -56,9 +57,8 @@ const HousesList = ( {refresh} ) => {
                             <CardActions>
                                 <IconButton 
                                 color='primary' 
-                                onClick={() => { 
-                                    window.confirm("¿Estás seguro de que quieres eliminar los datos e información de estancias y dispositivos de esta vivienda?") && deleteHouse(house._id) 
-                                }}>
+                                onClick={() => console.log('Estas tratando de borrar esta vivienda.')
+                                    }>
                                 <DeleteIcon></DeleteIcon>
                                 </IconButton>
                             </CardActions>

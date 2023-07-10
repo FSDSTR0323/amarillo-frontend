@@ -18,8 +18,8 @@ const AddHouseForm = () => {
 
   const [ file, setFile ] = useState('');
   console.log('useState asset de ', file);
-  const [ houseImg, setHouseImg ] = useState('');
-
+  const [ houseImg , setHouseImg ] = useState('');
+  
   const navigate = useNavigate();
 
   const addTextFields = () => {
@@ -64,7 +64,7 @@ const AddHouseForm = () => {
 //--------------------------------------------------------------------------------
 //FUNCIÓN PARA HACER SUBMIT DE TODOS LOS DATOS QUE PASAMOS EN EL FORMULARIO DE NUEVA VIVIENDA.
   const envioForm = ( async ({name, type, street, number, district, city, country, houseSize, roomsNumber}) => {
-    console.log('Estos son los datos que mandamos de la nueva vivienda: ', name, type, street, number, district, city, country, houseSize, roomsNumber );
+    console.log('Estos son los datos que mandamos de la nueva vivienda: ', name, type, street, number, district, city, country, houseSize, roomsNumber, houseImg );
     
     const response = await postNewHouse(name, type, street, number, district, city, country, houseSize, roomsNumber, houseImg);
     navigate('/myHouses')

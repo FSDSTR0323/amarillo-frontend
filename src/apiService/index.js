@@ -27,7 +27,7 @@ export const loginRequest = async (user) => {
     //console.log("Usuario login: ", user)
     try {
         const response = await axios.post(`${API}/users/login`, user)
-        console.log('esta es la response a login: ', response.data);
+        //console.log('esta es la response a login: ', response.data);
         const token = response.data.token ;
         if(token){
         window.localStorage.setItem('token', token);
