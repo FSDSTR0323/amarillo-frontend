@@ -20,15 +20,19 @@ const RoomsList = ( {refresh} ) => {
     const navigate = useNavigate();
     const houseId = useParams().slug;
 
-    // useEffect(), función
-    // Esta función se ejecuta por defecto cuando el componente se renderiza por primera vez, y después cada vez que el componente se actualice. Segundo parámetro: elemes de los qe depende-> no vacío [] se ejecutará cuando cambie nuo de esos elems
-    useEffect(() => {
+    const refreshRooms = () => {
         getAllRooms(houseId)
             .then( data => {
                 console.log('Esta es la info del backend: ', data);
                 setRooms(data)
              })
             .catch( error => console.error(error))
+    }
+
+    // useEffect(), función
+    // Esta función se ejecuta por defecto cuando el componente se renderiza por primera vez, y después cada vez que el componente se actualice. Segundo parámetro: elemes de los qe depende-> no vacío [] se ejecutará cuando cambie nuo de esos elems
+    useEffect(() => {
+        refreshRooms()
     }, [refresh]);
 
 const imagePicker = (roomType) => { switch (roomType) {
@@ -53,6 +57,11 @@ const imagePicker = (roomType) => { switch (roomType) {
             return <img className='roomPicture' src='https://res.cloudinary.com/dwuej2jjm/image/upload/v1687779279/homehub/default1_es7lku.jpg' alt='Default room'/>
             break;
     }
+};
+
+const onDelete = async (roomId) => {
+    await deleteRoom(roomId, houseId)
+    refreshRooms()
 };
 
     return (
@@ -83,7 +92,7 @@ const imagePicker = (roomType) => { switch (roomType) {
                                 <IconButton
                                 color='primary' 
                                 onClick={() => {
-                                    window.confirm("¿Estás seguro de que quieres eliminar esta estancia y los dispositivos conectados dentro de la misma?") && deleteRoom(room._id)
+                                    window.confirm("¿Estás seguro de que quieres eliminar esta estancia y los dispositivos conectados dentro de la misma?") && onDelete(room._id)
                                     console.log(room._id)}
                                     
                                     // TODO: COMO IMPLEMENTAR EL REFRESH AL CONFIRMAR EL DELETEO
