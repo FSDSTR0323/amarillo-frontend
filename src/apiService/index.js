@@ -91,11 +91,9 @@ export const postNewRoom = async (name, type, roomImage, houseId) => {
     return;
 };
 
-export const deleteRoom = async(id, houseId) => {
+export const deleteRoom = async(id) => {
     const res = await axios.delete(`${API}/rooms/${id}`, {headers: {Authorization: localStorage.getItem('token')}});
     console.log('Habitación eliminada correctamente', res);
-    getAllRooms(houseId)
-    return;
 };
 
 

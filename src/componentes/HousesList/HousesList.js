@@ -1,11 +1,12 @@
 import React from 'react';
 import './styles.css';
+
 import { useState, useEffect } from 'react';
 import { deleteHouse, getAllHouses } from '../../apiService';
 import { Link } from 'react-router-dom';
 
 //MATERIAL UI
-import { Grid, Card, Box, Stack, CardActionArea, CardActions, IconButton, CardContent, Typography } from '@mui/material';
+import { Grid, Card, Box, Stack, CardActionArea, CardActions, IconButton, CardContent, Typography, Slide } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 //OJO: aquí habría que importar el número de casas y si solo es 1, getAllRooms, y si son varias, pintar una web de varias casas
@@ -27,12 +28,13 @@ const HousesList = ( {refresh} ) => {
         <Grid container spacing={2}>
             { houses.length > 0 ? houses.map( house => {
                 return (
+
                     <Grid item xs={12} md={12} key={house._id}>
                         
-                        <Card sx={{ display:'flex', maxHeight:'270px', boxShadow: '4px 8px 8px -4px rgb(202, 213, 216)', border:'solid 1px #f2f2f2', borderRadius:'1rem'}}
+                        
+                        <Card className='houseCard' sx={{ display:'flex', maxHeight:'270px', boxShadow: '4px 8px 8px -4px rgb(202, 213, 216)', border:'solid 1px #f2f2f2', borderRadius:'1rem'}}
                             onClick={ () =>  <Link to = {`/housePanel/${house._id}`}></Link> }
                             >
-
                             <Box sx={{display:'flex', flexDirection:'column'}}>
                             
                             {/* <CardActionArea> */}
@@ -57,7 +59,9 @@ const HousesList = ( {refresh} ) => {
                             <CardActions>
                                 <IconButton 
                                 color='primary' 
-                                onClick={() => console.log('Estas tratando de borrar esta vivienda.')
+                                onClick={() => {
+                                    window.confirm("¿Estás seguro de que quieres eliminar este espacio virtual y todos los datos que existen dentro del mismo?") && deleteHouse(house._id)
+                                    console.log(house._id)}
                                     }>
                                 <DeleteIcon></DeleteIcon>
                                 </IconButton>
@@ -73,7 +77,6 @@ const HousesList = ( {refresh} ) => {
 
                                 </Link>
                             </CardActionArea>
-
                         </Card>
                     </Grid>
                 )
