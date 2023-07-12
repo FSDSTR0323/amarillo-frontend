@@ -140,3 +140,9 @@ export const deleteHouse = async(id) => {
     getAllHouses()
     return;
 };
+
+export const addEditUser = async (name, surname, email, phoneNumber, birthYear, avatar) => { const {data} =await axios.update(`${API}/user/`, {name, surname, email, phoneNumber, birthYear, avatar}, {headers: {Authorization: localStorage.getItem ('token')}});
+getMyUser()
+return;
+}
+
