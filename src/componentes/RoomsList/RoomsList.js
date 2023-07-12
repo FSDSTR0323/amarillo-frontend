@@ -83,7 +83,7 @@ const imagePicker = (roomType) => { switch (roomType) {
                                 <IconButton
                                 color='primary' 
                                 onClick={() => {
-                                    window.confirm("¿Estás seguro de que quieres eliminar esta estancia y los dispositivos conectados dentro de la misma?") && deleteRoom(room._id)
+                                    window.confirm("¿Estás seguro de que quieres eliminar esta estancia y los dispositivos conectados dentro de la misma?") && deleteRoom(room._id, houseId)
                                     console.log(room._id)}
                                     
                                     // TODO: COMO IMPLEMENTAR EL REFRESH AL CONFIRMAR EL DELETEO
