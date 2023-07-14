@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { deleteDevice, getDevices } from '../../apiService';
 
 //MATERIAL UI COMPONENTS
@@ -7,12 +8,15 @@ import { Grid, Card } from '@mui/material';
 import { CardActionArea, CardActions, IconButton, CardContent, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
+
 const DeviceList = ( {refresh} ) => {
     const [ devices, setDevices ] = useState([]);
     console.log( devices );
 
+    const roomId = useParams().slug
+
     useEffect(() => {
-        getDevices()
+        getDevices(roomId)
             .then( data => {
                 console.log('Esta es la info del backend: ', data);
                 setDevices(data)

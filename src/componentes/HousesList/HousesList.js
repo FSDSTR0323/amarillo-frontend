@@ -14,15 +14,25 @@ import DeleteIcon from '@mui/icons-material/Delete';
 const HousesList = ( {refresh} ) => {
     const [ houses, setHouses ] = useState([]);
 
-    useEffect(() => {
+    const refreshHouses = () => {
         getAllHouses()
             .then( data => {
                 console.log('Esta es la info del backend: ', data);
                 setHouses(data)
              })
             .catch( error => console.error(error))
+    };
+
+    const onDelete = async (houseId) => {
+        await deleteHouse(houseId)
+        refreshHouses()
+    };
+
+    useEffect(() => {
+        refreshHouses()
     }, [refresh]);
     //console.log('Refresh: ', refresh);
+
   
     return (
         <Grid container spacing={2}>
@@ -60,7 +70,7 @@ const HousesList = ( {refresh} ) => {
                                 <IconButton 
                                 color='primary' 
                                 onClick={() => {
-                                    window.confirm("¿Estás seguro de que quieres eliminar este espacio virtual y todos los datos que existen dentro del mismo?") && deleteHouse(house._id)
+                                    window.confirm("¿Estás seguro de que quieres eliminar este espacio virtual y todos los datos que existen dentro del mismo?") && onDelete(house._id)
                                     console.log(house._id)}
                                     }>
                                 <DeleteIcon></DeleteIcon>

@@ -13,26 +13,21 @@ import MenuItem from '@mui/material/MenuItem';
 const AddDeviceForm = ({name, type, closePopUp}) => {
   const { register, formState: { errors }, handleSubmit } = useForm();
 
-  const [ roomId, setRoomId ] = useState('')
   const [ deviceType, setDeviceType] = useState('')
-  
 
   //Traemos el roomId empleando el hook de react-router-dom
-  const getRoomId = () => {
-    const myRoomId = useParams().slug
-    setRoomId(myRoomId)
-    console.log("roomId en addDeviceForm: ", roomId)
-  };
+  const roomId = useParams().slug
+  console.log("roomId en addDeviceForm: ", roomId)
 
+  const deviceData = '';
 
   //Esta función controla el estado del select dentro de formulario.
   const handleChange =(event)=>{
     setDeviceType (event.target.value)
   };
 
-
-  const envioDispositivo = (async ({name, deviceType, data}) => {
-        const res = await postNewDevice(name, deviceType, data, roomId);
+  const envioDispositivo = (async ({name, deviceType}) => {
+        const res = await postNewDevice(name, deviceType, deviceData, roomId);
         closePopUp(false);
         console.log('Estos son los datos que mandamos: ', res);
   });
