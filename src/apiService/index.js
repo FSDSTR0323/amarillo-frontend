@@ -104,11 +104,11 @@ export const getDevices = async (roomId) => {
 };
 
 //postNewDevice: hay que enviar el id de la room en la que creo el device a parte del token
-export const postNewDevice = async (name, type, deviceData, roomId) => {
-    const response = await axios.post(`${API}/devices/`, {name, type, deviceData, roomId}, {headers: {Authorization: localStorage.getItem('token')}} )
+export const postNewDevice = async (name, deviceType, status, deviceData, roomId) => {
+    const response = await axios.post(`${API}/devices/`, {name, deviceType, status, deviceData, roomId}, {headers: {Authorization: localStorage.getItem('token')}} )
     console.log('Esta es la respuesta al post: ', response)
     getDevices(roomId); //llamamos de nuevo al get nada más postear para que se realice una sincronización y recibamos el nuevo device.
-    return data;
+    return response;
 }; 
 
 export const deleteDevice = async (id) => {

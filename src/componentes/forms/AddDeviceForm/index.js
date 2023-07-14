@@ -20,6 +20,7 @@ const AddDeviceForm = ({name, type, closePopUp}) => {
   console.log("roomId en addDeviceForm: ", roomId)
 
   const deviceData = '';
+  const status = false
 
   //Esta función controla el estado del select dentro de formulario.
   const handleChange =(event)=>{
@@ -27,7 +28,7 @@ const AddDeviceForm = ({name, type, closePopUp}) => {
   };
 
   const envioDispositivo = (async ({name, deviceType}) => {
-        const res = await postNewDevice(name, deviceType, deviceData, roomId);
+        const res = await postNewDevice(name, deviceType, status, deviceData, roomId);
         closePopUp(false);
         console.log('Estos son los datos que mandamos: ', res);
   });
@@ -57,7 +58,7 @@ return (
                         {/* <MenuItem value="">
                             <em>None</em>
                         </MenuItem> */}
-                        <MenuItem value={'LightBulb'}>Bombilla</MenuItem>
+                        <MenuItem value={'Lightbulb'}>Bombilla</MenuItem>
                         <MenuItem value={'Blinders'}>Persianas</MenuItem>
                         <MenuItem value={'Temperature'}>Termostato</MenuItem>
                         <MenuItem value={'Furniture'}>Mobiliario</MenuItem>
