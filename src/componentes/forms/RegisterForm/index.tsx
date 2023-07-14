@@ -20,7 +20,7 @@ const RegisterForm = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(isAuthenticated) navigate('/addHouseForm')
+    if(isAuthenticated) navigate('/myHouses')
   }, [isAuthenticated])
 
 

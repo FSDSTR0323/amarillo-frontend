@@ -42,20 +42,21 @@ const HousePanel = () => {
           onClick={ () => toggleAddRoomPopup(true)}>
             Añadir nueva estancia
           </Button>
-          { addRoomPopup && <AddRoomForm closePopUp={ toggleAddRoomPopup } /> }
 
           <Button color='success' variant='outlined' startIcon={<SyncIcon/>} 
           sx={{marginBottom: '2rem'}}
           onClick={ () => toggleSyncPopUp(true)}>
             Sincronizar dispositivos
           </Button>
-          
         </Box>
+
+        { addRoomPopup && <AddRoomForm closePopUp={ toggleAddRoomPopup } /> }
     
         <RoomsList className='roomsList' refresh={addRoomPopup}></RoomsList>
 
         {/* Debemos de colocar el PopUp de sincronización debajo de la roomsList para evitar que se solape. */}
         { syncPopUp && <SyncPopUp className='syncPopUp' sx={{zIndex:'1'}} closePopUp={ toggleSyncPopUp } />}
+        
 
     </Box>
     </>
