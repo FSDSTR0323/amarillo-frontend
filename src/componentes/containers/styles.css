@@ -5,3 +5,11 @@
 :hover.benefitCard {
     background-color: aliceblue;
 }
+
+.syncPopUp {
+    z-index: 2;
+}
+
+.roomsList {
+    z-index: 1;
+}

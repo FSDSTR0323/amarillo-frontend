@@ -1,17 +1,23 @@
 import React from 'react';
+import './styles.css';
+
 import { Paper, Typography, IconButton, Button, Box } from '@mui/material';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
+import SyncIcon from '@mui/icons-material/Sync';
+
+import { useState } from 'react';
+
 import AddRoomForm from '../forms/AddRoomForm/index';
 import RoomsList from '../RoomsList/RoomsList';
 import HubNavBar from '../MenuBars/HubNavBar';
+import SyncPopUp from '../forms/syncPopUp/SyncPopUp';
 
 
 
 const HousePanel = () => {
 
   const [ addRoomPopup, toggleAddRoomPopup ] = useState(false);
+  const [ syncPopUp, toggleSyncPopUp ] = useState(false);
   
 
 
@@ -30,14 +36,26 @@ const HousePanel = () => {
             <Typography variant='body1' sx={{paddingTop:'1rem'}}>En este área puedes visibilizar tus diferentes estancias y el número de dispositivos conectados en cada una de ellas.</Typography>
         </Paper>
 
-        <Button color='primary' variant='contained' startIcon={<AddBoxIcon/>} 
-        sx={{marginBottom: '2rem'}}
-        onClick={ () => toggleAddRoomPopup(true)}>
-          Añadir nueva estancia
-        </Button>
-        { addRoomPopup && <AddRoomForm closePopUp={ toggleAddRoomPopup } /> }
+        <Box sx={{display: 'flex', gap:'1rem'}}>
+          <Button color='primary' variant='contained' startIcon={<AddBoxIcon/>} 
+          sx={{marginBottom: '2rem'}}
+          onClick={ () => toggleAddRoomPopup(true)}>
+            Añadir nueva estancia
+          </Button>
+          { addRoomPopup && <AddRoomForm closePopUp={ toggleAddRoomPopup } /> }
+
+          <Button color='success' variant='outlined' startIcon={<SyncIcon/>} 
+          sx={{marginBottom: '2rem'}}
+          onClick={ () => toggleSyncPopUp(true)}>
+            Sincronizar dispositivos
+          </Button>
+          
+        </Box>
     
-        <RoomsList refresh={addRoomPopup}></RoomsList>
+        <RoomsList className='roomsList' refresh={addRoomPopup}></RoomsList>
+
+        {/* Debemos de colocar el PopUp de sincronización debajo de la roomsList para evitar que se solape. */}
+        { syncPopUp && <SyncPopUp className='syncPopUp' sx={{zIndex:'1'}} closePopUp={ toggleSyncPopUp } />}
 
     </Box>
     </>
