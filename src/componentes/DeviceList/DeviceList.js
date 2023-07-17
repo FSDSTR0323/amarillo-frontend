@@ -12,7 +12,6 @@ import ScheduleIcon from '@mui/icons-material/Schedule';
 
 const DeviceList = ( {refresh} ) => {
     const [ devices, setDevices ] = useState([]);
-    console.log( devices );
 
     const roomId = useParams().slug
 
@@ -20,7 +19,8 @@ const DeviceList = ( {refresh} ) => {
         getDevices(roomId)
             .then( data => {
                 console.log('Esta es la info del backend: ', data);
-                setDevices(data)
+                const deviceData = data
+                setDevices(deviceData)
              })
             .catch( error => console.error(error))
     };
@@ -75,15 +75,26 @@ const DeviceList = ( {refresh} ) => {
                             {/* </CardActionArea> */}
 
                             <CardActions>
-                                <IconButton 
-                                color='primary' 
-                                onClick={() => {
-                                    window.confirm('¿Estás seguro de que quieres eliminar por completo los datos de este dispositivo?') && onDelete(device._id)
-                                    console.log(device._id)
-                                    refresh}}>
-                                <DeleteIcon></DeleteIcon>
-                                </IconButton>
-                                {/* { deletePopUp && <DeleteRoomPopUp closePopUp={toggleDeletePopUp}></DeleteRoomPopUp>} */}
+
+                                <Box sx={{display: 'flex', width:'100%', justifyContent: 'space-between'}}>
+                                    <Box sx={{display:'flex'}}>
+                                    <IconButton
+                                    color='primary' 
+                                    onClick={() => {
+                                        window.confirm('¿Quieres eliminar por completo los datos de este dispositivo?') && onDelete(device._id)
+                                        console.log(device._id)
+                                        }}>
+                                        <DeleteIcon></DeleteIcon>
+                                    </IconButton>
+                                    <IconButton
+                                    color='primary' 
+                                    onClick={() => console.log('Programación de los horarios de este dispositivo.')}>
+                                        <ScheduleIcon></ScheduleIcon>
+                                    </IconButton>
+                                    </Box>
+                                    
+                                    { SliderOrSwitch(device.deviceType) }
+                                </Box>
                             </CardActions>
                         </Card>
                     </Grid>
