@@ -17,7 +17,7 @@ const HousesList = ( {refresh} ) => {
     const refreshHouses = () => {
         getAllHouses()
             .then( data => {
-                console.log('Esta es la info del backend: ', data);
+                // console.log('Esta es la info del backend: ', data);
                 setHouses(data)
              })
             .catch( error => console.error(error))
@@ -71,7 +71,8 @@ const HousesList = ( {refresh} ) => {
                                 color='primary' 
                                 onClick={() => {
                                     window.confirm("¿Estás seguro de que quieres eliminar este espacio virtual y todos los datos que existen dentro del mismo?") && onDelete(house._id)
-                                    console.log(house._id)}
+                                    // console.log(house._id)
+                                    }
                                     }>
                                 <DeleteIcon></DeleteIcon>
                                 </IconButton>

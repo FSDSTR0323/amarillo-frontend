@@ -15,7 +15,7 @@ const RoomsList = ( {refresh} ) => {
     const [ rooms, setRooms ] = useState([]);
     const [ deletePopUp, toggleDeletePopUp ] = useState(false);
     //useState() es una función que crea internamente una variable donde podremos almacenar el estado de nuestro componente
-    console.log( rooms );
+    // console.log( rooms );
 
     const navigate = useNavigate();
     const houseId = useParams().slug;
@@ -23,7 +23,7 @@ const RoomsList = ( {refresh} ) => {
     const refreshRooms = () => {
         getAllRooms(houseId)
             .then( data => {
-                console.log('Esta es la info del backend: ', data);
+                // console.log('Esta es la info del backend: ', data);
                 setRooms(data)
              })
             .catch( error => console.error(error))
@@ -93,7 +93,8 @@ const onDelete = async (roomId) => {
                                 color='primary' 
                                 onClick={() => {
                                     window.confirm("¿Estás seguro de que quieres eliminar esta estancia y los dispositivos conectados dentro de la misma?") && onDelete(room._id)
-                                    console.log(room._id)}
+                                    // console.log(room._id)
+                                }
                                     
                                     // TODO: COMO IMPLEMENTAR EL REFRESH AL CONFIRMAR EL DELETEO
 

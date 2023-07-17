@@ -17,10 +17,10 @@ const AddDeviceForm = ({name, type, closePopUp}) => {
 
   //Traemos el roomId empleando el hook de react-router-dom
   const roomId = useParams().slug
-  console.log("roomId en addDeviceForm: ", roomId)
+//   console.log("roomId en addDeviceForm: ", roomId)
 
   const deviceData = '';
-  const status = false
+  const status = "Off"
 
   //Esta función controla el estado del select dentro de formulario.
   const handleChange =(event)=>{
@@ -30,7 +30,7 @@ const AddDeviceForm = ({name, type, closePopUp}) => {
   const envioDispositivo = (async ({name, deviceType}) => {
         const res = await postNewDevice(name, deviceType, status, deviceData, roomId);
         closePopUp(false);
-        console.log('Estos son los datos que mandamos: ', res);
+        // console.log('Estos son los datos que mandamos: ', res);
   });
 
 
@@ -58,11 +58,11 @@ return (
                         {/* <MenuItem value="">
                             <em>None</em>
                         </MenuItem> */}
-                        <MenuItem value={'Lightbulb'}>Bombilla</MenuItem>
-                        <MenuItem value={'Blinders'}>Persianas</MenuItem>
-                        <MenuItem value={'Temperature'}>Termostato</MenuItem>
-                        <MenuItem value={'Furniture'}>Mobiliario</MenuItem>
-                        <MenuItem value={'Other'}>Otro</MenuItem>
+                        <MenuItem value={'lightbulb'}>Bombilla</MenuItem>
+                        <MenuItem value={'blinders'}>Persianas</MenuItem>
+                        <MenuItem value={'temperature'}>Termostato</MenuItem>
+                        <MenuItem value={'furniture'}>Mobiliario</MenuItem>
+                        <MenuItem value={'other'}>Otro</MenuItem>
                         </Select>
                         <FormHelperText>Required</FormHelperText>
                     </FormControl>           

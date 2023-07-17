@@ -11,14 +11,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const DeviceList = ( {refresh} ) => {
     const [ devices, setDevices ] = useState([]);
-    console.log( devices );
+    // console.log( devices );
 
     const roomId = useParams().slug
 
     useEffect(() => {
         getDevices(roomId)
             .then( data => {
-                console.log('Esta es la info del backend: ', data);
+                // console.log('Esta es la info del backend: ', data);
                 setDevices(data)
              })
             .catch( error => console.error(error))
@@ -52,7 +52,7 @@ const DeviceList = ( {refresh} ) => {
                                 color='primary' 
                                 onClick={() => {
                                     window.confirm('¿Estás seguro de que quieres eliminar por completo los datos de este dispositivo?') && deleteDevice(device._id)
-                                    console.log(device._id)
+                                    // console.log(device._id)
                                     refresh}}>
                                 <DeleteIcon></DeleteIcon>
                                 </IconButton>

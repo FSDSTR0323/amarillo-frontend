@@ -26,7 +26,7 @@ const RoomPanel = ( room ) => {
                     marginBottom: '1rem'
                 }}>
                     <Typography variant='h4'sx={{marginBottom:'1rem'}}>Dispositivos conectados en: { room.name }</Typography>
-                    {console.log('esto es el nombre de mi estancia actual: ', room)}
+                    {/* {console.log('esto es el nombre de mi estancia actual: ', room)} */}
                     <Typography variant='body1'>En este área puedes visibilizar tus diferentes dispositivos y el estado de cada uno de ellos.</Typography>
                 </Paper>
                         
