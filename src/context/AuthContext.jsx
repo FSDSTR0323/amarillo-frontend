@@ -24,11 +24,11 @@ export const AuthProvider = ({children}) => {
     const signUp = async (user) => {
         try {
             const res = await registerRequest(user)
-            //console.log("singup res", res);
+            //res no devuelve nada más que el token guardado en LocalStorage
             setUser(user);
             setIsAuthenticated(true);
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             setErrors(error.response.data);
         }
     };
@@ -40,7 +40,7 @@ export const AuthProvider = ({children}) => {
             setUser(user);
             setIsAuthenticated(true);  
         } else{
-            console.log("Error en el logueo")
+            // console.log("Error en el logueo")
         }
     }
 

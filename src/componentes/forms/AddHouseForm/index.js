@@ -17,7 +17,7 @@ const AddHouseForm = () => {
   const [metersError, setMetersError] = useState(false);
 
   const [ file, setFile ] = useState('');
-  console.log('useState asset de ', file);
+  // console.log('useState asset de ', file);
   const [ houseImg , setHouseImg ] = useState('');
   
   const navigate = useNavigate();
@@ -54,7 +54,7 @@ const AddHouseForm = () => {
 
     axios.post('https://api.cloudinary.com/v1_1/dwuej2jjm/image/upload', formData)
     .then( response => {
-      console.log('Esta es la url de la imagen que mandamos al backend: ', response.data.url)
+      // console.log('Esta es la url de la imagen que mandamos al backend: ', response.data.url)
       setHouseImg(response.data.url)
     })
     .catch( (err) => console.log(err))
@@ -64,7 +64,7 @@ const AddHouseForm = () => {
 //--------------------------------------------------------------------------------
 //FUNCIÓN PARA HACER SUBMIT DE TODOS LOS DATOS QUE PASAMOS EN EL FORMULARIO DE NUEVA VIVIENDA.
   const envioForm = ( async ({name, type, street, number, district, city, country, houseSize, roomsNumber}) => {
-    console.log('Estos son los datos que mandamos de la nueva vivienda: ', name, type, street, number, district, city, country, houseSize, roomsNumber, houseImg );
+    // console.log('Estos son los datos que mandamos de la nueva vivienda: ', name, type, street, number, district, city, country, houseSize, roomsNumber, houseImg );
     
     const response = await postNewHouse(name, type, street, number, district, city, country, houseSize, roomsNumber, houseImg);
     navigate('/myHouses')

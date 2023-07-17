@@ -26,15 +26,15 @@ const AddRoomForm = ({name, type, closePopUp}) => {
 
     //Para poder hacer un upload de la imagen
     const [ file, setFile ] = useState('');
-    console.log('useState asset de ', file);
+    // console.log('useState asset de ', file);
 
     //Dani --- Cloudinary --- metemos la data.url en el estado de url
     const [ roomImg, setRoomImg ] = useState('');
-    console.log('esto es roomImg: ', roomImg);
+    // console.log('esto es roomImg: ', roomImg);
     const [ houseID, setHouseID ] = useState('');
     
     const houseId = useParams().slug;
-    console.log("houseId en addRoomForm: ", houseId)
+    // console.log("houseId en addRoomForm: ", houseId)
 
 
     const handleHouse = (event) => {
@@ -56,8 +56,8 @@ const AddRoomForm = ({name, type, closePopUp}) => {
 
         axios.post('https://api.cloudinary.com/v1_1/dwuej2jjm/image/upload', formData)
         .then( (response) => {
-            console.log('este es la response al que quiero acceder: ', response)
-            console.log('esta es la url que yo necesito mandar al backend: ', response.data.url);
+            // console.log('este es la response al que quiero acceder: ', response)
+            // console.log('esta es la url que yo necesito mandar al backend: ', response.data.url);
             setRoomImg(response.data.url)
         })
         .catch( (err) => console.log(err))
@@ -68,7 +68,7 @@ const AddRoomForm = ({name, type, closePopUp}) => {
 
         const res = await postNewRoom(name, type, roomImg, houseId);
         closePopUp(false);
-        console.log('Estos son los datos que estamos pasando en el formulario: ', res);
+        // console.log('Estos son los datos que estamos pasando en el formulario: ', res);
     });
 
 
