@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import HubNavBar from '../MenuBars/HubNavBar';
-import { Typography, Box, Stack, Button, IconButton, Avatar, TextField, InputAdornment, MenuItem } from '@mui/material';
+import { Typography, Box, Stack, Button, Avatar, TextField } from '@mui/material';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import SaveIcon from '@mui/icons-material/Save'; 
+
 
 const MyUserPanel = () => {
   const [editMode, setEditMode] = useState(false);
   const [userData, setUserData] = useState({
-    name: 'Nombre',
-    surname: 'Apellidos',
-    email: 'E-mail',
-    phoneNumber: 'Número de teléfono',
-    birthYear: 'Año de nacimiento',
+    name: '',
+    surname: '',
+    email: '',
+    phoneNumber: '',
+    birthYear: '',
     avatar: '',
   });
   const [editedUserData, setEditedUserData] = useState({
@@ -22,6 +24,14 @@ const MyUserPanel = () => {
     birthYear: '',
     avatar: '',
   });
+  const [file, setFile] = useState(null);
+
+  useEffect(() => {
+    dataUser(userId)
+    .then(userData => {
+      setUserData(userData)
+    })
+  },[])
 
   const handleEditClick = () => {
     setEditedUserData(userData);
@@ -44,10 +54,49 @@ const MyUserPanel = () => {
     }));
   };
 
+  const uploadImage = (event) => {
+    event.preventDefault();
+
+    setUserData((prevData) => ({
+      ...prevData,
+      avatar: editedUserData.avatar,
+    }));
+    setEditMode(false);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    setUserData(editedUserData);
+
+    setUserData((prevData) => ({
+      ...prevData,
+      name: editedUserData.name,
+      surname: editedUserData.surname,
+      email: editedUserData.email,
+      phoneNumber: editedUserData.phoneNumber,
+      birthYear: editedUserData.birthYear,
+    }));
     setEditMode(false);
+
+    const handleSaveChanges = async () => {
+      try {
+        const response = await fetch(`/editar-usuario/${userData._id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(editedUserData),
+        });
+    
+        if (response.ok) {
+          console.log('Datos actualizados correctamente');
+          // Puedes realizar alguna acción adicional después de actualizar los datos, como mostrar un mensaje de éxito o redirigir al usuario a otra página.
+        } else {
+          console.error('Error al actualizar los datos');
+        }
+      } catch (error) {
+        console.error('Error al realizar la solicitud:', error);
+      }
+    }
   };
 
   return (
@@ -84,6 +133,40 @@ const MyUserPanel = () => {
                     src={editedUserData.avatar ? URL.createObjectURL(editedUserData.avatar) : ''}
                     sx={{ width: 80, height: 80 }}
                   />
+                   <Typography variant='body1' sx={{color:'#505050', paddingTop:'1rem'}}>Elige una imagen para tu perfil:</Typography>
+
+<Box sx={{display:'flex', gap:'1rem'}}>
+    <Button
+        variant="info"
+        component="label"
+        >
+        Seleccionar una imagen de perfil
+            <input
+                type="file"
+                hidden
+                onChange={(event) => {
+                    setFile(event.target.files[0])
+                }}
+            />
+    </Button>
+    <Button variant='contained'
+      color='success'
+      onClick={uploadImage}
+      startIcon={<SaveIcon/>}
+      sx={{}}></Button>
+</Box>
+
+<Typography sx={{textAlign:'center', paddingTop:'1rem', color:'#AEAEAE'}}>___________</Typography>
+
+<Box sx={{display: 'flex', flexDirection: 'row', gap:'1rem', justifyContent: 'center', paddingTop:'1rem', paddingBottom:'1rem'}}>
+    <Button type='cancel' variant='outlined' color='info' onClick={() => closePopUp(false)}>
+        Cancelar
+    </Button>
+    <Button type='submit' value ="" variant='contained' color='primary'>
+        Actualizar datos de usuario
+    </Button>
+</Box>
+</Box>
                   <Box
                     sx={{
                       position: 'absolute',
@@ -95,9 +178,8 @@ const MyUserPanel = () => {
                       padding: '2px',
                     }}
                   >
-                    Añadir foto
                   </Box>
-                </Box>
+      
                 <input
                   id="avatar-input"
                   type="file"
@@ -116,6 +198,7 @@ const MyUserPanel = () => {
                     name="name"
                     value={editedUserData.name}
                     onChange={handleInputChange}
+                    placeholder="Introduce tu nombre"
                     InputProps={{
                       style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' },
                     }}
@@ -127,6 +210,7 @@ const MyUserPanel = () => {
                     name="surname"
                     value={editedUserData.surname}
                     onChange={handleInputChange}
+                    placeholder="Introduce tu apellido"
                     InputProps={{
                       style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' },
                     }}
@@ -138,6 +222,7 @@ const MyUserPanel = () => {
                     name="email"
                     value={editedUserData.email}
                     onChange={handleInputChange}
+                    placeholder="Introduce tu e-mail"
                     InputProps={{
                       style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' },
                     }}
@@ -149,20 +234,24 @@ const MyUserPanel = () => {
                     name="phoneNumber"
                     value={editedUserData.phoneNumber}
                     onChange={(phone) => setEditedUserData({ ...editedUserData, phoneNumber: phone })}
+                    placeholder="Introduce tu número de teléfono"
                     inputStyle={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}
-                    country={'es'}
-                    disableDropdown
+                    countryCodeEditable
+                    country={'auto'}
+                    disableDropdown={false}
+                    dropdownClass="react-phone-input-2-dropdown"
                     inputProps={{
                       maxLength: 15,
                     }}
                   />
                   <TextField
-                    label="Año de nacimiento/Birth year"
+                    label="Año de nacimiento/BirthYear"
                     variant="filled"
                     fullWidth
                     name="birthYear"
                     value={editedUserData.birthYear}
                     onChange={handleInputChange}
+                    placeholder="Introduce tu año de nacimiento"
                     InputProps={{
                       style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' },
                     }}

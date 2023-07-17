@@ -149,3 +149,8 @@ getMyUser()
 return;
 }
 
+export const dataUser = async () => { 
+    const {data} =await axios.get (`${API}/users/dataUser`, {headers: {Authorization: localStorage.getItem ('token')}});
+
+return data;
+}
