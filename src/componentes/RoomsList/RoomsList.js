@@ -8,12 +8,11 @@ import { Grid, Card } from '@mui/material';
 import { CardActionArea, CardActions, IconButton, CardContent, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-import DeleteRoomPopUp from './RoomCard/DeleteRoomPopUp';
 import { Navigate } from 'react-router-dom';
 
 const RoomsList = ( {refresh} ) => {
     const [ rooms, setRooms ] = useState([]);
-    const [ deletePopUp, toggleDeletePopUp ] = useState(false);
+
     //useState() es una función que crea internamente una variable donde podremos almacenar el estado de nuestro componente
     console.log( rooms );
 

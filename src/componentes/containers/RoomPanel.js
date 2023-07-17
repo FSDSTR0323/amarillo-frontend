@@ -37,7 +37,7 @@ const RoomPanel = ( room ) => {
                 </Button>
                 {AddDevicePopup && <AddDeviceForm closePopUp={toggleAddDevicePopup}></AddDeviceForm>}
                 
-                <DeviceList></DeviceList>
+                <DeviceList refresh={AddDevicePopup}></DeviceList>
         </Box>
         </>
     )      

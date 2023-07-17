@@ -99,7 +99,9 @@ export const deleteRoom = async(id) => {
 
 //--- DEVICES ----------
 export const getDevices = async (roomId) => {
+    console.log('Pedimos todos los dispositivos.')
     const { data } = await axios.get(`${API}/devices/${roomId}`,{headers: {Authorization: localStorage.getItem('token')}}); //{headers: {Authorization: localStorage.getItem('token')}}
+    console.log(data)
     return data;
 };
 
@@ -114,7 +116,6 @@ export const postNewDevice = async (name, deviceType, status, deviceData, roomId
 export const deleteDevice = async (id) => {
     const res = await axios.delete(`${API}/devices/${id}`,{headers: {Authorization: localStorage.getItem('token')}});
     console.log('Dispositivo eliminado correctamente', res);
-    return getDevices()
 };
 
 //ALL HOUSES -----------------

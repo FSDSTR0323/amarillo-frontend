@@ -23,6 +23,7 @@ import RoomPanel from './componentes/containers/RoomPanel';
 import ProtectedRoutes from './ProtectedRoutes';
 import MyUserPanel from './componentes/containers/MyUserPanel';
 import SupportChat from './componentes/SupportChat';
+import NotFoundPage from './componentes/containers/NotFoundPage';
 
 function App( {user, room} ) {
   return (
@@ -45,7 +46,7 @@ function App( {user, room} ) {
                   <Route path='/housePanel/Devices/:slug' element={<RoomPanel />} />
                 </Route>
 
-                <Route path='*' element={<p>No hemos encontrado esta página.</p>} /> TODO: Hay que crear la página de 404 NotFound
+                <Route path='*' element={<NotFoundPage />} /> TODO: Hay que crear la página de 404 NotFound
                 {/* para ver tema de customizar página 404 https://naveenda.medium.com/creating-a-custom-404-notfound-page-with-react-routers-56af9ad67807 */}
             </Routes>    
           </BrowserRouter>

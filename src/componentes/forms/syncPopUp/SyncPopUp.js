@@ -3,20 +3,6 @@ import Lottie from 'lottie-react';
 import { Box, Typography, Button } from '@mui/material';
 import animationSync from '../../../assets/imgs/homehubAnimateSync.json';
 
-//TODO: CREAR LA CONSTANTE BUTTON DE "HECHO" Y HACER UN TIMEOUT DE 3 SEGUNDOS
-// const myTimeout = setTimeout(() =>{
-//     return (
-//         <Box sx={{display:'flex', justifyContent:'center', alignContent:'center'}}>
-//             <Button 
-//                 variant='contained' 
-//                 color='success' 
-//                 sx={{marginBottom:'2rem'}}
-//                 onClick={()=>closePopUp(false)}
-//                 >¡Hecho!
-//             </Button>
-//         </Box>
-//     )
-// }, 3000);
 
 const SyncPopUp = ({closePopUp}) => {
   return (
