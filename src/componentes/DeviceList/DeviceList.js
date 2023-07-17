@@ -36,7 +36,7 @@ const DeviceList = ( {refresh} ) => {
     };
 
     const SliderOrSwitch = (deviceType) => {
-        if(deviceType === 'Temperature' ){
+        if(deviceType === 'temperature' ){
             return (
             <Slider
                 defaultValue={21}
