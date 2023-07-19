@@ -1,21 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import HubNavBar from '../MenuBars/HubNavBar';
 import { Typography, Box, Stack, Button, Avatar, TextField } from '@mui/material';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import SaveIcon from '@mui/icons-material/Save'; 
+import { dataUser } from '../../apiService';
+import {useForm} from 'react-hook-form'
 
 
-const MyUserPanel = () => {
+
+const MyUserPanel = ({name, surname, birthYear, phoneNumber, email}) => {
+  const {register, formState:{errors}, handleSubmit} = useForm()
   const [editMode, setEditMode] = useState(false);
   const [userData, setUserData] = useState({
-    name: '',
-    surname: '',
-    email: '',
-    phoneNumber: '',
-    birthYear: '',
-    avatar: '',
+    // name: '',
+    // surname: '',
+    // email: '',
+    // phoneNumber: '',
+    // birthYear: '',
+    // avatar: '',
   });
+
+
+
   const [editedUserData, setEditedUserData] = useState({
     name: '',
     surname: '',
@@ -27,9 +34,11 @@ const MyUserPanel = () => {
   const [file, setFile] = useState(null);
 
   useEffect(() => {
-    dataUser(userId)
+
+    dataUser()
     .then(userData => {
       setUserData(userData)
+      console.log("UserData: ", userData )
     })
   },[])
 
@@ -64,18 +73,19 @@ const MyUserPanel = () => {
     setEditMode(false);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  // const handleSubmit = (event) => {
+  //   //event.preventDefault();
 
-    setUserData((prevData) => ({
-      ...prevData,
-      name: editedUserData.name,
-      surname: editedUserData.surname,
-      email: editedUserData.email,
-      phoneNumber: editedUserData.phoneNumber,
-      birthYear: editedUserData.birthYear,
-    }));
-    setEditMode(false);
+  //   setUserData((prevData) => ({
+  //     ...prevData,
+  //     name: editedUserData.name,
+  //     surname: editedUserData.surname,
+  //     email: editedUserData.email,
+  //     phoneNumber: editedUserData.phoneNumber,
+  //     birthYear: editedUserData.birthYear,
+  //   }));
+  //   setEditMode(false);
+  // }
 
     const handleSaveChanges = async () => {
       try {
@@ -97,7 +107,13 @@ const MyUserPanel = () => {
         console.error('Error al realizar la solicitud:', error);
       }
     }
-  };
+  
+
+  const envioForm = async ({name, surname, email, phoneNumber, birthYear}) =>{
+    console.log("Formulario: ", {name, surname, email, phoneNumber, birthYear})
+    const resultado = await addEditUser(name, surname, email, phoneNumber, birthYear, avatar)
+    console.log("Resultado del envío Formulario: ", resultado)
+  }
 
   return (
     <>
@@ -190,30 +206,32 @@ const MyUserPanel = () => {
               </label>
 
               {editMode ? (
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit(envioForm)}>
                   <TextField
                     label="Nombre/Name"
                     variant="filled"
-                    fullWidth
+                    // fullWidth
                     name="name"
-                    value={editedUserData.name}
-                    onChange={handleInputChange}
-                    placeholder="Introduce tu nombre"
-                    InputProps={{
-                      style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' },
-                    }}
+                    value={name}
+                    // onChange={handleInputChange}
+                    // placeholder="Introduce tu nombre"
+                    // InputProps={{
+                    //   style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' },
+                    // }}
+                    {...register("name")}
                   />
                   <TextField
                     label="Apellido/Surname"
                     variant="filled"
-                    fullWidth
+                    // fullWidth
                     name="surname"
-                    value={editedUserData.surname}
-                    onChange={handleInputChange}
-                    placeholder="Introduce tu apellido"
-                    InputProps={{
-                      style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' },
-                    }}
+                    value={surname}
+                    // onChange={handleInputChange}
+                    // placeholder="Introduce tu apellido"
+                    // InputProps={{
+                    //   style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' },
+                    // }}
+                    {...register("surname")}
                   />
                   <TextField
                     label="Email"
@@ -247,14 +265,15 @@ const MyUserPanel = () => {
                   <TextField
                     label="Año de nacimiento/BirthYear"
                     variant="filled"
-                    fullWidth
+                    // fullWidth
                     name="birthYear"
-                    value={editedUserData.birthYear}
-                    onChange={handleInputChange}
-                    placeholder="Introduce tu año de nacimiento"
-                    InputProps={{
-                      style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' },
-                    }}
+                    value={birthYear}
+                    // onChange={handleInputChange}
+                    // placeholder="Introduce tu año de nacimiento"
+                    // InputProps={{
+                    //   style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' },
+                    // }}
+                    {...register("birthYear")}
                   />
 
                   <Box
@@ -267,7 +286,12 @@ const MyUserPanel = () => {
                       paddingBottom: '1rem',
                     }}
                   >
-                    <Button type="submit" variant="contained" color="primary">
+                    <Button type="submit" variant="contained" color="primary" 
+                      onClick={() => {
+                                      console.log ("Guardamos?? ", editedUserData )
+                                      setEditMode(false)
+                                    }}
+                                    >
                       Guardar
                     </Button>
                     <Button variant="outlined" color="info" onClick={() => setEditMode(false)}>

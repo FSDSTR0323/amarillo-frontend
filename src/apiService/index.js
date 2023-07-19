@@ -144,13 +144,17 @@ export const deleteHouse = async(id) => {
     return;
 };
 
-export const addEditUser = async (name, surname, email, phoneNumber, birthYear, avatar) => { const {data} =await axios.update(`${API}/user/`, {name, surname, email, phoneNumber, birthYear, avatar}, {headers: {Authorization: localStorage.getItem ('token')}});
-getMyUser()
+export const addEditUser = async (name, surname, email, phoneNumber, birthYear, avatar) => { 
+    console.log("Enviamos datos modificados")    
+    const {data} =await axios.put(`${API}/users/dataUser`, {name, surname, email, phoneNumber, birthYear, avatar}, {headers: {Authorization: localStorage.getItem ('token')}});
+    await dataUser()
+    console.log("data modificada recibido usuario ", data)
 return;
 }
 
 export const dataUser = async () => { 
+    console.log("Pedimos datos")
     const {data} =await axios.get (`${API}/users/dataUser`, {headers: {Authorization: localStorage.getItem ('token')}});
-
+    console.log("data recibido usuario ", data)
 return data;
 }
