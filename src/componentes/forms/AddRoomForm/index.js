@@ -111,7 +111,7 @@ return (
 
                 <Box sx={{display:'flex', gap:'1rem'}}>
                     <Button
-                        variant="info"
+                        color="info"
                         component="label"
                         >
                         Seleccionar una imagen
@@ -124,7 +124,7 @@ return (
                             />
                     </Button>
                     <Button variant='contained'
-                      color='success'
+                      color='info'
                       onClick={uploadImage}
                       startIcon={<SaveIcon/>}
                       sx={{}}></Button>
@@ -137,7 +137,7 @@ return (
                     <Button type='cancel' variant='outlined' color='info' onClick={() => closePopUp(false)}>
                         Cancelar
                     </Button>
-                    <Button type='submit' value ="" variant='contained' color='primary'>
+                    <Button type='submit' value ="" variant='contained' color='secondary'>
                         Crear nueva estancia
                     </Button>
                 </Box>

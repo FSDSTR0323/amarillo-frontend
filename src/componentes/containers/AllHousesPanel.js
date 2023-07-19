@@ -16,8 +16,10 @@ const navigate = useNavigate () ;
     <> 
         <HubNavBar></HubNavBar>
         
-        <Box sx= {{
-        p: '2rem'
+        <Box sx={{
+        p: '2rem',
+        bgcolor: '#E8F8F8',
+        minHeight: '100vh'
         }}>
         <Paper elevation={8} sx={{
             p: '2rem',

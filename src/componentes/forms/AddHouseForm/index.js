@@ -194,7 +194,7 @@ const AddHouseForm = () => {
         <Typography sx={{paddingTop:'2rem'}}>Elige una imagen para tu nueva vivienda/oficina y súbela a la nube de HomeHub:</Typography>
         <Box sx={{display:'flex', gap:'1rem'}}>
                 <Button
-                    variant="info"
+                    color="info"
                     component="label"
                     >
                     Seleccionar una imagen
@@ -207,7 +207,7 @@ const AddHouseForm = () => {
                         />
                 </Button>
               <Button variant='contained'
-                      color='success'
+                      color='info'
                       onClick={uploadImage}
                       startIcon={<SaveIcon/>}
                       sx={{}}></Button>
@@ -221,7 +221,7 @@ const AddHouseForm = () => {
           <Button type="cancel" variant="outlined" color="info" onClick={() => navigate('/myHouses')}>
             Cancelar
           </Button>
-          <Button type="submit" variant="contained" color="primary">
+          <Button type="submit" variant="contained" color="secondary">
             Registrar nueva vivienda
           </Button>
         </Box>

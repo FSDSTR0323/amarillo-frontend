@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Router } from 'react-router-dom';
 import { logUserOut } from '../../apiService';
+import logoWhite from '../../assets/logos/logowhite.png';
 
 //MATERIAL UI
 import { Typography, Button, IconButton, Box, AppBar, Toolbar } from '@mui/material';
@@ -17,35 +18,45 @@ const HubNavBar = () => {
  
     return (
     <Box sx={{ display: 'flex' }}>
-      <AppBar position="static">
+      <AppBar position="static" color='primary'>
         <Toolbar>
-        <Link to='/myHouses'>
-        <IconButton sx={{color: 'white'}}>
-          <HomeIcon></HomeIcon>
-        </IconButton> 
-        </Link>
+
+        <Box sx={{display:'flex', alignItems: 'center', justifyContent:'center'}}>
+          
+          <Link to='/myHouses'>
+          <IconButton sx={{color: 'white'}}>
+            <HomeIcon></HomeIcon>
+          </IconButton> 
+          </Link>
 
           {/* <Button color="inherit" sx={{m:'1rem'}}>BOTÓN CASA/S</Button> */}
 
-          <Typography variant="h6" component="div" sx={{flexGrow: 1, marginLeft:'2rem'}}>
+          {/* <Typography variant="h6" component="div" sx={{flexGrow: 1, marginLeft:'2rem'}}>
             HomeHub
-          </Typography>
+          </Typography> */}
+          <Link to='/'>
+            <img className='logoWhiteHub' src={logoWhite} alt='homehub'/> 
+          </Link>
+          </Box>
 
-          <Button color='primary' variant='filled' startIcon={<TuneIcon/>} 
-                onClick={ () => ''}
-                >AJUSTES
-                </Button>
 
-          <Link to='/myUser'>
-            <Button sx={{color: 'white'}} variant='filled' startIcon={<PersonIcon/>}>
-                USUARIO
-            </Button>
-          </Link> 
+          <Box sx={{width:'100%', display:'flex', alignItems: 'center', justifyContent:'flex-end'}}>
+            <Button color='primary' variant='filled' startIcon={<TuneIcon/>} 
+                  onClick={ () => ''}
+                  >AJUSTES
+                  </Button>
 
-          <Button color='primary' variant='filled' startIcon={<LogoutIcon/>} 
-                onClick={ () => logUserOut()}>
-                CERRAR SESIÓN
-                </Button>
+            <Link to='/myUser'>
+              <Button sx={{color: 'white'}} variant='filled' startIcon={<PersonIcon/>}>
+                  USUARIO
+              </Button>
+            </Link> 
+
+            <Button color='primary' variant='filled' startIcon={<LogoutIcon/>} 
+                  onClick={ () => logUserOut()}>
+                  CERRAR SESIÓN
+                  </Button>
+          </Box>
 
         </Toolbar>
       </AppBar>

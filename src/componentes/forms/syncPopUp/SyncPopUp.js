@@ -15,7 +15,7 @@ const SyncPopUp = ({closePopUp}) => {
             <Box sx={{display:'flex', justifyContent:'center', alignContent:'center'}}>
                 <Button 
                     variant='contained' 
-                    color='success' 
+                    color='secondary' 
                     sx={{marginBottom:'2rem'}}
                     onClick={()=>closePopUp(false)}
                     >¡Hecho!

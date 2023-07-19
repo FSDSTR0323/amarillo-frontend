@@ -25,7 +25,9 @@ const HousePanel = () => {
     <>
     <HubNavBar></HubNavBar>
     <Box sx= {{
-        p: '2rem'
+        p: '2rem',
+        bgcolor: '#E8F8F8',
+        minHeight: '100vh'
     }}>
         <Paper elevation={8} sx={{
             p: '2rem',
@@ -43,7 +45,7 @@ const HousePanel = () => {
             Añadir nueva estancia
           </Button>
 
-          <Button color='success' variant='outlined' startIcon={<SyncIcon/>} 
+          <Button color='secondary' variant='contained' startIcon={<SyncIcon/>} 
           sx={{marginBottom: '2rem'}}
           onClick={ () => toggleSyncPopUp(true)}>
             Sincronizar dispositivos

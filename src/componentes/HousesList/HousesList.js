@@ -68,7 +68,7 @@ const HousesList = ( {refresh} ) => {
 
                             <CardActions>
                                 <IconButton 
-                                color='primary' 
+                                color='info' 
                                 onClick={() => {
                                     window.confirm("¿Estás seguro de que quieres eliminar este espacio virtual y todos los datos que existen dentro del mismo?") && onDelete(house._id)
                                     // console.log(house._id)

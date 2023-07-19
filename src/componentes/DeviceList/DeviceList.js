@@ -40,6 +40,7 @@ const DeviceList = ( {refresh} ) => {
             return (
             <Slider
                 defaultValue={21}
+                color='info'
                 aria-labelledby="discrete-slider"
                 valueLabelDisplay="auto"
                 step={1}
@@ -50,7 +51,7 @@ const DeviceList = ( {refresh} ) => {
             />
             )
         } else {
-            return <Switch />
+            return <Switch color='info'/>
         }
     }
   
@@ -79,17 +80,18 @@ const DeviceList = ( {refresh} ) => {
                                 <Box sx={{display: 'flex', width:'100%', justifyContent: 'space-between'}}>
                                     <Box sx={{display:'flex'}}>
                                     <IconButton
-                                    color='primary' 
+                                    color='info' 
+                                    onClick={() => console.log('Programación de los horarios de este dispositivo.')}>
+                                        <ScheduleIcon></ScheduleIcon>
+                                    </IconButton>
+
+                                    <IconButton
+                                    color='info' 
                                     onClick={() => {
                                         window.confirm('¿Quieres eliminar por completo los datos de este dispositivo?') && onDelete(device._id)
                                         console.log(device._id)
                                         }}>
                                         <DeleteIcon></DeleteIcon>
-                                    </IconButton>
-                                    <IconButton
-                                    color='primary' 
-                                    onClick={() => console.log('Programación de los horarios de este dispositivo.')}>
-                                        <ScheduleIcon></ScheduleIcon>
                                     </IconButton>
                                     </Box>
                                     

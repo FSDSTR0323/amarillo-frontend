@@ -68,7 +68,7 @@ const onDelete = async (roomId) => {
             { rooms.length > 0 ? rooms.map( room => {
                 return (
                     <Grid item xs={12} sm={6} md={3} key={room._id}>
-                        <Card sx={{ boxShadow: '4px 8px 8px -4px rgb(202, 213, 216)', border:'solid 1px #f2f2f2', borderRadius:'1rem'}}>
+                        <Card className='roomCard' sx={{ boxShadow: '4px 8px 8px -4px rgb(202, 213, 216)', border:'solid 1px #f2f2f2', borderRadius:'1rem'}}>
 
                             <CardActionArea 
                                 onClick={ () =>  navigate(`/housePanel/Devices/${room._id}`)}>
@@ -89,7 +89,7 @@ const onDelete = async (roomId) => {
 
                             <CardActions>
                                 <IconButton
-                                color='primary' 
+                                color='info' 
                                 onClick={() => {
                                     window.confirm("¿Estás seguro de que quieres eliminar esta estancia y los dispositivos conectados dentro de la misma?") && onDelete(room._id)
                                     // console.log(room._id)

@@ -18,7 +18,9 @@ const RoomPanel = ( room ) => {
         <>
         <HubNavBar></HubNavBar>
         <Box sx= {{
-            padding:'1rem 2rem 1rem 2rem'
+            padding:'1rem 2rem 1rem 2rem',
+            bgcolor: '#E8F8F8',
+            minHeight: '100vh'
         }}>
                 <Paper elevation={8} sx={{
                     p: '2rem',

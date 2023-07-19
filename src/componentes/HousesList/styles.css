@@ -4,9 +4,6 @@
     height:100%;
 }
 
-
-/* Animación copiada de web */
-/* .houseCard {
-        -webkit-animation: slide-in-right 700ms cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-                animation: slide-in-right 700ms cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-} */
+.houseCard:hover {
+    background-color: #99ffd16e;
+};

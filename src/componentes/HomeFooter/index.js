@@ -30,7 +30,7 @@ const Footer = () =>{
               </Grid>
 
               <Grid item xs={12} sm={4}>
-                <Typography variant="h6" color="text.primary" gutterBottom>
+                <Typography variant="h6" color="primary" gutterBottom>
                   Contacta con nosotros 
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -45,7 +45,7 @@ const Footer = () =>{
               </Grid>
 
               <Grid item xs={12} sm={4}>
-                <Typography variant="h6" color="text.primary" gutterBottom>
+                <Typography variant="h6" color="primary" gutterBottom>
                   Síguenos en redes
                 </Typography>
                 <Link href="https://www.facebook.com/" >
