@@ -145,17 +145,17 @@ export const deleteHouse = async(id) => {
     return;
 };
 
-export const addEditUser = async (name, surname, email, phoneNumber, birthYear, avatar) => { 
+export const addEditUser = async (user) => { 
     console.log("Enviamos datos modificados")    
-    const {data} =await axios.put(`${API}/users/dataUser`, {name, surname, email, phoneNumber, birthYear, avatar}, {headers: {Authorization: localStorage.getItem ('token')}});
+    const {data} =await axios.put(`${API}/users/dataUser`, user, {headers: {Authorization: localStorage.getItem ('token')}});
     await dataUser()
     console.log("data modificada recibido usuario ", data)
-return;
+    return data;
 }
 
 export const dataUser = async () => { 
-    console.log("Pedimos datos")
+    console.log("API get DataUser")
     const {data} =await axios.get (`${API}/users/dataUser`, {headers: {Authorization: localStorage.getItem ('token')}});
     console.log("data recibido usuario ", data)
-return data;
+    return data;
 }
