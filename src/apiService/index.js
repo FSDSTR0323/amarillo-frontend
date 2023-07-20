@@ -15,7 +15,8 @@ export const registerRequest = async (user) => {
         const token = response.data.token ;
         if(token){
             // console.log("token devuelto a guardar: ", token)
-            return window.localStorage.setItem('token', token); //Con esto estamos guardando en el LocalStorage el token del usuario.
+            window.localStorage.setItem('token', token); //Con esto estamos guardando en el LocalStorage el token del usuario.
+            return true
         }
         console.log("USER No válido");
     } catch(error) {
