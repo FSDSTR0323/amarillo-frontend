@@ -5,7 +5,7 @@ import { BroadcastChannel } from "broadcast-channel";
 const logOutChannel = new BroadcastChannel('logOut');
 
 
-const API = 'https://amarillo-backend-production.up.railway.app/'
+const API = 'https://amarillo-backend-production.up.railway.app:9000/'
 
 
 export const registerRequest = async (user) => {
