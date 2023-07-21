@@ -74,26 +74,26 @@ const MyUserPanel = () => {
     }));
     setEditMode(false);
 
-    const handleSaveChanges = async () => {
-      try {
-        const response = await fetch(`/editar-usuario/${userData._id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(userData),
-        });
+    // const handleSaveChanges = async () => {
+    //   try {
+    //     const response = await fetch(`/editar-usuario/${userData._id}`, {
+    //       method: 'PUT',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       body: JSON.stringify(userData),
+    //     });
     
-        if (response.ok) {
-          console.log('Datos actualizados correctamente');
-          // Puedes realizar alguna acción adicional después de actualizar los datos, como mostrar un mensaje de éxito o redirigir al usuario a otra página.
-        } else {
-          console.error('Error al actualizar los datos');
-        }
-      } catch (error) {
-        console.error('Error al realizar la solicitud:', error);
-      }
-    }
+    //     if (response.ok) {
+    //       console.log('Datos actualizados correctamente');
+    //       // Puedes realizar alguna acción adicional después de actualizar los datos, como mostrar un mensaje de éxito o redirigir al usuario a otra página.
+    //     } else {
+    //       console.error('Error al actualizar los datos');
+    //     }
+    //   } catch (error) {
+    //     console.error('Error al realizar la solicitud:', error);
+    //   }
+    // }
   };
 
   return (
