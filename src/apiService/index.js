@@ -4,9 +4,10 @@ import { BroadcastChannel } from "broadcast-channel";
 
 const logOutChannel = new BroadcastChannel('logOut');
 
+// //Para desarrollo
+// const API = 'http://localhost:9000'
 
-//const API = 'http://localhost:9000'
-
+//Para producción
 const API = 'https://amarillo-backend-production.up.railway.app'
 
 

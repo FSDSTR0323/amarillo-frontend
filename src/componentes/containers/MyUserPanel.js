@@ -274,12 +274,18 @@ const MyUserPanel = () => {
                 </form>
               ) : (
                 <>
+                 <div>
+                 <Typography style={{ fontWeight: 'bold' }}>Nombre:</Typography>
                   <Typography>{userData.name}</Typography>
+                  <Typography style={{ fontWeight: 'bold' }}>Apellido: </Typography>
                   <Typography>{userData.lastName}</Typography>
+                  <Typography style={{ fontWeight: 'bold' }}>email:</Typography>
                   <Typography>{userData.email}</Typography>
+                  <Typography style={{ fontWeight: 'bold' }}>Número teléfono:</Typography>
                   <Typography>{userData.phoneNumber}</Typography>
+                  <Typography style={{ fontWeight: 'bold' }}>Año nacimiento:</Typography>
                   <Typography>{userData.birthYear}</Typography>
-
+                  </div>
                   <Box
                     sx={{
                       display: 'flex',
